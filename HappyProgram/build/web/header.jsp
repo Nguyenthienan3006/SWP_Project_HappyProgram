@@ -93,9 +93,9 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="teachers.jsp">Our Mentor</a>
+                                    <a href="teachers.jsp">Our Mentors</a>
                                     <ul class="sub-menu">
-                                        <li><a href="View_mentorList">teachers</a></li>
+                                        <li><a href="View_mentorList">Mentors List</a></li>
                                         <li><a href="teachers-singel.jsp">teacher Singel</a></li>
                                     </ul>
                                 </li>

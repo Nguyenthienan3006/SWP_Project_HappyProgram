@@ -65,11 +65,11 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="page-banner-cont">
-                                <h2>Teachers</h2>
+                                <h2>Mentors</h2>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Teachers</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Mentors List</li>
                                     </ol>
                                 </nav>
                             </div>  <!-- page banner cont -->
@@ -84,9 +84,9 @@
 
 
 
-            <form action="View_mentorList" method="post" style="padding-top: 1%">
+            <form action="View_mentorList" method="post" style="padding-top: 1%; margin-left: 11%">
                 <div class="search-container">
-                    <input name="name" type="text" id="searchInput" placeholder="Search...">
+                    <input name="name" type="text" id="searchInput" placeholder="Search..." style="padding-left: 5%">
                     <button type="submit" >Submit</button>
                 </div>
             </form>
