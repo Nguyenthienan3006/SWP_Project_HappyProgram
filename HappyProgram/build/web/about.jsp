@@ -129,149 +129,7 @@
         </div> <!-- container -->
     </section>
     
-    <!--====== ABOUT PART ENDS ======-->
-
-    <!--====== COUNTER PART START ======-->
-    
-    <div id="counter-part" class="bg_cover pt-65 pb-110" data-overlay="8" style="background-image: url(images/bg-2.jpg)">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="singel-counter text-center mt-40">
-                        <span><span class="counter">30,000</span>+</span>
-                        <p>Students enrolled</p>
-                    </div> <!-- singel counter -->
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="singel-counter text-center mt-40">
-                        <span><span class="counter">41,000</span>+</span>
-                        <p>Courses Uploaded</p>
-                    </div> <!-- singel counter -->
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="singel-counter text-center mt-40">
-                        <span><span class="counter">11,000</span>+</span>
-                        <p>People certifie</p>
-                    </div> <!-- singel counter -->
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="singel-counter text-center mt-40">
-                        <span><span class="counter">39,000</span>+</span>
-                        <p>Global Teachers</p>
-                    </div> <!-- singel counter -->
-                </div>
-            </div> <!-- row -->
-        </div> <!-- container -->
-    </div>
-    
-    <!--====== COUNTER PART ENDS ======-->
-   
-    <!--====== TEACHERS PART START ======-->
-    
-    <section id="teachers-part" class="pt-65 pb-120">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5">
-                    <div class="section-title mt-50 pb-35">
-                        <h5>Featured Teachers</h5>
-                        <h2>Meet Our teachers</h2>
-                    </div> <!-- section title -->
-                </div>
-            </div> <!-- row -->
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="singel-teachers mt-30 text-center">
-                        <div class="image">
-                            <img src="images/teachers/t-1.jpg" alt="Teachers">
-                        </div>
-                        <div class="cont">
-                            <a href="teachers-singel.html"><h6>Mark alen</h6></a>
-                            <span>Vice chencelor</span>
-                        </div>
-                    </div> <!-- singel teachers -->
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="singel-teachers mt-30 text-center">
-                        <div class="image">
-                            <img src="images/teachers/t-2.jpg" alt="Teachers">
-                        </div>
-                        <div class="cont">
-                            <a href="teachers-singel.html"><h6>Mark alen</h6></a>
-                            <span>Vice chencelor</span>
-                        </div>
-                    </div> <!-- singel teachers -->
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="singel-teachers mt-30 text-center">
-                        <div class="image">
-                            <img src="images/teachers/t-3.jpg" alt="Teachers">
-                        </div>
-                        <div class="cont">
-                            <a href="teachers-singel.html"><h6>Mark alen</h6></a>
-                            <span>Vice chencelor</span>
-                        </div>
-                    </div> <!-- singel teachers -->
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="singel-teachers mt-30 text-center">
-                        <div class="image">
-                            <img src="images/teachers/t-4.jpg" alt="Teachers">
-                        </div>
-                        <div class="cont">
-                            <a href="teachers-singel.html"><h6>Mark alen</h6></a>
-                            <span>Vice chencelor</span>
-                        </div>
-                    </div> <!-- singel teachers -->
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="singel-teachers mt-30 text-center">
-                        <div class="image">
-                            <img src="images/teachers/t-5.jpg" alt="Teachers">
-                        </div>
-                        <div class="cont">
-                            <a href="teachers-singel.html"><h6>Mark alen</h6></a>
-                            <span>Vice chencelor</span>
-                        </div>
-                    </div> <!-- singel teachers -->
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="singel-teachers mt-30 text-center">
-                        <div class="image">
-                            <img src="images/teachers/t-6.jpg" alt="Teachers">
-                        </div>
-                        <div class="cont">
-                            <a href="teachers-singel.html"><h6>Mark alen</h6></a>
-                            <span>Vice chencelor</span>
-                        </div>
-                    </div> <!-- singel teachers -->
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="singel-teachers mt-30 text-center">
-                        <div class="image">
-                            <img src="images/teachers/t-7.jpg" alt="Teachers">
-                        </div>
-                        <div class="cont">
-                            <a href="teachers-singel.html"><h6>Mark alen</h6></a>
-                            <span>Vice chencelor</span>
-                        </div>
-                    </div> <!-- singel teachers -->
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="singel-teachers mt-30 text-center">
-                        <div class="image">
-                            <img src="images/teachers/t-8.jpg" alt="Teachers">
-                        </div>
-                        <div class="cont">
-                            <a href="teachers-singel.html"><h6>Mark alen</h6></a>
-                            <span>Vice chencelor</span>
-                        </div>
-                    </div> <!-- singel teachers -->
-                </div>
-            </div> <!-- row -->
-        </div> <!-- container -->
-    </section>
-    
-    <!--====== TEACHERS PART ENDS ======-->
+    <!--====== ABOUT PART ENDS ======-->   
    
     <!--====== TEASTIMONIAL PART START ======-->
     
@@ -332,6 +190,33 @@
                     </div> <!-- singel testimonial -->
                 </div>
             </div> <!-- testimonial slied -->
+            
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="singel-counter text-center mt-40">
+                        <span><span class="counter">30,000</span>+</span>
+                        <p>Students enrolled</p>
+                    </div> <!-- singel counter -->
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="singel-counter text-center mt-40">
+                        <span><span class="counter">41,000</span>+</span>
+                        <p>Courses Uploaded</p>
+                    </div> <!-- singel counter -->
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="singel-counter text-center mt-40">
+                        <span><span class="counter">11,000</span>+</span>
+                        <p>People certifie</p>
+                    </div> <!-- singel counter -->
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="singel-counter text-center mt-40">
+                        <span><span class="counter">39,000</span>+</span>
+                        <p>Global Teachers</p>
+                    </div> <!-- singel counter -->
+                </div>
+            </div> <!-- row -->
         </div> <!-- container -->
     </section>
     
