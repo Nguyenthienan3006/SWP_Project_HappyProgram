@@ -36,7 +36,7 @@ public class ListRequestSerVlet extends HttpServlet {
         if (u == null || u.getRole() != menteeRole) {
             request.getRequestDispatcher("home.jsp").forward(request, response);
         } else {
-            //Xử lý khi đối tượng là null
+            //Xử lý khi đối tượng là khác null
             ListRequestDAO m = new ListRequestDAO();
             ArrayList<ListRequest> ListRequest = m.ListRequest(u.getUid());
             session.setAttribute("ListRequest", ListRequest);
