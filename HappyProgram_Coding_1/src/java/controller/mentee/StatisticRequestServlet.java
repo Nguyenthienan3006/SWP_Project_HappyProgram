@@ -35,7 +35,6 @@ public class StatisticRequestServlet extends HttpServlet {
         if (u == null || u.getRole() != menteeRole) {           
             request.getRequestDispatcher("home.jsp").forward(request, response);
         } else {
-            //a va lo
             ListRequestDAO m = new ListRequestDAO();
             ArrayList<StatisticRequestMentee> ListStatistic = m.StatisticRequest(u.getUid());
             session.setAttribute("ListStatistic", ListStatistic);
