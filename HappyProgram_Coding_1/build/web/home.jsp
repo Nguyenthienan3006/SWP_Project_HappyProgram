@@ -56,10 +56,9 @@
                 var message = '<%= session.getAttribute("message") %>';
 
                 // ki?m tra và hi?n th?
-                if (message != "null") {
+                if (message != null) {
                     // ??t n?i dung c?a ph?n t? có id là "message" b?ng giá tr? c?a bi?n message. 
                     $('#message').text(message);
-
                     //  thi?t l?p thông báo t? bi?n m?t sau 5s.
                     setTimeout(function () {
                         //làm m? message ch?m d?n
