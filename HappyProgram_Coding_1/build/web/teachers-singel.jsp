@@ -102,7 +102,7 @@
                             </div>
                             <div class="description">
                                 <p>Rate Star</p>
-                                <p>${cv.getRateStar()}/4.0</p>
+                                <p>${cv.getRateStar()}/5.0</p>
                             </div>
                         </div> <!-- teachers left -->
                     </div>

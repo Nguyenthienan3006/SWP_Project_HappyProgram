@@ -102,9 +102,9 @@
                                     <div class="singel-teachers mt-30 text-center">
 
                                         <div class="image">
-                                            <a href="CvOfMentorServlet?uid=${mentor.getID()}"> <img src="images/teachers/t-1.jpg" alt="Teachers"> </a>
-                                            <!--                                            <img src="images/teachers/t-1.jpg" alt="Teachers">-->
+                                            <a href="CvOfMentorServlet?uid=${mentor.getID()}"> <img src="images/teachers/t-1.jpg" alt="Teachers"> </a>      
                                         </div>
+                                        
                                         <div class="cont">
                                             <a>Name: ${mentor.getFullname()}</a>
                                             <span> AccName: ${mentor.getAccountname()}</span>

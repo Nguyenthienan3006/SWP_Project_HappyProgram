@@ -89,47 +89,48 @@
             </section>
 
 
-            <div>
-                <table>
+        <div class="table-wrapper">
+                <table class="fl-table">
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Number</th>
+                            <th>Total of Number</th>
                             <th>Percentage</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Open</td>
+                            <td>Open Request</td>
                             <td>${open}</td>
                         <td>${open / total * 100}%</td>
                     </tr>
                     
                     <tr>
-                        <td>Processing</td>
+                        <td>Processing Request</td>
                         <td>${processing}</td>
                         <td>${processing / total * 100}%</td>
                     </tr>
 
                     <tr>
-                        <td>Finish</td>
+                        <td>Finish Request</td>
                         <td>${finish}</td>
                         <td>${finish / total * 100}%</td>
                     </tr>
                     
                     <tr>
-                        <td>Rejected</td>
+                        <td>Rejected Request</td>
                         <td>${rejected}</td>
                         <td>${rejected / total * 100}%</td>
                     </tr>
                     
                     <tr>
-                        <td>Total</td>
+                        <td>Total number of request</td>
                         <td>${total}</td>
                         <td>100%</td>
                     </tr>
 
                     <tr>
+                        <td>Rate</td>
                         <td class="highlight">${rate}/5.0 Star</td>
                     </tr>
                 </tbody>

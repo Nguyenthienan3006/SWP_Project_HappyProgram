@@ -105,7 +105,6 @@
                                     <a>Our Mentors</a>
                                     <ul class="sub-menu">
                                         <li><a href="View_mentorList">Mentors List</a></li>
-                                        <li><a href="teachers-singel.jsp">teacher Singel</a></li>
                                     </ul>
                                 </li>
                                 
