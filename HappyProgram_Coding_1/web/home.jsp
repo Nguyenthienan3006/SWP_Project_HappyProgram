@@ -42,7 +42,7 @@
 
         <!--====== Responsive css ======-->
         <link rel="stylesheet" href="css/responsive.css">
-        
+
         <!--====== Hi?n th? thông báo ======-->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
@@ -54,7 +54,7 @@
                 if (message) {
                     $('#message').text(message);
 
-                    // T? ??ng ?n thông báo sau 5 giây
+                    // T? ??ng ?n thông báo sau 3 giây
                     setTimeout(function () {
                         $('#message').fadeOut('slow', function () {
                             // G?i yêu c?u AJAX ?? xóa thông báo
