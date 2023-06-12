@@ -33,7 +33,6 @@ public class StatisticRequestServlet extends HttpServlet {
 
         int menteeRole = 1;
         if (u == null || u.getRole() != menteeRole) {           
-            //Xử lý khi đối tượng là null
             request.getRequestDispatcher("home.jsp").forward(request, response);
         } else {
             
