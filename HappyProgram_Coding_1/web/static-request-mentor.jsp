@@ -130,7 +130,7 @@
 
                     <tr>
                         <td>Rate</td>
-                        <td class="highlight">${rate}/5.0 Star</td>
+                        <td class="highlight">${rate} /5.0 <i class="fa fa-star"></i> </td>
                         <td></td>
                     </tr>
                 </tbody>
