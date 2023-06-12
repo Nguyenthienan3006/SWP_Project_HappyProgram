@@ -28,7 +28,7 @@ public class StaticReqServlet extends HttpServlet {
         ListRequestMentorDAO rqd = new ListRequestMentorDAO();
         int open, processing, finish, rejected;
 
-        open = rqd.countRequestStatus(uid, "open");
+        open = rqd.countRequestStatus(uid, "Open");
         processing = rqd.countRequestStatus(uid, "processing");
         finish = rqd.countRequestStatus(uid, "finish");
         rejected = rqd.countRequestStatus(uid, "rejected");
@@ -36,9 +36,9 @@ public class StaticReqServlet extends HttpServlet {
         
         request.setAttribute("rate", avgRate);
         request.setAttribute("total", open + processing + finish + rejected);
-        request.setAttribute("uncheck", open);
+        request.setAttribute("open", open);
         request.setAttribute("processing", processing);
-        request.setAttribute("accepted", finish);
+        request.setAttribute("finish", finish);
         request.setAttribute("rejected", rejected);
         request.getRequestDispatcher("static-request-mentor.jsp").forward(request, response);
 

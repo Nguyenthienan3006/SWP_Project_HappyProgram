@@ -1,152 +1,202 @@
+<%-- 
+    Document   : ListRequest
+    Created on : Jun 4, 2023, 9:34:10 PM
+    Author     : An Nguyen
+--%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-        <title>Happy Programming</title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        .main-content {
-            padding: 50px 0;
-        }
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/ListRequest/ListRequest.css">
+        <!--====== Favicon Icon ======-->
+        <link rel="shortcut icon" href="images/favicon.png" type="image/png">
 
-        .text-center {
-            text-align: center;
-        }
+        <!--====== Slick css ======-->
+        <link rel="stylesheet" href="css/slick.css">
 
-        .text-uppercase {
-            text-transform: uppercase;
-        }
+        <!--====== Animate css ======-->
+        <link rel="stylesheet" href="css/animate.css">
 
-        .text-muted {
-            color: #777;
-        }
+        <!--====== Nice Select css ======-->
+        <link rel="stylesheet" href="css/nice-select.css">
 
-        .stat-card {
-            background-color: #f7f7f7;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+        <!--====== Nice Number css ======-->
+        <link rel="stylesheet" href="css/jquery.nice-number.min.css">
 
-        .stat-card__content p {
-            margin-bottom: 5px;
-        }
+        <!--====== Magnific Popup css ======-->
+        <link rel="stylesheet" href="css/magnific-popup.css">
 
-        .stat-card__content h2 {
-            margin-bottom: 0;
-            font-size: 32px;
-        }
+        <!--====== Bootstrap css ======-->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
 
-        .stat-card__content span {
-            font-size: 14px;
-        }
+        <!--====== Fontawesome css ======-->
+        <link rel="stylesheet" href="css/font-awesome.min.css">
 
-        .text-danger {
-            color: #dc3545;
-        }
+        <!--====== Default css ======-->
+        <link rel="stylesheet" href="css/default.css">
 
-        .text-success {
-            color: #28a745;
-        }
+        <!--====== Style css ======-->
+        <link rel="stylesheet" href="css/style.css">
 
-        .offset-1 {
-            margin-left: 8.33333333%;
-        }
-
-        hr {
-            margin-top: 40px;
-            margin-bottom: 40px;
-            border: 0;
-            border-top: 1px solid #dee2e6;
-        }
-
-        @media (max-width: 576px) {
-            .offset-1 {
-                margin-left: 0;
+        <!--====== Responsive css ======-->
+        <link rel="stylesheet" href="css/responsive.css">  
+        <title>View statistic request</title>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
             }
-        }
-    </style>
-</head>
-<body>
-    <section class="main-content">
-        <div class="container">
-            <h1 class="text-center text-uppercase">Statistic Requirement</h1>
+            th, td {
+                border: 1px solid black;
+                padding: 8px;
+                text-align: left;
+            }
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+            .highlight {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <jsp:include page="header.jsp"></jsp:include>
 
-            <div class="row">
-                <div class="col-sm-4 offset-4">
-                    <div class="stat-card">
-                        <div class="stat-card__content">
-                            <p class="text-uppercase mb-1 text-muted">Number of Requests</p>
-                            <h2>${total}</h2>
+            <section id="page-banner" class="pt-105 pb-110 bg_cover" data-overlay="8" style="background-image: url(images/page-banner-3.jpg)">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="page-banner-cont">
+                                <h2>Statistic Requirement</h2>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Statistic Requirement</li>
+                                    </ol>
+                                </nav>
+                            </div>  <!-- page banner cont -->
                         </div>
-                    </div>
-                </div>
-                <div class="col-sm-10 offset-1">
-                    <hr>
-                </div>
-                <div class="col-sm-2 offset-1">
-                    <div class="stat-card">
-                        <div class="stat-card__content">
-                            <p class="text-uppercase mb-1 text-muted">Open</p>
-                            <h2>${open}</h2>
-                            <div>
-                                <span class="text-danger font-weight-bold mr-1">${open / total * 100}%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2 offset-1">
-                    <div class="stat-card">
-                        <div class="stat-card__content">
-                            <p class="text-uppercase mb-1 text-muted">Processing</p>
-                            <h2>${processing}</h2>
-                            <div>
-                                <span class="font-weight-bold mr-1">${processing / total * 100}%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2 offset-1">
-                    <div class="stat-card">
-                        <div class="stat-card__content">
-                            <p class="text-uppercase mb-1 text-muted">Accepted</p>
-                            <h2>${accepted}</h2>
-                            <div>
-                                <span class="text-success font-weight-bold mr-1">${accepted / total * 100}%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2 offset-1">
-                    <div class="stat-card">
-                        <div class="stat-card__content">
-                            <p class="text-uppercase mb-1 text-muted">Rejected</p>
-                            <h2>${rejected}</h2>
-                            <div>
-                                <span class="text-danger font-weight-bold mr-1">${rejected / total * 100}%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2 offset-1"></div>
-                <div class="col-sm-2 offset-1"></div>
-                <div class="col-sm-2 offset-1"></div>
-                <div class="col-sm-2 offset-1">
-                    <div class="stat-card">
-                        <div class="stat-card__content">
-                            <h2>${rate}/5.0 star</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    </div> <!-- row -->
+                </div> <!-- container -->
+            </section>
+
+
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Number</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Open</td>
+                            <td>${open}</td>
+                        <td>${open / total * 100}%</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Processing</td>
+                        <td>${processing}</td>
+                        <td>${processing / total * 100}%</td>
+                    </tr>
+
+                    <tr>
+                        <td>Finish</td>
+                        <td>${finish}</td>
+                        <td>${finish / total * 100}%</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Rejected</td>
+                        <td>${rejected}</td>
+                        <td>${rejected / total * 100}%</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Total</td>
+                        <td>${total}</td>
+                        <td>100%</td>
+                    </tr>
+
+                    <tr>
+                        <td class="highlight">${rate}/5.0 Star</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </section>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</body>
+
+        <!--====== TEACHERS PART ENDS ======-->
+
+        <!--====== FOOTER PART START ======-->
+
+        <jsp:include page="footer.jsp"></jsp:include>
+
+
+        <!--====== FOOTER PART ENDS ======-->
+
+        <!--====== BACK TO TP PART START ======-->
+
+        <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+        <!--====== BACK TO TP PART ENDS ======-->
+
+
+
+
+
+
+
+
+        <!--====== jquery js ======-->
+
+        <script src="js/vendor/modernizr-3.6.0.min.js"></script>
+        <script src="js/vendor/jquery-1.12.4.min.js"></script>
+
+        <!--====== Bootstrap js ======-->
+        <script src="js/bootstrap.min.js"></script>
+
+        <!--====== Slick js ======-->
+        <script src="js/slick.min.js"></script>
+
+        <!--====== Magnific Popup js ======-->
+        <script src="js/jquery.magnific-popup.min.js"></script>
+
+        <!--====== Counter Up js ======-->
+        <script src="js/waypoints.min.js"></script>
+        <script src="js/jquery.counterup.min.js"></script>
+
+        <!--====== Nice Select js ======-->
+        <script src="js/jquery.nice-select.min.js"></script>
+
+        <!--====== Nice Number js ======-->
+        <script src="js/jquery.nice-number.min.js"></script>
+
+        <!--====== Count Down js ======-->
+        <script src="js/jquery.countdown.min.js"></script>
+
+        <!--====== Validator js ======-->
+        <script src="js/validator.min.js"></script>
+
+        <!--====== Ajax Contact js ======-->
+        <script src="js/ajax-contact.js"></script>
+
+        <!--====== Main js ======-->
+        <script src="js/main.js"></script>
+
+        <!--====== Map js ======-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
+        <script src="js/map-script.js"></script>
+    </body>
 </html>
