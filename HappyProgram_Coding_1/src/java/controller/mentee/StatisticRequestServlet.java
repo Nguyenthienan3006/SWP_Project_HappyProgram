@@ -56,7 +56,11 @@ public class StatisticRequestServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
- 
+        // Lấy session
+        HttpSession session = request.getSession();
+
+        // Xóa thông báo từ session
+        session.removeAttribute("message");
     }
 
     /**

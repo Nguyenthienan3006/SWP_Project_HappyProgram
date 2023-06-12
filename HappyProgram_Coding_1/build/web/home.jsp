@@ -42,34 +42,39 @@
 
         <!--====== Responsive css ======-->
         <link rel="stylesheet" href="css/responsive.css">
+        
+        <!--====== Responsive css ======-->
+         <link rel="stylesheet" href="css/ViewInfo/ViewInfomation.css">
 
         <!--====== Hi?n th? thông báo ======-->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             $(document).ready(function () {
-                // L?y thông báo t? phiên
+                //l?y thông báo t? phiên
                 var message = '<%= session.getAttribute("message") %>';
 
-                // Ki?m tra và hi?n th? thông báo
-                if (message) {
+                // ki?m tra và hi?n th?
+                if (message != "null") {  
                     $('#message').text(message);
 
                     // T? ??ng ?n thông báo sau 3 giây
                     setTimeout(function () {
+                        //làm m? message ch?m d?n
                         $('#message').fadeOut('slow', function () {
                             // G?i yêu c?u AJAX ?? xóa thông báo
                             $.ajax({
                                 url: 'removeMessage',
                                 method: 'POST',
                                 success: function (response) {
-                                    console.log('Thành công: ' + response);
+                                    console.log('Thanh cong: ' + response);
                                 },
                                 error: function (xhr, status, error) {
-                                    console.log('L?i: ' + error);
+                                    console.log('Loi: ' + error);
                                 }
                             });
                         });
                     }, 5000);
+                }else{
                 }
             });
         </script>
@@ -82,13 +87,13 @@
             <!--====== HEADER PART ENDS ======-->
 
 
-            <div id="message">
+            <div id="message" class="str1">
             <% 
             // L?y thông báo t? session
             String message = (String) session.getAttribute("message");
         
             // Ki?m tra và hi?n th? thông báo
-            if (message != null) {
+            if (message != null && !message.isEmpty()) {
                 out.println("<p>" + message + "</p>");
                 // Xóa thông báo sau khi hi?n th?
                 session.removeAttribute("message");

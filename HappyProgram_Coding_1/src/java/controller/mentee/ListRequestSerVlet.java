@@ -48,7 +48,11 @@ public class ListRequestSerVlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Lấy session
+        HttpSession session = request.getSession();
 
+        // Xóa thông báo từ session
+        session.removeAttribute("message");
 
     }
 

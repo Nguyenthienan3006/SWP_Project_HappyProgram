@@ -45,7 +45,11 @@ public class ListReqMentorServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        // Lấy session
+        HttpSession session = request.getSession();
 
+        // Xóa thông báo từ session
+        session.removeAttribute("message");
     }
 
 }
