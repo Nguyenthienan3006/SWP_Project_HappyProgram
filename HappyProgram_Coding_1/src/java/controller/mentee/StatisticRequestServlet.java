@@ -32,7 +32,9 @@ public class StatisticRequestServlet extends HttpServlet {
         User u = (User) session.getAttribute("user");
 
         int menteeRole = 1;
-        if (u == null || u.getRole() != menteeRole) {           
+        if (u == null || u.getRole() != menteeRole) {
+            // Đặt thông báo vào session
+            session.setAttribute("message", "Bạn Không có quyền truy cập!");
             request.getRequestDispatcher("home.jsp").forward(request, response);
         } else {
             ListRequestDAO m = new ListRequestDAO();
@@ -54,6 +56,8 @@ public class StatisticRequestServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        HttpSession session = request.getSession();
+        session.removeAttribute("message");
     }
 
     /**

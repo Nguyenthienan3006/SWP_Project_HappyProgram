@@ -25,9 +25,11 @@ public class ListReqMentorServlet extends HttpServlet {
         HttpSession session = request.getSession();
         //gọi ra dữ liệu của phiên người dùng hiện tại
         User u = (User) session.getAttribute("user");
-        
+
         int mentorRole = 2;
         if (u == null || u.getRole() != mentorRole) {
+            // Đặt thông báo vào session
+            session.setAttribute("message", "Bạn Không có quyền truy cập!");
             request.getRequestDispatcher("home.jsp").forward(request, response);
         } else {
             //Xử lý khi đối tượng là null
@@ -43,6 +45,8 @@ public class ListReqMentorServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
+        session.removeAttribute("message");
 
     }
 

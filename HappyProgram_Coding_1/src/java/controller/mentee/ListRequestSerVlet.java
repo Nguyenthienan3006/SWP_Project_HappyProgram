@@ -31,9 +31,11 @@ public class ListRequestSerVlet extends HttpServlet {
         HttpSession session = request.getSession();
         //gọi ra dữ liệu của phiên người dùng hiện tại
         User u = (User) session.getAttribute("user");
-        
+
         int menteeRole = 1;
         if (u == null || u.getRole() != menteeRole) {
+            // Đặt thông báo vào session
+            session.setAttribute("message", "Bạn Không có quyền truy cập!");
             request.getRequestDispatcher("home.jsp").forward(request, response);
         } else {
             ListRequestDAO m = new ListRequestDAO();
@@ -46,6 +48,8 @@ public class ListRequestSerVlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        session.removeAttribute("message");
 
     }
 

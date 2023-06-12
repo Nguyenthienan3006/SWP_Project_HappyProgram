@@ -21,27 +21,33 @@ public class StaticReqServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("user");
         int uid = u.getUid();
+        int mentorRole = 2;
+        if (u == null || u.getRole() != mentorRole) {
+            // Đặt thông báo vào session
+            session.setAttribute("message", "Bạn Không có quyền truy cập!");
+            request.getRequestDispatcher("home.jsp").forward(request, response);
 
-        RateDAO rd = new RateDAO();
-        double avgRate = rd.getAvgRateByUserID(uid);
+        } else {
 
-        ListRequestMentorDAO rqd = new ListRequestMentorDAO();
-        int open, processing, finish, rejected;
+            RateDAO rd = new RateDAO();
+            double avgRate = rd.getAvgRateByUserID(uid);
 
-        open = rqd.countRequestStatus(uid, "Open");
-        processing = rqd.countRequestStatus(uid, "processing");
-        finish = rqd.countRequestStatus(uid, "finish");
-        rejected = rqd.countRequestStatus(uid, "rejected");
+            ListRequestMentorDAO rqd = new ListRequestMentorDAO();
+            int open, processing, finish, rejected;
 
-        
-        request.setAttribute("rate", avgRate);
-        request.setAttribute("total", open + processing + finish + rejected);
-        request.setAttribute("open", open);
-        request.setAttribute("processing", processing);
-        request.setAttribute("finish", finish);
-        request.setAttribute("rejected", rejected);
-        request.getRequestDispatcher("static-request-mentor.jsp").forward(request, response);
+            open = rqd.countRequestStatus(uid, "Open");
+            processing = rqd.countRequestStatus(uid, "processing");
+            finish = rqd.countRequestStatus(uid, "finish");
+            rejected = rqd.countRequestStatus(uid, "rejected");
 
+            request.setAttribute("rate", avgRate);
+            request.setAttribute("total", open + processing + finish + rejected);
+            request.setAttribute("open", open);
+            request.setAttribute("processing", processing);
+            request.setAttribute("finish", finish);
+            request.setAttribute("rejected", rejected);
+            request.getRequestDispatcher("static-request-mentor.jsp").forward(request, response);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -49,6 +55,8 @@ public class StaticReqServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
+        session.removeAttribute("message");
 
     }
 
