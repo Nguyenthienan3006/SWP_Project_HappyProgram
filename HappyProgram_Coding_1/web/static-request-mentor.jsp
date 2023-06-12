@@ -103,8 +103,7 @@
                             <td>Open Request</td>
                             <td>${open}</td>
                         <td>${open / total * 100}%</td>
-                    </tr>
-                    
+                    </tr>                   
                     <tr>
                         <td>Processing Request</td>
                         <td>${processing}</td>
@@ -132,6 +131,7 @@
                     <tr>
                         <td>Rate</td>
                         <td class="highlight">${rate}/5.0 Star</td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
