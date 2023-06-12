@@ -4,9 +4,9 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import model.DBContext;
+import DB.DBConnect;
 
-public class MyDAO extends DBContext {
+public class MyDAO extends DBConnect {
   public Connection con = null;
   public PreparedStatement ps = null;
   public ResultSet rs = null;
