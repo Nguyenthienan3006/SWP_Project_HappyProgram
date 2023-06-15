@@ -7,6 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.sql.Date;
 import java.util.List;
 import model.*;
@@ -75,17 +76,18 @@ public class SignupServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
+        HttpSession session = request.getSession();
         String otp = request.getParameter("otp");
 
         if (!((e.getOtp()).equals(otp))) {
-            request.setAttribute("mess", "Sign up FAIL! Wrong OTP!");
+            session.setAttribute("messFailOTP", "Wrong OTP!");
             request.getRequestDispatcher("home.jsp").forward(request, response);
         } else {
 
             Date dob = Date.valueOf(xDob);
             int role = Integer.parseInt(xRole);
             boolean gender;
+            
             if(xGender.equals("male")){
                 gender = true;
             }else{
@@ -95,7 +97,7 @@ public class SignupServlet extends HttpServlet {
             UserDAO ud = new UserDAO();
 
             ud.add(user, pass, fullname, gender, dob, email, phone, address, role);
-            request.setAttribute("mess", "Sign up Success!");
+            session.setAttribute("messSignUp", "Sign up Success!");
             request.getRequestDispatcher("home.jsp").forward(request, response);
         }
 
