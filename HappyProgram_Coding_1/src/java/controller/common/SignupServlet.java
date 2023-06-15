@@ -80,7 +80,7 @@ public class SignupServlet extends HttpServlet {
         String otp = request.getParameter("otp");
 
         if (!((e.getOtp()).equals(otp))) {
-            session.setAttribute("messFailOTP", "Wrong OTP!");
+            session.setAttribute("message", "Wrong OTP!");
             request.getRequestDispatcher("home.jsp").forward(request, response);
         } else {
 
@@ -97,7 +97,7 @@ public class SignupServlet extends HttpServlet {
             UserDAO ud = new UserDAO();
 
             ud.add(user, pass, fullname, gender, dob, email, phone, address, role);
-            session.setAttribute("messSignUp", "Sign up Success!");
+            session.setAttribute("message", "Sign up Success!");
             request.getRequestDispatcher("home.jsp").forward(request, response);
         }
 

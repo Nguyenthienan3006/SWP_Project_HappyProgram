@@ -69,50 +69,6 @@
                 }
             });
         </script>
-
-        <!--====== Sign up successful message ======-->
-        <script>
-            //nó s? th?c thi khi trang web ?ã hoàn thành vi?c t?i và s?n sàng cho vi?c thao tác.
-            $(document).ready(function () {
-                //l?y thông báo t? phiên
-                var message = '<%= session.getAttribute("messSignUp") %>';
-
-                // ki?m tra và hi?n th?
-                if (message != null) {
-                    // ??t n?i dung c?a ph?n t? có id là "message" b?ng giá tr? c?a bi?n message. 
-                    $('#message').text(message);
-                    //  thi?t l?p thông báo t? bi?n m?t sau 5s.
-                    setTimeout(function () {
-                        //làm m? message ch?m d?n
-                        $('#message').fadeOut('slow', function () {
-                        });
-                    }, 5000);
-                }
-            });
-        </script>
-        
-         <!--====== Sign up fail message ======-->
-        <script>
-            //nó s? th?c thi khi trang web ?ã hoàn thành vi?c t?i và s?n sàng cho vi?c thao tác.
-            $(document).ready(function () {
-                //l?y thông báo t? phiên
-                var message = '<%= session.getAttribute("messFailOTP") %>';
-
-                // ki?m tra và hi?n th?
-                if (message != null) {
-                    // ??t n?i dung c?a ph?n t? có id là "message" b?ng giá tr? c?a bi?n message. 
-                    $('#message').text(message);
-                    //  thi?t l?p thông báo t? bi?n m?t sau 5s.
-                    setTimeout(function () {
-                        //làm m? message ch?m d?n
-                        $('#message').fadeOut('slow', function () {
-                        });
-                    }, 5000);
-                }
-            });
-        </script>
-
-
     </head>
 
     <body>
@@ -135,39 +91,6 @@
                 %>
             </div>
         </c:if>
-
-        <!--====== Sign up successful message ======-->
-        <c:if test="${sessionScope.messSignUp != null}">
-            <div id="message" class="str1">
-                <% 
-                // l?y giá tr? c?a thu?c tính "message" t? ??i t??ng session.
-                String message = (String) session.getAttribute("messSignUp");
-        
-               // ki?m tra và hi?n th? thông báo
-                if (message != null && !message.isEmpty()) {               
-                    // Xóa thông báo sau khi hi?n th?
-                    session.removeAttribute("messSignUp");
-                }
-                %>
-            </div>
-        </c:if>
-
-        <c:if test="${sessionScope.messFailOTP != null}">
-            <div id="message" class="str1">
-                <% 
-                // l?y giá tr? c?a thu?c tính "message" t? ??i t??ng session.
-                String message = (String) session.getAttribute("messFailOTP");
-        
-               // ki?m tra và hi?n th? thông báo
-                if (message != null && !message.isEmpty()) {               
-                    // Xóa thông báo sau khi hi?n th?
-                    session.removeAttribute("messFailOTP");
-                }
-                %>
-            </div>
-        </c:if>
-
-
         <!--====== SLIDER PART START ======-->
         <section id="slider-part" class="slider-active">
             <div class="single-slider bg_cover pt-150" style="background-image: url(images/slider/s-1.jpg)" data-overlay="4">
