@@ -76,10 +76,11 @@ public class ListRequestDAO extends DBConnect {
         try {
 
             // Chuỗi truy vấn SELECT để lấy danh sách mentor
-            String query = "select R.Title_of_request, R.mentorID, S.Skill_Name, count(R.mentorID) as 'NumberOfAllRequests', sum(R.Request_hour) as 'TotalHoursOfAllRequest', count(R.mentorID) as 'NumberOfMentors'\n"
-                    + "from Request as R, Skills as S\n"
-                    + "where R.skill_Id = S.skill_Id and R.menteeID = ?\n"
-                    + "group by R.Title_of_request, R.mentorID, S.Skill_Name;";
+            String query = "select R.RequestID, R.Title_of_request, R.mentorID, count(R.menteeID) as 'NumberOfAllRequests', \n"
+                    + "		sum(R.Request_hour) as 'TotalHoursOfAllRequest', count(R.mentorID) as 'NumberOfMentors'\n"
+                    + "from Request as R, skillofrequest as S\n"
+                    + "where R.RequestID = S.request_Id and R.menteeID = ?\n"
+                    + "group by R.RequestID, R.Title_of_request, R.mentorID;";
 
             PreparedStatement st = getJDBCConnection().prepareStatement(query);
             st.setInt(1, menteeID);
@@ -87,14 +88,14 @@ public class ListRequestDAO extends DBConnect {
 
             // Duyệt qua kết quả truy vấn và hiển thị thông tin mentor
             while (resultSet.next()) {
+                int RequestID = resultSet.getInt("RequestID");
                 String Title_of_request = resultSet.getString("Title_of_request");
                 int mentorID = resultSet.getInt("mentorID");
-                String SkillName = resultSet.getString("Skill_Name");
                 int Number_Of_All_Request = resultSet.getInt("NumberOfAllRequests");
                 float Total_hours_of_all_request = resultSet.getFloat("TotalHoursOfAllRequest");
                 int Number_Of_Mentors = resultSet.getInt("NumberOfMentors");
                 //add mentor từ database vào list
-                StatisticRequestMentee list = new StatisticRequestMentee(Title_of_request, mentorID, SkillName, Number_Of_All_Request, Total_hours_of_all_request, Number_Of_Mentors);
+                StatisticRequestMentee list = new StatisticRequestMentee(RequestID,Title_of_request, mentorID, Number_Of_All_Request, Total_hours_of_all_request, Number_Of_Mentors);
                 ListStatistic.add(list);
 
             }
@@ -156,7 +157,7 @@ public class ListRequestDAO extends DBConnect {
 
     public static void main(String[] args) {
         ListRequestDAO d = new ListRequestDAO();
-        ArrayList<ListRequest> ListInvited = d.ListRequest(15);
+        ArrayList<StatisticRequestMentee> ListInvited = d.StatisticRequest(1);
         if (ListInvited.size() == 0) {
             System.out.println("error");
         } else {
