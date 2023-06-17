@@ -94,29 +94,39 @@
 
         <c:choose>
             <c:when test="${not empty sessionScope.mentorList}">
-                <section id="teachers-page" class="pt-90 pb-120 gray-bg">
+                <section id="teachers-page" class="pt-90 pb-120 ">
                     <div class="container">
                         <div class="row">
+
+
+
                             <c:forEach items="${sessionScope.mentorList}" var="mentor">
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="singel-teachers mt-30 text-center">
 
-                                        <div class="image">
-                                            <a href="CvOfMentorServlet?uid=${mentor.getID()}"> <img src="images/teachers/t-1.jpg" alt="Teachers"> </a>      
-                                        </div>
-                                        
-                                        <div class="cont">
-                                            <a>Name: ${mentor.getFullname()}</a>
-                                            <span> AccName: ${mentor.getAccountname()}</span>
-                                            <span>Profession: ${mentor.getProfession()}</span>
-                                            <span>Accepted request: ${mentor.getNumberOfAcceptedRequest()}</span>
-                                            <span>Status:  ${mentor.getPercentageCompleted()} | </span>
-                                            <span>Rating: ${mentor.getRateStar()}*</span>
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="singel-course mt-30">
 
+                                        <div class="thum">
+                                            <div class="image">
+                                                <a href="CvOfMentorServlet?uid=${mentor.getID()}"> <img src="images/teachers/t-1.jpg" alt="Teachers"> </a> 
+                                            </div>
                                         </div>
-                                    </div> <!-- singel teachers -->
+                                        <div class="cont" style="padding-left: 0px">
+                                            <a><h5>Name: ${mentor.getFullname()}</h5></a> <br>
+                                            <span> AccName: ${mentor.getAccountname()}</span> <br>
+                                            <span>Profession: ${mentor.getProfession()}</span> <br>
+                                            <span>Accepted request: ${mentor.getNumberOfAcceptedRequest()}</span> <br>
+                                            <span>Status:  ${mentor.getPercentageCompleted()}</span> <br>
+                                            <span>Rate: ${mentor.getRateStar()}*/5.0*</span>
+                                        </div>
+
+
+                                        <div class="course-teacher">
+                                        </div>
+
+                                    </div> <!-- singel course -->
                                 </div>
                             </c:forEach>
+
                             <!-- singel teachers -->
                         </div>
                     </div> <!-- row -->
