@@ -31,88 +31,70 @@
                                     <label for="name">
                                         <i class="zmdi zmdi-account material-icons-name"></i>
                                     </label> 
-                                    <input type="text" name="user" id="user" placeholder="Username" />
+                                    <input type="text" name="user" id="user" placeholder="Username" required />
                                 </div>
 
                                 <div class="form-group">
                                     <label for="pass">
                                         <i class="zmdi zmdi-lock"></i>
                                     </label> 
-                                    <input type="password" name="pass" id="pass" placeholder="Password" />
+                                    <input type="password" name="pass" id="pass" placeholder="Password" required />
                                 </div>
 
                                 <div class="form-group">
                                     <label for="re-pass">
                                         <i class="zmdi zmdi-lock-outline"></i>
                                     </label>
-                                    <input type="password" name="cfpass" id="re_pass"  placeholder="Repeat your password" />
+                                    <input type="password" name="cfpass" id="re_pass"  placeholder="Repeat your password" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="name">
                                         <i class="zmdi zmdi-account material-icons-name"></i>
                                     </label> 
-                                    <input  type="text" name="fullname" id="name" placeholder="Fullname" />
+                                    <input  type="text" name="fullname" id="name" placeholder="Fullname"  required/>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="name">
                                         <i  class="zmdi zmdi-account material-icons-name"></i>
                                     </label> 
-                                    <input  type="date" name="dob" id="name" placeholder="Date of birth" />
+                                    <input  type="date" name="dob" id="name" placeholder="Date of birth"required />
                                 </div>
                                 <div class="form-group">
                                     <label for="email">
                                         <i class="zmdi zmdi-email"></i>
                                     </label>
-                                    <input type="email" name="email" id="email" placeholder="Your Email" />
+                                    <input type="email" name="email" id="email" placeholder="Your Email" required/>
                                 </div>
                                 <div class="form-group">
                                     <label for="name">
                                         <i class="zmdi zmdi-account material-icons-name"></i></label> <input
-                                        type="number" name="phone" id="name" placeholder="Phone number" />
+                                        type="number" name="phone" id="name" placeholder="Phone number"required />
                                 </div>
                                 <div class="form-group">
                                     <label for="contact">
                                         <i class="zmdi zmdi-lock-outline"></i>
                                     </label>
-                                    <input type="text" name="address" id="contact"  placeholder="Address " />
+                                    <input type="text" name="address" id="contact"  placeholder="Address " required />
                                 </div>
 
                                 <div style="display: flex">
                                     <div class="gender-select" style="margin-right:  3px">
-                                        <select name="gender" id="gender-select" style="  padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px;">
+                                        <select name="gender" id="gender-select" style="  padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px;" required>
                                             <option value="" selected disabled hidden>Gender</option>
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>
                                         </select>                                   
                                     </div>
-                                    <!-- select setting for gender -->
-                                    <script>
-                                        var genderSelect = document.getElementById("gender-select");
-
-                                        genderSelect.addEventListener("change", function () {
-                                            var selectedOption = this.options[this.selectedIndex];
-                                            selectedOption.text = selectedOption.text;
-                                        });
-                                    </script>
 
                                     <div class="form-group">
-                                        <select name="role" id="role-select" style="  padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px;">
+                                        <select name="role" id="role-select" style="  padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px;" required>
                                             <option value="" selected disabled hidden>Role</option>
                                             <option value="1">Mentee</option>
                                             <option value="2">Mentor</option>
                                         </select>
                                     </div>
 
-                                    <!-- select setting for gender -->
-                                    <script>
-                                        var genderSelect = document.getElementById("role-select");
-
-                                        genderSelect.addEventListener("change", function () {
-                                            var selectedOption = this.options[this.selectedIndex];
-                                            selectedOption.text = selectedOption.text;
-                                        });
-                                    </script>
                                 </div>
                                 <div class="form-group">
                                     <input type="checkbox" name="agree-term" id="agree-term"

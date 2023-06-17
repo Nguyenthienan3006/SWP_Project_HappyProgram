@@ -17,7 +17,7 @@ public class EmailSender {
         String host = "smtp.gmail.com";
         String port = "587";
         String username = "havietdanh1810@gmail.com";
-        String password = "ixsgcnlvlgxqtrjn";
+        String password = "rfuzdlnqzzxxclnc";
 
         // Thông tin người nhận và nội dung email
         String toAddress = emailAddress;
