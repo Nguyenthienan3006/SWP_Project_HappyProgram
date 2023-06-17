@@ -27,7 +27,7 @@
                     <div class="header-contact text-lg-left text-center">
                         <ul>
                             <li><img src="images/all-icon/map.png" alt="icon"><span>127/5 Mark street, New york</span></li>
-                            <li><img src="images/all-icon/email.png" alt="icon"><span>info@yourmail.com</span></li>
+                            <li><img src="images/all-icon/email.png" alt="icon"><span>team6@gmail.com</span></li>
                         </ul>
                     </div>
                 </div>
@@ -89,16 +89,19 @@
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item">
-                                    <a href="home.jsp">Home</a>            
+                                    <div class="icon">
+                                        <i class="fa fa-home"></i>
+                                        <a href="home.jsp">Home</a>   
+                                    </div>         
                                 </li>
                                 <li class="nav-item">
                                     <a href="about.jsp">About us</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a>Courses</a>
+                                    <a>Skills</a>
                                     <ul class="sub-menu">
-                                        <li><a href="SkillServlet">Courses</a></li>
-                                        <li><a href="courses-singel.jsp">Course Singel</a></li>
+                                        <li><a href="SkillServlet">Skills List</a></li>
+                                        <li><a href="courses-singel.jsp">Skills Singel</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
@@ -107,28 +110,28 @@
                                         <li><a href="View_mentorList">Mentors List</a></li>
                                     </ul>
                                 </li>
-                                
+
                                 <c:if test="${sessionScope.user.getRole() == 1}">
-                                <li class="nav-item">
-                                    <a>Requests</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="listrequest">Requests List</a></li>
-                                        <li><a href="statistic">Requests statistics</a></li>
-                                    </ul>
-                                </li>
+                                    <li class="nav-item">
+                                        <a>Requests</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="listrequest">Requests List</a></li>
+                                            <li><a href="statistic">Requests statistics</a></li>
+                                        </ul>
+                                    </li>
                                 </c:if>
-                                
+
                                 <c:if test="${sessionScope.user.getRole() == 2}">
-                                <li class="nav-item">
-                                    <a>Requests</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="listreqmentor">Invited Request</a></li>
-                                        <li><a href="staticreq">Requests statistics</a></li>
-                                       
-                                    </ul>
-                                </li>
+                                    <li class="nav-item">
+                                        <a>Requests</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="listreqmentor">Invited Request</a></li>
+                                            <li><a href="staticreq">Requests statistics</a></li>
+
+                                        </ul>
+                                    </li>
                                 </c:if>
-                                
+
                             </ul>
                         </div>
                     </nav> <!-- nav -->

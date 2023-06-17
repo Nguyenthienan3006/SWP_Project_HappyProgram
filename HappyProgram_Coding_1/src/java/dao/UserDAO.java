@@ -10,10 +10,10 @@ public class UserDAO extends MyDAO {
 
     public User Signin(String user, String pass) {
         xSql = "select * from User where username = ? and password = ?";
-        String xUser, xPass, xName, xGenger, xEmail, xAddress, xPhone;
+        String xUser, xPass, xName, xGenger, xEmail, xAddress, xPhone, xImage;
         int xUid, xRole, xAvgRate;
         Date xDob;
-        boolean xGender, xUserStatus, xMentorStatus;
+        boolean xGender, xUserStatus;
         User x = null;
         try {
             ps = con.prepareStatement(xSql);
@@ -30,12 +30,13 @@ public class UserDAO extends MyDAO {
                 xPhone = rs.getString("phonenumber");
                 xUid = rs.getInt("u_Id");
                 xRole = rs.getInt("role");
+                xImage = rs.getString("image"); //Image
                 xAvgRate = rs.getInt("avg_rate");
                 xDob = rs.getDate("date_of_birth");
                 xUserStatus = rs.getBoolean("user_status");
-                xMentorStatus = rs.getBoolean("mentor_status");
+                
 
-                x = new User(xUid, xName, pass, xName, xGender, xDob, xEmail, xAddress, xPhone, xRole, xName, xUserStatus, xMentorStatus, xAvgRate);
+                x = new User(xUid, xName, pass, xName, xGender, xDob, xEmail, xAddress, xPhone, xRole, xImage, xUserStatus,  xAvgRate);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,7 +70,7 @@ public class UserDAO extends MyDAO {
                 xUserStatus = rs.getBoolean("user_status");
                 xMentorStatus = rs.getBoolean("mentor_status");
 
-                x = new User(xUid, xName, xPass, xName, xGender, xDob, xEmail, xAddress, xPhone, xRole, xName, xUserStatus, xMentorStatus, xAvgRate);
+                x = new User(xUid, xName, xPass, xName, xGender, xDob, xEmail, xAddress, xPhone, xRole, xName, xUserStatus, xAvgRate);
                 list.add(x);
             }
         } catch (Exception e) {

@@ -34,7 +34,7 @@
                                             <i class="fa fa-phone"></i>
                                         </div>
                                         <div class="cont">
-                                            <p>+3 123 456 789</p>
+                                            <p>0123456789</p>
                                         </div>
                                     </li>
                                     <li>
@@ -42,7 +42,7 @@
                                             <i class="fa fa-envelope-o"></i>
                                         </div>
                                         <div class="cont">
-                                            <p>info@yourmail.com</p>
+                                            <p>team6@gmail.com</p>
                                         </div>
                                     </li>
                                 </ul>

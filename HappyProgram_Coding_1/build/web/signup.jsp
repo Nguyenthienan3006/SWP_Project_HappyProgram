@@ -12,6 +12,7 @@
 
         <!-- Main css -->
         <link rel="stylesheet" href="css/login.css">
+
     </head>
     <body>
 
@@ -52,12 +53,7 @@
                                     </label> 
                                     <input  type="text" name="fullname" id="name" placeholder="Fullname" />
                                 </div>
-                                <div>
-                                      <select name="gender">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>                                   
-                                </div>
+
                                 <div class="form-group">
                                     <label for="name">
                                         <i  class="zmdi zmdi-account material-icons-name"></i>
@@ -82,14 +78,42 @@
                                     <input type="text" name="address" id="contact"  placeholder="Address " />
                                 </div>
 
-                                <div class="form-group">
-                                    Join as: 
-                                    <select name="role">
-                                        <option value="1">Mentee</option>
-                                        <option value="2">Mentor</option>
-                                    </select>
-                                </div>
+                                <div style="display: flex">
+                                    <div class="gender-select" style="margin-right:  3px">
+                                        <select name="gender" id="gender-select" style="  padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px;">
+                                            <option value="" selected disabled hidden>Gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>                                   
+                                    </div>
+                                    <!-- select setting for gender -->
+                                    <script>
+                                        var genderSelect = document.getElementById("gender-select");
 
+                                        genderSelect.addEventListener("change", function () {
+                                            var selectedOption = this.options[this.selectedIndex];
+                                            selectedOption.text = selectedOption.text;
+                                        });
+                                    </script>
+
+                                    <div class="form-group">
+                                        <select name="role" id="role-select" style="  padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px;">
+                                            <option value="" selected disabled hidden>Role</option>
+                                            <option value="1">Mentee</option>
+                                            <option value="2">Mentor</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- select setting for gender -->
+                                    <script>
+                                        var genderSelect = document.getElementById("role-select");
+
+                                        genderSelect.addEventListener("change", function () {
+                                            var selectedOption = this.options[this.selectedIndex];
+                                            selectedOption.text = selectedOption.text;
+                                        });
+                                    </script>
+                                </div>
                                 <div class="form-group">
                                     <input type="checkbox" name="agree-term" id="agree-term"
                                            class="agree-term" /> <label for="agree-term"

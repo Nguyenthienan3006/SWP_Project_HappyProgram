@@ -28,6 +28,7 @@ public class ValidateOtp extends HttpServlet {
 
         RequestDispatcher dispatcher = null;
 
+        
         if (value == otp) {
 
             request.setAttribute("email", request.getParameter("email"));

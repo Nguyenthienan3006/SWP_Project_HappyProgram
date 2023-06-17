@@ -19,14 +19,14 @@ public class User {
     private int role;
     private String img;
     private boolean userStatus;
-    private boolean mentorStatus;
     private int avgRate;
     private LocalDate creareTime;
+    
 
     public User() {
     }
 
-    public User(int uid, String username, String password, String fullname, boolean gender, Date dob, String email, String address, String phoneNumber, int role, String img, boolean userStatus, boolean mentorStatus, int avgRate) {
+    public User(int uid, String username, String password, String fullname, boolean gender, Date dob, String email, String address, String phoneNumber, int role, String img, boolean userStatus, int avgRate) {
         this.uid = uid;
         this.username = username;
         this.password = password;
@@ -39,7 +39,6 @@ public class User {
         this.role = role;
         this.img = img;
         this.userStatus = userStatus;
-        this.mentorStatus = mentorStatus;
         this.avgRate = avgRate;
     }
 
@@ -73,8 +72,7 @@ public class User {
         this.img = img;
     }
 
-    
-    
+     
     public String getAddress() {
         return address;
     }
@@ -154,15 +152,6 @@ public class User {
     public void setUserStatus(boolean userStatus) {
         this.userStatus = userStatus;
     }
-
-    public boolean isMentorStatus() {
-        return mentorStatus;
-    }
-
-    public void setMentorStatus(boolean mentorStatus) {
-        this.mentorStatus = mentorStatus;
-    }
-
     public int getAvgRate() {
         return avgRate;
     }
@@ -181,6 +170,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "uid=" + uid + ", username=" + username + ", password=" + password + ", fullname=" + fullname + ", dob=" + dob + ", email=" + email + ", address=" + address + ", phoneNumber=" + phoneNumber + ", role=" + role + ", userStatus=" + userStatus + ", mentorStatus=" + mentorStatus + ", avgRate=" + avgRate + ", creareTime=" + creareTime + '}';
+        return "User{" + "uid=" + uid + ", username=" + username + ", password=" + password + ", fullname=" + fullname + ", dob=" + dob + ", email=" + email + ", address=" + address + ", phoneNumber=" + phoneNumber + ", role=" + role + ", userStatus=" + userStatus  + ", avgRate=" + avgRate + ", creareTime=" + creareTime + '}';
     }
 }
