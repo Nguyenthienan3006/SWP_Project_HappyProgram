@@ -12,6 +12,7 @@ import java.sql.Time;
  */
 public class ListRequest {
 
+    private int requestID;
     private String mentorName;
     private int mentorID;
     private String menteeName;
@@ -51,7 +52,9 @@ public class ListRequest {
     public ListRequest() {
     }
 
-    public ListRequest(String mentorName, int mentorID, String menteeName, int menteeID, String Skill_Name, String created_date, String finish_date, String RequestStatus, Time Date_hour, String Title_of_request, String Desciption_of_request, float Request_hour) {
+    public ListRequest(int requestID, String mentorName, int mentorID, String menteeName, int menteeID, String Skill_Name, String created_date, String finish_date, String RequestStatus, 
+            Time Date_hour, String Title_of_request, String Desciption_of_request, float Request_hour) {
+        this.requestID = requestID;
         this.mentorName = mentorName;
         this.mentorID = mentorID;
         this.menteeName = menteeName;
@@ -160,6 +163,14 @@ public class ListRequest {
 
     public void setRequest_hour(float Request_hour) {
         this.Request_hour = Request_hour;
+    }
+
+    public int getRequestID() {
+        return requestID;
+    }
+
+    public void setRequestID(int requestID) {
+        this.requestID = requestID;
     }
 
    

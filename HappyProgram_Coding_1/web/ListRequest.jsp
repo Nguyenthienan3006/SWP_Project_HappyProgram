@@ -84,6 +84,7 @@
                         <thead>
 
                             <tr>
+                                <th>Request ID</th>
                                 <th>Mentor Name</th>
                                 <th>Mentor ID</th>
                                 <th>Mentee Name</th>
@@ -103,6 +104,7 @@
                         <tbody> 
                             <c:forEach items="${sessionScope.ListRequest}" var="list">
                                 <tr>
+                                    <td>${list.getRequestID()}</td>
                                     <td>${list.getMentorName()}</td>
                                     <td>${list.getMentorID()}</td>
                                     <td>${list.getMenteeName()}</td>

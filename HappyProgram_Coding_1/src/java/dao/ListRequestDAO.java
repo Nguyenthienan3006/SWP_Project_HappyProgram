@@ -28,19 +28,21 @@ public class ListRequestDAO extends DBConnect {
         ArrayList<ListRequest> ListRequest = new ArrayList<>();
         // Chuỗi truy vấn SELECT để lấy danh sách mentor
         String query = "with R as (\n"
-                + "select U.full_name as 'MentorName', R.RequestStatus, R.created_date, R.finish_date, R.menteeID, R.mentorID, S.Skill_Name, DATE_FORMAT(R.Date_hour, '%H:%i:%s') AS Deadline_hour, R.Title_of_request, R.Desciption_of_request, R.Request_hour\n"
+                + "select R.requestID, U.full_name as 'MentorName', R.RequestStatus, R.created_date, R.finish_date, R.menteeID, R.mentorID, S.Skill_Name, \n"
+                + "DATE_FORMAT(R.Date_hour, '%H:%i:%s') AS Deadline_hour, R.Title_of_request, R.Desciption_of_request, R.Request_hour\n"
                 + "from request as R, user as U, skills as S, skillofrequest S2\n"
                 + "where R.mentorID = U.u_id and S2.request_id = R.RequestID and S.skill_Id = S2.skill_Id and U.role = 2\n"
                 + ")\n"
-                + "select R.MentorName, R.mentorID, U.full_name as 'MenteeName', R.menteeID, R.Skill_Name, R.created_date, R.finish_date, E.Name as 'RequestStatus', R.Deadline_hour,  R.Title_of_request, R.Desciption_of_request, R.Request_hour\n"
+                + "select R.requestID, R.MentorName, R.mentorID, U.full_name as 'MenteeName', R.menteeID, R.Skill_Name, R.created_date, R.finish_date, E.Name as 'RequestStatus', R.Deadline_hour,  R.Title_of_request, R.Desciption_of_request, R.Request_hour\n"
                 + "from R, user as U, requeststatus as E\n"
-                + "where R.menteeID = U.u_Id and R.RequestStatus = E.status_Id and U.u_Id = ?";
+                + "where R.menteeID = U.u_Id and R.RequestStatus = E.status_Id and U.u_Id = ?;";
         try {
             PreparedStatement st = getJDBCConnection().prepareStatement(query);
             st.setInt(1, u_Id);
             ResultSet resultSet = st.executeQuery();
             // Duyệt qua kết quả truy vấn và hiển thị thông tin request
             while (resultSet.next()) {
+                int reuqestID = resultSet.getInt("requestID");
                 String mentorName = resultSet.getString("MentorName");
                 int mentorID = resultSet.getInt("mentorID");
                 String menteeName = resultSet.getString("MenteeName");
@@ -55,7 +57,7 @@ public class ListRequestDAO extends DBConnect {
                 float Request_hour = resultSet.getFloat("Request_hour");
 
                 //add mentor từ database vào list
-                ListRequest list = new ListRequest(mentorName, mentorID, menteeName, menteeID, Skill_Name, created_date,
+                ListRequest list = new ListRequest(reuqestID,mentorName, mentorID, menteeName, menteeID, Skill_Name, created_date,
                         finish_date, RequestStatus, Deadline_hour, Title_of_request, Desciption_of_request, Request_hour);
                 ListRequest.add(list);
 
@@ -95,7 +97,7 @@ public class ListRequestDAO extends DBConnect {
                 float Total_hours_of_all_request = resultSet.getFloat("TotalHoursOfAllRequest");
                 int Number_Of_Mentors = resultSet.getInt("NumberOfMentors");
                 //add mentor từ database vào list
-                StatisticRequestMentee list = new StatisticRequestMentee(RequestID,Title_of_request, mentorID, Number_Of_All_Request, Total_hours_of_all_request, Number_Of_Mentors);
+                StatisticRequestMentee list = new StatisticRequestMentee(RequestID, Title_of_request, mentorID, Number_Of_All_Request, Total_hours_of_all_request, Number_Of_Mentors);
                 ListStatistic.add(list);
 
             }
