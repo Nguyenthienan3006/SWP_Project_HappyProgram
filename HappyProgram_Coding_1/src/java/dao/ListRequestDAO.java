@@ -29,8 +29,8 @@ public class ListRequestDAO extends DBConnect {
         // Chuỗi truy vấn SELECT để lấy danh sách mentor
         String query = "with R as (\n"
                 + "select U.full_name as 'MentorName', R.RequestStatus, R.created_date, R.finish_date, R.menteeID, R.mentorID, S.Skill_Name, DATE_FORMAT(R.Date_hour, '%H:%i:%s') AS Deadline_hour, R.Title_of_request, R.Desciption_of_request, R.Request_hour\n"
-                + "from request as R, user as U, skills as S\n"
-                + "where R.mentorID = U.u_id and S.skill_Id = R.Skill_Id and U.role = 2\n"
+                + "from request as R, user as U, skills as S, skillofrequest S2\n"
+                + "where R.mentorID = U.u_id and S2.request_id = R.RequestID and S.skill_Id = S2.skill_Id and U.role = 2\n"
                 + ")\n"
                 + "select R.MentorName, R.mentorID, U.full_name as 'MenteeName', R.menteeID, R.Skill_Name, R.created_date, R.finish_date, E.Name as 'RequestStatus', R.Deadline_hour,  R.Title_of_request, R.Desciption_of_request, R.Request_hour\n"
                 + "from R, user as U, requeststatus as E\n"
