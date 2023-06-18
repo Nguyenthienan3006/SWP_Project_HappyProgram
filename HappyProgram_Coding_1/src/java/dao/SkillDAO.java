@@ -22,8 +22,9 @@ public class SkillDAO extends MyDAO {
                 while (rs.next()) {
                     int skillId = rs.getInt("skill_Id");
                     String skillName = rs.getString("skill_Name");
+                    String img = rs.getString("skill_Image");
 
-                    Skill skill = new Skill(skillId, skillName);
+                    Skill skill = new Skill(skillId, skillName, img);
                     list.add(skill);
                 }
             }
@@ -47,3 +48,5 @@ class t2 {
 
     }
 }
+
+

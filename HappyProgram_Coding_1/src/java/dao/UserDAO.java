@@ -10,7 +10,7 @@ public class UserDAO extends MyDAO {
 
     public User Signin(String user, String pass) {
         xSql = "select * from User where username = ? and password = ?";
-        String xUser, xPass, xName, xGenger, xEmail, xAddress, xPhone, xImage;
+        String xUser, xPass, xName, xEmail, xAddress, xPhone, xImage;
         int xUid, xRole, xAvgRate;
         Date xDob;
         boolean xGender, xUserStatus;
@@ -36,7 +36,7 @@ public class UserDAO extends MyDAO {
                 xUserStatus = rs.getBoolean("user_status");
                 
 
-                x = new User(xUid, xName, pass, xName, xGender, xDob, xEmail, xAddress, xPhone, xRole, xImage, xUserStatus,  xAvgRate);
+                x = new User(xUid, xUser, xPass, xName, xGender, xDob, xEmail, xAddress, xPhone, xRole, xUserStatus,  xAvgRate, xImage);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,7 +47,7 @@ public class UserDAO extends MyDAO {
     public List<User> getAllUser() {
         List<User> list = new ArrayList<>();
         xSql = "select * from user";
-        String xUser, xPass, xName, xEmail, xAddress, xPhone;
+        String xUser, xPass, xName, xEmail, xAddress, xPhone, xImage;
         int xUid, xRole, xAvgRate;
         Date xDob;
         boolean xGender, xUserStatus, xMentorStatus;
@@ -69,8 +69,9 @@ public class UserDAO extends MyDAO {
                 xGender = rs.getBoolean("gender");
                 xUserStatus = rs.getBoolean("user_status");
                 xMentorStatus = rs.getBoolean("mentor_status");
+                xImage = rs.getString("image"); //Image
 
-                x = new User(xUid, xName, xPass, xName, xGender, xDob, xEmail, xAddress, xPhone, xRole, xName, xUserStatus, xAvgRate);
+                x = new User(xUid, xName, xPass, xName, xGender, xDob, xEmail, xAddress, xPhone, xRole, xUserStatus, xAvgRate, xImage);
                 list.add(x);
             }
         } catch (Exception e) {

@@ -26,7 +26,7 @@ public class User {
     public User() {
     }
 
-    public User(int uid, String username, String password, String fullname, boolean gender, Date dob, String email, String address, String phoneNumber, int role, String img, boolean userStatus, int avgRate) {
+    public User(int uid, String username, String password, String fullname, boolean gender, Date dob, String email, String address, String phoneNumber, int role, boolean userStatus, int avgRate, String img) {
         this.uid = uid;
         this.username = username;
         this.password = password;
@@ -42,7 +42,7 @@ public class User {
         this.avgRate = avgRate;
     }
 
-    public User(String username, String password, String fullname, boolean gender, Date dob, String email, String address, String phoneNumber, int role) {
+    public User(String username, String password, String fullname, boolean gender, Date dob, String email, String address, String phoneNumber, int role, String img) {
         this.username = username;
         this.password = password;
         this.fullname = fullname;
@@ -52,6 +52,7 @@ public class User {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.role = role;
+        this.img = img;
     }
     
     

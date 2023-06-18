@@ -19,11 +19,12 @@ public class ListMentor {
     private float RateStar;
     private String Action;
     private String Achievements;
+    private String img;
 
     public ListMentor() {
     }
     
-    public ListMentor(int ID, String Fullname, String Accountname, String Achievements,String Profession ,int NumberOfAcceptedRequest, float RateStar) {
+    public ListMentor(int ID, String Fullname, String Accountname, String Achievements,String Profession ,int NumberOfAcceptedRequest, float RateStar, String img) {
         this.ID = ID;
         this.Fullname = Fullname;
         this.Accountname = Accountname;
@@ -31,9 +32,10 @@ public class ListMentor {
         this.Achievements = Achievements;
         this.NumberOfAcceptedRequest = NumberOfAcceptedRequest;
         this.RateStar = RateStar;
+        this.img = img;
     }
 
-    public ListMentor(int STT, int ID, String Fullname, String Accountname, String Profession, int NumberOfAcceptedRequest, String PercentageCompleted, float RateStar, String Action) {
+    public ListMentor(int STT, int ID, String Fullname, String Accountname, String Profession, int NumberOfAcceptedRequest, String PercentageCompleted, float RateStar, String Action, String img) {
         this.STT = STT;
         this.ID = ID;
         this.Fullname = Fullname;
@@ -43,7 +45,17 @@ public class ListMentor {
         this.PercentageCompleted = PercentageCompleted;
         this.RateStar = RateStar;
         this.Action = Action;
+        this.img = img;
     }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+    
 
     public int getSTT() {
         return STT;

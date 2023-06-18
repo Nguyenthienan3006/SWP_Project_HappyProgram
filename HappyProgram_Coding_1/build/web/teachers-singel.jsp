@@ -86,7 +86,7 @@
                     <div class="col-lg-4 col-md-8">
                         <div class="teachers-left mt-50">
                             <div class="hero">
-                                <img src="images/teachers/t-1.jpg" alt="Teachers">
+                                <img src="${cv.getImg()}" alt="Teachers">
                             </div>
                             <div class="name">
                                 <h6>${cv.getFullname()}</h6>   

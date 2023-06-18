@@ -33,6 +33,7 @@ public class MentorDAO {
                     + "     ROW_NUMBER() OVER (ORDER BY U.u_Id) AS STT,\n"
                     + "     U.u_Id AS ID,\n"
                     + "     U.full_name AS Fullname,\n"
+                    + "     U.image AS Image,\n"
                     + "     U.username AS Accountname,\n"
                     + "     CD.professional_summary AS Profession,\n"
                     + "     COUNT(CM.mentor_Id) AS NumberOfAcceptedRequest,\n"
@@ -59,6 +60,7 @@ public class MentorDAO {
 
             // Duyệt qua kết quả truy vấn và hiển thị thông tin mentor
             while (resultSet.next()) {
+                String Image = resultSet.getString("image");
                 int STT = resultSet.getInt("STT");
                 int ID = resultSet.getInt("ID");
                 String Fullname = resultSet.getString("Fullname");
@@ -70,7 +72,7 @@ public class MentorDAO {
                 String Action = resultSet.getString("Action");
 
                 //add mentor từ database vào list
-                ListMentor user = new ListMentor(STT, ID, Fullname, Accountname, Profession, NumberOfAcceptedRequest, PercentageCompleted, RateStar, Action);
+                ListMentor user = new ListMentor(STT, ID, Fullname, Accountname, Profession, NumberOfAcceptedRequest, PercentageCompleted, RateStar, Action, Image);
                 mentorList.add(user);
 
             }

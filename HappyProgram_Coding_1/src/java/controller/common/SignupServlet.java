@@ -14,9 +14,11 @@ import model.*;
 
 public class SignupServlet extends HttpServlet {
 
-    String user, pass, cfpass, xRole, fullname,xGender, xDob, address, email, phone;
+    String user, pass, cfpass, xRole, fullname, xGender, xDob, address, email, phone;
     Date dob;
     EmailSender e = new EmailSender();
+    int count = 0;
+    int num = 2;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -50,24 +52,7 @@ public class SignupServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>OTP Confirmation</title>");
-        out.println("<link rel=\"stylesheet\" href=\"css/style.css\"/></link>");
-        out.println("</head>");
-        out.println("<body class=\"otp-body\">");
-        out.println("<div class=\"otp-container\">");
-        out.println("<h1 class=\"otp-h1\">Confirm OTP</h1>");
-        out.println("<form class=\"otp-form\" action=\"signup\" method=\"post\">");
-        out.println("<label class=\"otp-label\" for=\"otp\">Enter OTP:</label>");
-        out.println("<input name=\"otp\" class=\"otp-input\" type=\"text\" id=\"otp-input\" required>");
-        out.println("<input class=\"otp-input\" type=\"submit\" value=\"Enter\">");
-        out.println("<br><a href=\"home.jsp\">Back to home</a>");
-        out.println("<form>");
-        out.println("</div>");
-        out.println("</body>");
-        out.println("</html>");
+        SignupServlet.OtpForm(request, response);
 
     }
 
@@ -78,19 +63,26 @@ public class SignupServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
         String otp = request.getParameter("otp");
-
         if (!((e.getOtp()).equals(otp))) {
-            session.setAttribute("message", "Wrong OTP!");
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+            request.setAttribute("mess", "Wrong OTP!");
+            count++;
+            if (count == 3) {
+                session.setAttribute("message", "Sign up Fail!");
+                request.getRequestDispatcher("home.jsp").forward(request, response);
+            }
+            String messOTP = "Wrong! you have " + num + " more time!";
+            num--;
+            session.setAttribute("messageOTP", messOTP);
+            SignupServlet.OtpForm(request, response);
         } else {
 
             Date dob = Date.valueOf(xDob);
             int role = Integer.parseInt(xRole);
             boolean gender;
-            
-            if(xGender.equals("male")){
+
+            if (xGender.equals("male")) {
                 gender = true;
-            }else{
+            } else {
                 gender = false;
             }
 
@@ -101,6 +93,77 @@ public class SignupServlet extends HttpServlet {
             request.getRequestDispatcher("home.jsp").forward(request, response);
         }
 
+    }
+
+    public static void OtpForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+
+        out.println("<!DOCTYPE html>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title>OTP Confirmation</title>");
+        out.println("<link rel=\"stylesheet\" href=\"css/style.css\"/></link>");
+        out.println("<style>");
+        out.println(".otp-body {");
+        out.println("    background-color: #f2f2f2;");
+        out.println("    font-family: Arial, sans-serif;");
+        out.println("}");
+        out.println(".otp-container {");
+        out.println("    max-width: 400px;");
+        out.println("    margin: 0 auto;");
+        out.println("    padding: 20px;");
+        out.println("    background-color: #fff;");
+        out.println("    border-radius: 5px;");
+        out.println("    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);");
+        out.println("}");
+        out.println(".otp-h1 {");
+        out.println("    text-align: center;");
+        out.println("    color: #333;");
+        out.println("}");
+        out.println(".otp-note {");
+        out.println("    text-align: center;");
+        out.println("    font-size: 14px;");
+        out.println("    color: #666;");
+        out.println("}");
+        out.println(".otp-form {");
+        out.println("    margin-top: 20px;");
+        out.println("}");
+        out.println(".otp-label {");
+        out.println("    display: block;");
+        out.println("    margin-bottom: 5px;");
+        out.println("    color: #333;");
+        out.println("}");
+        out.println(".otp-input {");
+        out.println("    width: 100%;");
+        out.println("    padding: 10px;");
+        out.println("    margin-bottom: 10px;");
+        out.println("    border: 1px solid #ccc;");
+        out.println("    border-radius: 4px;");
+        out.println("}");
+        out.println(".otp-input[type=\"submit\"] {");
+        out.println("    background-color: #4CAF50;");
+        out.println("    color: #fff;");
+        out.println("    cursor: pointer;");
+        out.println("}");
+        out.println(".otp-input[type=\"submit\"]:hover {");
+        out.println("    background-color: #45a049;");
+        out.println("}");
+        out.println("</style>");
+        out.println("</head>");
+        out.println("<body class=\"otp-body\">");
+        out.println("<div class=\"otp-container\">");
+        out.println("<h1 class=\"otp-h1\">Confirm OTP</h1>");
+        out.println("<p class=\"otp-note\">Bạn có tối đa 3 lần nhập mã OTP</p>");
+        out.println("<form class=\"otp-form\" action=\"signup\" method=\"post\">");
+        out.println("<label class=\"otp-label\" for=\"otp\">Enter OTP:</label>");
+        out.println("<input name=\"otp\" class=\"otp-input\" type=\"text\" id=\"otp-input\" required>");
+        out.println("<input class=\"otp-input\" type=\"submit\" value=\"Enter\">");
+        out.println("<br><a href=\"home.jsp\">Back to home</a>");
+        out.println("<form>");
+        out.println("</div>");
+        out.println("</body>");
+        out.println("</html>");
     }
 
 }

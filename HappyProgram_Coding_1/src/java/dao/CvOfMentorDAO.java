@@ -12,6 +12,7 @@ public class CvOfMentorDAO extends MyDAO {
             + "ROW_NUMBER() OVER (ORDER BY U.u_Id) ,\n"
             + "U.u_Id AS ID,\n"
             + "U.full_name AS Fullname,\n"
+            + "U.image AS Image,\n"
             + "U.username AS Accountname,\n"
             + "CD.achievements AS  Achievements,\n"
             + "CD.professional_summary AS Profession,\n"
@@ -42,6 +43,7 @@ public class CvOfMentorDAO extends MyDAO {
             ps.setInt(1, Uid);
             rs = ps.executeQuery();
             if (rs.next()) {
+                String Image = rs.getString("image");
                 int ID = rs.getInt("ID");
                 String Fullname = rs.getString("Fullname");
                 String Accountname = rs.getString("Accountname");
@@ -49,7 +51,7 @@ public class CvOfMentorDAO extends MyDAO {
                 String Profession = rs.getString("Profession");
                 int NumberOfAcceptedRequest = rs.getInt("NumberOfAcceptedRequest");
                 float RateStar = rs.getFloat("RateStar");
-                ls = new ListMentor(ID, Fullname, Accountname, Achievements, Profession, NumberOfAcceptedRequest, RateStar);
+                ls = new ListMentor(ID, Fullname, Accountname, Achievements, Profession, NumberOfAcceptedRequest, RateStar, Image);
             }
         }
 

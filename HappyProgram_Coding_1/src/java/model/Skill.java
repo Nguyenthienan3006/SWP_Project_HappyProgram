@@ -3,14 +3,25 @@ package model;
 public class Skill {
     private int skillId;
     private String skillName;
+    private String img;
 
     public Skill() {
     }
 
-    public Skill(int skillId, String skillName) {
+    public Skill(int skillId, String skillName, String img) {
         this.skillId = skillId;
         this.skillName = skillName;
+        this.img = img;
     }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+    
     
     public int getSkillId() {
         return skillId;

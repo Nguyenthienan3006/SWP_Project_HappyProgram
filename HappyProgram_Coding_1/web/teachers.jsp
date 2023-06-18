@@ -107,7 +107,7 @@
 
                                         <div class="thum">
                                             <div class="image">
-                                                <a href="CvOfMentorServlet?uid=${mentor.getID()}"> <img src="images/teachers/t-1.jpg" alt="Teachers"> </a> 
+                                                <a href="CvOfMentorServlet?uid=${mentor.getID()}"> <img src="${mentor.getImg()}" alt="Teachers"> </a> 
                                             </div>
                                         </div>
                                         <div class="cont" style="padding-left: 0px">

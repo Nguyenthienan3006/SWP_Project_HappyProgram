@@ -17,23 +17,21 @@ public class ListRequestMentorDAO extends MyDAO {
 
     public List<ListRequest> listRequestMentor(int mentorId) {
         List<ListRequest> list = new ArrayList<>();
-        xSql = " SELECT\n"
-                + "    u.full_name AS MenteeName,\n"
-                + "    s.Skill_Name AS SkillName,\n"
-                + "        r.Title_of_request,\n"
-                + "    r.Desciption_of_request,\n"
-                + "    r.created_date,\n"
-                + "    r.finish_date,\n"
-                + "    r.Date_hour,\n"
-                + "	r.Request_hour,\n"
-                + "    rs.`Name` as Status\n"
-                + "FROM\n"
-                + "    Request r\n"
-                + "    INNER JOIN User u ON r.MenteeID = u_ID\n"
-                + "    INNER JOIN Skills s ON r.Skill_Id = s.Skill_Id\n"
-                + "    INNER JOIN requeststatus rs On r.RequestStatus = rs.status_Id\n"
-                + "\n"
-                + "where r.mentorID = ?";
+        xSql = " SELECT u.full_name AS MenteeName,\n"
+                + "       s.Skill_Name AS SkillName,\n"
+                + "       r.Title_of_request AS Title_of_request,\n"
+                + "       r.Desciption_of_request AS Desciption_of_request,\n"
+                + "       r.created_date AS created_date,\n"
+                + "       r.finish_date AS finish_date,\n"
+                + "       r.Date_hour AS Date_hour,\n"
+                + "       r.Request_hour AS Request_hour,\n"
+                + "       rs.Name AS Status\n"
+                + "FROM User u\n"
+                + "JOIN Request r ON u.u_id = r.menteeID\n"
+                + "Join SkillOfRequest sor on sor.request_Id = r.requestId\n"
+                + "JOIN Skills s ON sor.skill_id = s.skill_id\n"
+                + "JOIN RequestStatus rs ON rs.status_id = r.RequestStatus\n"
+                + "WHERE r.mentorId = ?;";
         try {
             String MenteeName, SkillName, Title_of_request, Desciption_of_request, created_date, finish_date, Status;
             Time Date_hour;
@@ -78,7 +76,5 @@ public class ListRequestMentorDAO extends MyDAO {
         }
         return count;
     }
-
-
 
 }
