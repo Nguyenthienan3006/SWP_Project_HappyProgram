@@ -27,6 +27,10 @@
         <servlet-name>StaticReqServlet</servlet-name>
         <servlet-class>controller.mentor.StaticReqServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateRequest</servlet-name>
+        <servlet-class>controller.common.UpdateRequest</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SigninServlet</servlet-name>
         <url-pattern>/signin</url-pattern>
@@ -50,6 +54,10 @@
     <servlet-mapping>
         <servlet-name>StaticReqServlet</servlet-name>
         <url-pattern>/staticreq</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateRequest</servlet-name>
+        <url-pattern>/updatereq</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
