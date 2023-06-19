@@ -27,7 +27,7 @@ public class ListRequest {
     private float Request_hour;
     private String Status;
 
-    public ListRequest( String menteeName, String Skill_Name, String created_date, String finish_date, Time Date_hour, String Title_of_request, String Desciption_of_request, float Request_hour, String Status) {
+    public ListRequest( String menteeName, String Skill_Name, String created_date, String finish_date, Time Date_hour, String Title_of_request, String Desciption_of_request, float Request_hour, String Status, int requestID) {
         this.menteeName = menteeName;
         this.Skill_Name = Skill_Name;
         this.created_date = created_date;
@@ -37,7 +37,10 @@ public class ListRequest {
         this.Desciption_of_request = Desciption_of_request;
         this.Request_hour = Request_hour;
         this.Status = Status;
+        this.requestID = requestID;
     }
+    
+    
 
     public String getStatus() {
         return Status;
@@ -52,8 +55,8 @@ public class ListRequest {
     public ListRequest() {
     }
 
-    public ListRequest(int requestID, String mentorName, int mentorID, String menteeName, int menteeID, String Skill_Name, String created_date, String finish_date, String RequestStatus, 
-            Time Date_hour, String Title_of_request, String Desciption_of_request, float Request_hour) {
+    public ListRequest(String mentorName, int mentorID, String menteeName, int menteeID, String Skill_Name, String created_date, String finish_date, String RequestStatus, 
+            Time Date_hour, String Title_of_request, String Desciption_of_request, float Request_hour, int requestID) {
         this.requestID = requestID;
         this.mentorName = mentorName;
         this.mentorID = mentorID;

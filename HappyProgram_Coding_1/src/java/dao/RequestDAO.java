@@ -27,6 +27,27 @@ public class RequestDAO extends MyDAO {
         }
         return mess;
     }
+    
+    public int RejectRequest_Mentor(int requestID) {
+        int mess = 0;
+        // Chuỗi truy vấn SELECT để lấy danh sách mentor
+        String query = "UPDATE Request\n"
+                + "SET RequestStatus = 3\n"
+                + "WHERE RequestID = ?;";
+        try {
+            ps = con.prepareStatement(query);
+            ps.setInt(1, requestID);
+            // Đóng kết nối và giải phóng tài nguyên
+            
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            mess = 1;
+        }
+        return mess;
+    }
 
     public static void main(String[] args) {
         RequestDAO r = new RequestDAO();

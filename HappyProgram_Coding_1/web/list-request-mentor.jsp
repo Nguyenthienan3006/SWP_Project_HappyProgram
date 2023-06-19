@@ -107,13 +107,12 @@
                                     <td>${list.getRequest_hour()}</td>
                                     <td>${list.getStatus()}</td>
                                     <td>
-                                        <a  href="updatereq?requestid=${list.getMenteeName()}">
+                                        <a  href="updatereq?requestid=${list.getRequestID()}">
                                             <input style=" font-weight: bold;" type="Submit" value="Accept Request">
                                         </a>
                                     </td> 
-
                                     <td>
-                                        <a>
+                                        <a href="RejectRequest?requestid=${list.getRequestID()}">
                                             <input style=" font-weight: bold;" type="Submit" value="Reject Request">
                                         </a>
                                     </td>

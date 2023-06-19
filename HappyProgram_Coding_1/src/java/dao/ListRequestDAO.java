@@ -57,8 +57,8 @@ public class ListRequestDAO extends DBConnect {
                 float Request_hour = resultSet.getFloat("Request_hour");
 
                 //add mentor từ database vào list
-                ListRequest list = new ListRequest(reuqestID,mentorName, mentorID, menteeName, menteeID, Skill_Name, created_date,
-                        finish_date, RequestStatus, Deadline_hour, Title_of_request, Desciption_of_request, Request_hour);
+                ListRequest list = new ListRequest(mentorName, mentorID, menteeName, menteeID, Skill_Name, created_date,
+                        finish_date, RequestStatus, Deadline_hour, Title_of_request, Desciption_of_request, Request_hour, reuqestID);
                 ListRequest.add(list);
 
             }
