@@ -81,6 +81,7 @@
                     <table class="fl-table">
                         <thead>
                             <tr>
+                                <th>RequestID</th>
                                 <th>Mentee Name </th>
                                 <th>Skill Name</th>
                                 <th>Title of request</th>
@@ -97,6 +98,7 @@
                         <tbody> 
                             <c:forEach items="${lr}" var="list">
                                 <tr>
+                                    <td>${list.getRequestID()}</td>
                                     <td>${list.getMenteeName()}</td>
                                     <td>${list.getSkill_Name()}</td>
                                     <td>${list.getTitle_of_request()}</td>
