@@ -28,8 +28,8 @@
         <servlet-class>controller.mentor.StaticReqServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UpdateRequest</servlet-name>
-        <servlet-class>controller.common.UpdateRequest</servlet-class>
+        <servlet-name>AcceptRequest</servlet-name>
+        <servlet-class>controller.mentor.AcceptRequest</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SigninServlet</servlet-name>
@@ -56,8 +56,8 @@
         <url-pattern>/staticreq</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UpdateRequest</servlet-name>
-        <url-pattern>/updatereq</url-pattern>
+        <servlet-name>AcceptRequest</servlet-name>
+        <url-pattern>/acceptreq</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

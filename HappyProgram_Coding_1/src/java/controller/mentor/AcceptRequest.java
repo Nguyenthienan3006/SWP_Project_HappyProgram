@@ -2,13 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.common;
+package controller.mentor;
 
 import dao.RequestDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,8 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author An Nguyen
  */
-@WebServlet(name = "RejectRequest", urlPatterns = {"/RejectRequest"})
-public class RejectRequest extends HttpServlet {
+public class AcceptRequest extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +35,10 @@ public class RejectRequest extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RejectRequest</title>");
+            out.println("<title>Servlet AcceptRequest</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RejectRequest at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AcceptRequest at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,16 +57,14 @@ public class RejectRequest extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-
-        //processRequest(request, response);
         int requestId = Integer.parseInt(request.getParameter("requestid"));
         RequestDAO d = new RequestDAO();
-        int check = d.RejectRequest_Mentor(requestId);
+        int check = d.UpdateRequest_Mentor(requestId);
         if (check == 0) {
-            request.setAttribute("mess", "Reject successfull!");
+            request.setAttribute("mess", "Update success full!");
             request.getRequestDispatcher("listreqmentor").forward(request, response);
         } else {
-            request.setAttribute("mess", "Reject fail");
+            request.setAttribute("mess", "Update success fail!");
             request.getRequestDispatcher("listreqmentor").forward(request, response);
         }
     }
