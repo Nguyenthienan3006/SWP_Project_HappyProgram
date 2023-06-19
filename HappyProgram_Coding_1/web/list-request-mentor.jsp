@@ -77,115 +77,118 @@
                     <button type="submit" >Submit</button>
                 </div>
             </form>
-                <div class="table-wrapper">
-                    <table class="fl-table">
-                        <thead>
-                            <tr>
-                                <th>RequestID</th>
-                                <th>Mentee Name </th>
-                                <th>Skill Name</th>
-                                <th>Title of request</th>
-                                <th>Desciption_of_request</th>
-                                <th>created_date</th>
-                                <th>finish_date</th>
-                                <th>Date_hour</th>
-                                <th>Request_hour</th>
-                                <th>Status</th>
-                                <th>Accepct</th>
-                                <th>Reject</th>
-                            </tr>
-                        </thead>
-                        <tbody> 
-                            <c:forEach items="${lr}" var="list">
-                                <tr>
-                                    <td>${list.getRequestID()}</td>
-                                    <td>${list.getMenteeName()}</td>
-                                    <td>${list.getSkill_Name()}</td>
-                                    <td>${list.getTitle_of_request()}</td>
-                                    <td>${list.getDesciption_of_request()}</td>
-                                    <td>${list.getCreated_date()}</td>
-                                    <td>${list.getFinish_date()}</td>
-                                    <td>${list.getDate_hour()}</td>
-                                    <td>${list.getRequest_hour()}</td>
-                                    <td>${list.getStatus()}</td>
-                                    <td>
-                                        <a  href="acceptreq?requestid=${list.getRequestID()}">
-                                            <input style=" font-weight: bold;" type="Submit" value="Accept Request">
-                                        </a>
-                                    </td> 
-                                    <td>
-                                        <a href="RejectRequest?requestid=${list.getRequestID()}">
-                                            <input style=" font-weight: bold;" type="Submit" value="Reject Request">
-                                        </a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        <tbody>
+            <div class="table-wrapper">
+                <table class="fl-table">
+                    <thead>
+                        <tr>
+                            <th>RequestID</th>
+                            <th>Mentee Name </th>
+                            <th>Skill Name</th>
+                            <th>Title of request</th>
+                            <th>Desciption_of_request</th>
+                            <th>created_date</th>
+                            <th>finish_date</th>
+                            <th>Date_hour</th>
+                            <th>Request_hour</th>
+                            <th>Status</th>
+                            <th>Accepct</th>
+                            <th>Reject</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                    <c:forEach items="${lr}" var="list">
+                        <tr>
+                            <td>${list.getRequestID()}</td>
+                            <td>${list.getMenteeName()}</td>
+                            <td>${list.getSkill_Name()}</td>
+                            <td>${list.getTitle_of_request()}</td>
+                            <td>${list.getDesciption_of_request()}</td>
+                            <td>${list.getCreated_date()}</td>
+                            <td>${list.getFinish_date()}</td>
+                            <td>${list.getDate_hour()}</td>
+                            <td>${list.getRequest_hour()}</td>
+                            <td>${list.getStatus()}</td>
+                            <c:if test="${list.getStatus().equals('Open')}">
+                                <td>
+                                    <a  href="acceptreq?requestid=${list.getRequestID()}">
+                                        <input style=" font-weight: bold;" type="Submit" value="Accept Request">
+                                    </a>
+                                </td> 
 
-                    </table>   
-                </div>
+                                <td>
+                                    <a href="RejectRequest?requestid=${list.getRequestID()}">
+                                        <input style=" font-weight: bold;" type="Submit" value="Reject Request">
+                                    </a>
+                                </td>
+                                </c:if>
+                        </tr>
+                    </c:forEach>
+                <tbody>
 
-
-    <!--====== TEACHERS PART ENDS ======-->
-
-    <!--====== FOOTER PART START ======-->
-
-    <jsp:include page="footer.jsp"></jsp:include>
+            </table>   
+        </div>
 
 
-    <!--====== FOOTER PART ENDS ======-->
+        <!--====== TEACHERS PART ENDS ======-->
 
-    <!--====== BACK TO TP PART START ======-->
+        <!--====== FOOTER PART START ======-->
 
-    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
-
-    <!--====== BACK TO TP PART ENDS ======-->
+        <jsp:include page="footer.jsp"></jsp:include>
 
 
+        <!--====== FOOTER PART ENDS ======-->
 
+        <!--====== BACK TO TP PART START ======-->
 
+        <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
 
+        <!--====== BACK TO TP PART ENDS ======-->
 
 
 
-    <!--====== jquery js ======-->
 
-    <script src="js/vendor/modernizr-3.6.0.min.js"></script>
-    <script src="js/vendor/jquery-1.12.4.min.js"></script>
 
-    <!--====== Bootstrap js ======-->
-    <script src="js/bootstrap.min.js"></script>
 
-    <!--====== Slick js ======-->
-    <script src="js/slick.min.js"></script>
 
-    <!--====== Magnific Popup js ======-->
-    <script src="js/jquery.magnific-popup.min.js"></script>
 
-    <!--====== Counter Up js ======-->
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
+        <!--====== jquery js ======-->
 
-    <!--====== Nice Select js ======-->
-    <script src="js/jquery.nice-select.min.js"></script>
+        <script src="js/vendor/modernizr-3.6.0.min.js"></script>
+        <script src="js/vendor/jquery-1.12.4.min.js"></script>
 
-    <!--====== Nice Number js ======-->
-    <script src="js/jquery.nice-number.min.js"></script>
+        <!--====== Bootstrap js ======-->
+        <script src="js/bootstrap.min.js"></script>
 
-    <!--====== Count Down js ======-->
-    <script src="js/jquery.countdown.min.js"></script>
+        <!--====== Slick js ======-->
+        <script src="js/slick.min.js"></script>
 
-    <!--====== Validator js ======-->
-    <script src="js/validator.min.js"></script>
+        <!--====== Magnific Popup js ======-->
+        <script src="js/jquery.magnific-popup.min.js"></script>
 
-    <!--====== Ajax Contact js ======-->
-    <script src="js/ajax-contact.js"></script>
+        <!--====== Counter Up js ======-->
+        <script src="js/waypoints.min.js"></script>
+        <script src="js/jquery.counterup.min.js"></script>
 
-    <!--====== Main js ======-->
-    <script src="js/main.js"></script>
+        <!--====== Nice Select js ======-->
+        <script src="js/jquery.nice-select.min.js"></script>
 
-    <!--====== Map js ======-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
-    <script src="js/map-script.js"></script>
-</body>
+        <!--====== Nice Number js ======-->
+        <script src="js/jquery.nice-number.min.js"></script>
+
+        <!--====== Count Down js ======-->
+        <script src="js/jquery.countdown.min.js"></script>
+
+        <!--====== Validator js ======-->
+        <script src="js/validator.min.js"></script>
+
+        <!--====== Ajax Contact js ======-->
+        <script src="js/ajax-contact.js"></script>
+
+        <!--====== Main js ======-->
+        <script src="js/main.js"></script>
+
+        <!--====== Map js ======-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
+        <script src="js/map-script.js"></script>
+    </body>
 </html>

@@ -33,19 +33,19 @@ public class StaticReqServlet extends HttpServlet {
             double avgRate = rd.getAvgRateByUserID(uid);
 
             ListRequestMentorDAO rqd = new ListRequestMentorDAO();
-            int open, processing, finish, rejected;
+            int open, processing, finish, Reject;
 
             open = rqd.countRequestStatus(uid, "Open");
             processing = rqd.countRequestStatus(uid, "processing");
             finish = rqd.countRequestStatus(uid, "finish");
-            rejected = rqd.countRequestStatus(uid, "rejected");
+            Reject = rqd.countRequestStatus(uid, "Reject");
 
             request.setAttribute("rate", avgRate);
-            request.setAttribute("total", open + processing + finish + rejected);
+            request.setAttribute("total", open + processing + finish + Reject);
             request.setAttribute("open", open);
             request.setAttribute("processing", processing);
             request.setAttribute("finish", finish);
-            request.setAttribute("rejected", rejected);
+            request.setAttribute("rejected", Reject);
             request.getRequestDispatcher("static-request-mentor.jsp").forward(request, response);
         }
     }

@@ -60,6 +60,7 @@ public class AcceptRequest extends HttpServlet {
         int requestId = Integer.parseInt(request.getParameter("requestid"));
         RequestDAO d = new RequestDAO();
         int check = d.UpdateRequest_Mentor(requestId);
+        
         if (check == 0) {
             request.setAttribute("mess", "Update success full!");
             request.getRequestDispatcher("listreqmentor").forward(request, response);
