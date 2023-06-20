@@ -86,20 +86,20 @@
                             <header>Create Request</header>  
                         </div>
                     </div>
-                    <form action="requestMentor" method="post" class="formm">
+                    <form action="createreq" method="post" class="formm">
                         <div class="input-boxx">
                             <label>Title</label>
-                            <input type="text" placeholder="Enter the title" name="Title"required />
+                            <input type="text" placeholder="Enter the title" name="Title_of_request"required />
                         </div>
 
                         <div class="columnn">
                             <div class="input-boxx">
                                 <label>Create Date</label>
-                                <input type="datetime-local"id="start-time" placeholder="Enter start time" name="Create Date" required />
+                                <input type="datetime-local"id="start-time" placeholder="Enter start time" name="createdDate" required />
                             </div>
                             <div class="input-boxx">
                                 <label>Deadline Date</label>
-                                <input type="datetime-local" id="end-time" placeholder="Enter end time"name="Deadline Date" required />
+                                <input type="datetime-local" id="end-time" placeholder="Enter end time"name="finishDate" required />
                             </div>
                         </div>
                         <script>
@@ -166,7 +166,7 @@
                     <div class="input-boxx">
                         <label>Term of the request</label>
                         <div class="select-boxx" >
-                            <select name="sogiohoc">
+                            <select name="Request_hour">
                                 <option hidden >Choose time</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -180,13 +180,13 @@
 
                     <div class="input-boxx">
                         <label>Content</label><br>
-                        <textarea placeholder="Content required" name="noidung"></textarea>
+                        <textarea placeholder="Content required" name="Desciption_of_request"></textarea>
                     </div>
                     <c:if test="${requestScope.errE!=null}">
                         <h6 style="color: red">${requestScope.errE}</h6>
                     </c:if>
 
-                    <button style="border: 30px; background: #4e6ce6">Request</button>
+                    <button style="border: 30px; background: #4e6ce6" type="submit">Request</button>
                 </form>
             </section>
         </div>

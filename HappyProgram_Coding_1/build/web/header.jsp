@@ -115,10 +115,9 @@
                                     <li class="nav-item">
                                         <a>Requests</a>
                                         <ul class="sub-menu">
-                                            <li><a href="create_request.jsp">Create Request</a></li>
+                                            <li><a href="createreq">Create Request</a></li>
                                             <li><a href="listrequest">Requests List</a></li>
-                                            <li><a href="statistic">Requests statistics</a></li>
-                                            
+                                            <li><a href="statistic">Requests statistics</a></li>                                          
                                         </ul>
                                     </li>
                                 </c:if>
