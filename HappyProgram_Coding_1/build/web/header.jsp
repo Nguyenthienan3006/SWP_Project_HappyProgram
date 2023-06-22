@@ -115,7 +115,7 @@
                                     <li class="nav-item">
                                         <a>Requests</a>
                                         <ul class="sub-menu">
-                                            <li><a href="createreq">Create Request</a></li>
+                                            <li><a href="loadskill">Create Request</a></li>
                                             <li><a href="listrequest">Requests List</a></li>
                                             <li><a href="statistic">Requests statistics</a></li>                                          
                                         </ul>
@@ -129,6 +129,15 @@
                                             <li><a href="listreqmentor">Invited Request</a></li>
                                             <li><a href="staticreq">Requests statistics</a></li>
 
+                                        </ul>
+                                    </li>
+                                </c:if>
+
+                                <c:if test="${sessionScope.user.getRole() == 3}">
+                                    <li class="nav-item">
+                                        <a>Requests</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="listreqadmin">List of All Request</a></li>
                                         </ul>
                                     </li>
                                 </c:if>

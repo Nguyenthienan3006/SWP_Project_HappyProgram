@@ -4,6 +4,9 @@
     Author     : Tuan Vinh
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!---Coding By CodingLab | www.codinglabweb.com--->
@@ -55,6 +58,15 @@
         <link rel="stylesheet" href="css/request.css" />
         <link rel="stylesheet"
               href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+        <style>
+            .checkbox-row {
+                margin-bottom: 10px; /* Khoảng cách giữa các hàng checkbox */
+            }
+            .checkbox-row p {
+                display: inline-block; /* Hiển thị các checkbox cùng một hàng */
+                margin-right: 10px; /* Khoảng cách giữa các checkbox trong cùng một hàng */
+            }
+        </style>
     </head>
 
     <body>
@@ -86,65 +98,96 @@
                             <header>Create Request</header>  
                         </div>
                     </div>
-                    <form action="createreq" method="post" class="formm">
-                        <div class="input-boxx">
-                            <label>Title</label>
-                            <input type="text" placeholder="Enter the title" name="Title_of_request"required />
-                        </div>
-
-                        <div class="columnn">
-                            <div class="input-boxx">
-                                <label>Create Date</label>
-                                <input type="datetime-local"id="start-time" placeholder="Enter start time" name="createdDate" required />
-                            </div>
-                            <div class="input-boxx">
-                                <label>Deadline Date</label>
-                                <input type="datetime-local" id="end-time" placeholder="Enter end time"name="finishDate" required />
-                            </div>
-                        </div>
-                        <script>
-                            // Lấy thời gian hiện tại
-                            var currentTime = new Date();
-
-                            // Thêm 1 giờ vào thời gian hiện tại
-                            currentTime.setHours(currentTime.getHours() + 1);
-
-                            // Định dạng chuỗi YYYY-MM-DDTHH:MM
-                            var minStartTime = currentTime.toISOString().slice(0, 16);
-
-                            // Thiết lập giá trị tối thiểu cho input thời gian bắt đầu
-                            document.getElementById("start-time").setAttribute("min", minStartTime);
-
-                            // Xử lý sự kiện khi giá trị thời gian bắt đầu thay đổi
-                            document.getElementById("start-time").addEventListener("input", function () {
-                                var startTime = new Date(this.value);
-
-                                // Thêm 1 giờ vào thời gian bắt đầu
-                                startTime.setHours(startTime.getHours() + 1);
-
-                                // Định dạng chuỗi YYYY-MM-DDTHH:MM
-                                var minEndTime = startTime.toISOString().slice(0, 16);
-
-                                // Thiết lập giá trị tối thiểu cho input thời gian kết thúc
-                                document.getElementById("end-time").setAttribute("min", minEndTime);
-                            });
-                        </script>
+                    <form action="loadmentor" onsubmit="return validateForm();"> 
                         <div class="gender-boxx">
                             <div class="gender-boxx">
                                 <label style="font-size: 15px; font-weight: bold;">Skill</label>
                                 <div class="gender-option ">
-                                    <select name="skills" id="skills">
-                                    <c:forEach items="${sessionScope.skillsList}" var="LS" varStatus="status">
-                                        <option value="${LS.getSkillId()}">${LS.getSkillName()}</option>
-                                        <c:if test="${status.index % 4 == 3}">
-                                            <div style="width: 100%; height: 0;"></div>
-                                        </c:if>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </div>
 
+                                <c:set var="skillIds" value="" />
+                                <c:set var="rowCounter" value="0" />
+
+                                <c:forEach items="${lss}" var="skill">
+                                    <c:set var="skillIds" value="${skillIds},${skill.skillId}" />
+                                </c:forEach>
+
+                                <div class="checkbox-row">
+                                    <c:forEach items="${ls}" var="ls" varStatus="status">
+                                        <c:if test="${status.index % 4 == 0 && status.index != 0}">
+                                            <div style="clear: both;"></div> <!-- Xóa float của các dòng trước -->
+                                        </c:if>
+
+                                        <c:if test="${rowCounter == 3}">
+                                            <div style="clear: both;"></div> <!-- Tạo dòng mới -->
+                                            <c:set var="rowCounter" value="0" /> <!-- Đặt lại giá trị rowCounter -->
+                                        </c:if>
+
+                                        <p>
+                                            <input type="checkbox" name="skills" value="${ls.skillId}" ${fn:contains(skillIds, ls.skillId) ? 'checked' : ''}>
+                                            ${ls.skillName}
+                                        </p>
+
+                                        <c:set var="rowCounter" value="${rowCounter + 1}" />
+                                    </c:forEach>
+                                </div>
+
+                                <input type="submit" value="OK">
+                            </div>
+                        </div>  
                     </div>
+                </form>
+                <form action="requestMentor" method="post" class="formm">
+                    <select name="mentor">
+                        <option value="" selected disabled hidden>Mentor for you</option>
+                        <c:forEach items="${lu}" var="lu" varStatus="status">
+                            <option value="${lu.getUid()}">${lu.getFullname()}</option>
+                        </c:forEach>
+
+                    </select>
+
+                    <div class="input-boxx">
+                        <label>Title</label>
+                        <input type="text" placeholder="Enter the title" name="Title"required />
+                    </div>
+
+                    <div class="columnn">
+                        <div class="input-boxx">
+                            <label>Create Date</label>
+                            <input type="datetime-local"id="start-time" placeholder="Enter start time" name="Create Date" required />
+                        </div>
+                        <div class="input-boxx">
+                            <label>Deadline Date</label>
+                            <input type="datetime-local" id="end-time" placeholder="Enter end time"name="Deadline Date" required />
+                        </div>
+                    </div>
+                    <script>
+                        // Lấy thời gian hiện tại
+                        var currentTime = new Date();
+
+                        // Thêm 1 giờ vào thời gian hiện tại
+                        currentTime.setHours(currentTime.getHours() + 1);
+
+                        // Định dạng chuỗi YYYY-MM-DDTHH:MM
+                        var minStartTime = currentTime.toISOString().slice(0, 16);
+
+                        // Thiết lập giá trị tối thiểu cho input thời gian bắt đầu
+                        document.getElementById("start-time").setAttribute("min", minStartTime);
+
+                        // Xử lý sự kiện khi giá trị thời gian bắt đầu thay đổi
+                        document.getElementById("start-time").addEventListener("input", function () {
+                            var startTime = new Date(this.value);
+
+                            // Thêm 1 giờ vào thời gian bắt đầu
+                            startTime.setHours(startTime.getHours() + 1);
+
+                            // Định dạng chuỗi YYYY-MM-DDTHH:MM
+                            var minEndTime = startTime.toISOString().slice(0, 16);
+
+                            // Thiết lập giá trị tối thiểu cho input thời gian kết thúc
+                            document.getElementById("end-time").setAttribute("min", minEndTime);
+                        });
+                    </script>
+
                     <script>
                         function handleSkillSelection() {
                             var select = document.getElementById("skills");
@@ -166,7 +209,7 @@
                     <div class="input-boxx">
                         <label>Term of the request</label>
                         <div class="select-boxx" >
-                            <select name="Request_hour">
+                            <select name="sogiohoc">
                                 <option hidden >Choose time</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -180,13 +223,13 @@
 
                     <div class="input-boxx">
                         <label>Content</label><br>
-                        <textarea placeholder="Content required" name="Desciption_of_request"></textarea>
+                        <textarea placeholder="Content required" name="noidung"></textarea>
                     </div>
                     <c:if test="${requestScope.errE!=null}">
                         <h6 style="color: red">${requestScope.errE}</h6>
                     </c:if>
 
-                    <button style="border: 30px; background: #4e6ce6" type="submit">Request</button>
+                    <button style="border: 30px; background: #4e6ce6">Request</button>
                 </form>
             </section>
         </div>
@@ -258,6 +301,30 @@
         <!--====== Map js ======-->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
         <script src="js/map-script.js"></script>
+        <script>
+                        function validateForm() {
+                            var checkboxes = document.getElementsByName('skills');
+                            var checkedCount = 0;
+
+                            // Đếm số lượng checkbox được chọn
+                            for (var i = 0; i < checkboxes.length; i++) {
+                                if (checkboxes[i].checked) {
+                                    checkedCount++;
+                                }
+                            }
+
+                            // Kiểm tra điều kiện số lượng checkbox
+                            if (checkedCount === 0) {
+                                alert("Vui lòng chọn ít nhất một kỹ năng.");
+                                return false;
+                            } else if (checkedCount > 3) {
+                                alert("Vui lòng chọn tối đa ba kỹ năng.");
+                                return false;
+                            }
+
+                            return true;
+                        }
+        </script>
     </body>
 
 </html>

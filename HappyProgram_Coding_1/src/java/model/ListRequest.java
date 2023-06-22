@@ -39,6 +39,14 @@ public class ListRequest {
         this.Status = Status;
         this.requestID = requestID;
     }
+
+    public ListRequest(int requestID, String menteeName, int menteeID, String RequestStatus, String Title_of_request) {
+        this.requestID = requestID;
+        this.menteeName = menteeName;
+        this.menteeID = menteeID;
+        this.RequestStatus = RequestStatus;
+        this.Title_of_request = Title_of_request;
+    }
     
     
 

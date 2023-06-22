@@ -35,6 +35,14 @@
         <servlet-name>CreateRequest</servlet-name>
         <servlet-class>controller.mentee.CreateRequest</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListAllReqAdmin</servlet-name>
+        <servlet-class>controller.admin.ListAllReqAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RequestDetailAdmin</servlet-name>
+        <servlet-class>controller.admin.RequestDetailAdmin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SigninServlet</servlet-name>
         <url-pattern>/signin</url-pattern>
@@ -67,9 +75,17 @@
         <servlet-name>CreateRequest</servlet-name>
         <url-pattern>/createreq</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListAllReqAdmin</servlet-name>
+        <url-pattern>/listreqadmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDetailAdmin</servlet-name>
+        <url-pattern>/reqdetailadmin</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            50
+            100
         </session-timeout>
     </session-config>
 </web-app>

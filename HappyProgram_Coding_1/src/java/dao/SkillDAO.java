@@ -35,6 +35,29 @@ public class SkillDAO extends MyDAO {
         return list;
     }
 
+    public Skill getSkillById(String skill_id) {
+        xSql = "select * from Skills where skill_Id = ?";
+        String xSkill_Name, xSkill_Image;
+        int xSkill_Id;
+
+        Skill x = null;
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, skill_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                xSkill_Id = rs.getInt("skill_Id");
+                xSkill_Name = rs.getString("Skill_Name");
+                xSkill_Image = rs.getString("SKill_Image");
+
+                x = new Skill(xSkill_Id, xSkill_Name, xSkill_Image);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return x;
+    }
+
 }
 
 class t2 {
@@ -48,5 +71,3 @@ class t2 {
 
     }
 }
-
-
