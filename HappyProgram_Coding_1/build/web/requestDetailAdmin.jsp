@@ -126,9 +126,9 @@
                                background-color: #0056b3;
                                color: white;
                                border: none;
-                               border-radius: 4px;
+                               border-radius: 10px;
                                cursor: pointer;
-                               font-size: 16px; margin-bottom: 5%" type="submit" value="Back">
+                               font-size: 16px; margin-bottom: 3%" type="submit" value="Back">
                     </span>
                 </form>
             </c:when>

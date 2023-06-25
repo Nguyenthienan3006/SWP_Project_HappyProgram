@@ -103,7 +103,7 @@
                                                     <div class="input-group">
                                                         <div class="col-sm-6">
                                                             <h4 style="font-size: 20px">By name:</h4>
-                                                            <input type="text" name="searchText" id="searchInput" placeholder="Search..." style="width: 200px;"><br><br>
+                                                            <input type="text" name="searchText" id="searchInput" placeholder="enter name..." style="width: 200px;"><br><br>
 
 
                                                             <h4 style="font-size: 20px">By status:</h4>
@@ -185,7 +185,14 @@
 
                                                                     <td>
                                                                         <a href="reqdetailadmin?requestid=${list.getRequestID()}">
-                                                                            <input style=" font-weight: bold;" type="Submit" value="Request Detail">
+                                                                            <input style="padding: 10px 20px;
+                                                                                   background-color: #138496;
+                                                                                   color: white;
+                                                                                   border: none;
+                                                                                   border-radius: 10px;
+                                                                                   cursor: pointer;
+                                                                                   font-size: 12px;
+                                                                                   font-weight: bold" type="Submit" value="Request Detail">
                                                                         </a>
                                                                     </td>
 
