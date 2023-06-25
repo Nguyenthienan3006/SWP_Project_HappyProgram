@@ -57,6 +57,32 @@ public class SkillDAO extends MyDAO {
         }
         return x;
     }
+    
+    
+    public int UpdateSkillAdmin(int skillID, int status, String newName) {
+        int mess = 0;
+        // Chuỗi truy vấn SELECT để lấy danh sách mentor
+        String query = "UPDATE Skills\n"
+                + "SET Skill_Name = ?,\n"
+                + "    skill_Status = ?\n"
+                + "WHERE skill_Id = ?;";
+        try {
+            ps = con.prepareStatement(query);
+            ps.setString(1, newName);
+            ps.setInt(2, status);
+            ps.setInt(3, skillID);
+            // Đóng kết nối và giải phóng tài nguyên
+
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            mess = 1;
+        }
+        return mess;
+    }
+
 
 }
 

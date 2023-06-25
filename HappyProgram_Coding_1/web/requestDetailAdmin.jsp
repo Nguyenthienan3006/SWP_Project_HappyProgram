@@ -63,6 +63,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                                         <li class="breadcrumb-item active" aria-current="page">List request by me</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Statistic request by me</li>
                                     </ol>
                                 </nav>
                             </div>  <!-- page banner cont -->
@@ -71,58 +72,65 @@
                 </div> <!-- container -->
             </section>
 
-            <form action="" method="" style="padding-top: 1%; margin-left: 5%">
-                <div class="search-container">
-                    <input name="name" type="text" id="searchInput" placeholder="Search..." style="padding-left: 5%">
-                    <button type="submit" >Submit</button>
-                </div>
-            </form>
         <c:choose>
             <c:when test="${not empty sessionScope.listreqdetail}">
-                <div class="table-wrapper">
-                    <table class="fl-table">
-                        <thead>
+                <form action="listreqadmin" method="get">
+                    <div class="table-wrapper">
+                        <table class="fl-table">
+                            <thead>
 
-                            <tr>
-                                <th>Request ID</th>
-                                <th>Mentor Name</th>
-                                <th>Mentor ID</th>
-                                <th>Mentee Name</th>
-                                <th>Mentee ID</th>
-                                <th>Skill_Name</th>   
-                                <th>Created_date</th>    
-                                <th>Finish_date</th>   
-                                <th>Request Status</th>   
-                                <th>Deadline_hour</th>
-                                <th>Title_of_request</th>
-                                <th>Desciption_of_request</th>  
-                                <th>Request_hour</th>  
-
-                            </tr>
-                        </thead>
-                        <tbody> 
-                            <c:forEach items="${sessionScope.listreqdetail}" var="list">
                                 <tr>
-                                    <td>${list.getRequestID()}</td>
-                                    <td>${list.getMentorName()}</td>
-                                    <td>${list.getMentorID()}</td>
-                                    <td>${list.getMenteeName()}</td>
-                                    <td>${list.getMenteeID()}</td>
-                                    <td>${list.getSkill_Name()}</td>
-                                    <td>${list.getCreated_date()}</td>
-                                    <td>${list.getFinish_date()}</td>
-                                    <td>${list.getRequestStatus()}</td>
-                                    <td>${list.getDate_hour()}</td>
-                                    <td>${list.getTitle_of_request()}</td>
-                                    <td>${list.getDesciption_of_request()}</td>
-                                    <td>${list.getRequest_hour()}</td>
+                                    <th>Request ID</th>
+                                    <th>Mentor Name</th>
+                                    <th>Mentor ID</th>
+                                    <th>Mentee Name</th>
+                                    <th>Mentee ID</th>
+                                    <th>Skill_Name</th>   
+                                    <th>Created_date</th>    
+                                    <th>Finish_date</th>   
+                                    <th>Request Status</th>   
+                                    <th>Deadline_hour</th>
+                                    <th>Title_of_request</th>
+                                    <th>Desciption_of_request</th>  
+                                    <th>Request_hour</th>  
 
                                 </tr>
-                            </c:forEach>
-                        <tbody>
+                            </thead>
+                            <tbody> 
+                                <c:forEach items="${sessionScope.listreqdetail}" var="list">
+                                    <tr>
+                                        <td>${list.getRequestID()}</td>
+                                        <td>${list.getMentorName()}</td>
+                                        <td>${list.getMentorID()}</td>
+                                        <td>${list.getMenteeName()}</td>
+                                        <td>${list.getMenteeID()}</td>
+                                        <td>${list.getSkill_Name()}</td>
+                                        <td>${list.getCreated_date()}</td>
+                                        <td>${list.getFinish_date()}</td>
+                                        <td>${list.getRequestStatus()}</td>
+                                        <td>${list.getDate_hour()}</td>
+                                        <td>${list.getTitle_of_request()}</td>
+                                        <td>${list.getDesciption_of_request()}</td>
+                                        <td>${list.getRequest_hour()}</td>
 
-                    </table>   
-                </div>
+                                    </tr>
+                                </c:forEach>
+                            <tbody>
+
+                        </table>   
+                    </div>
+
+
+                    <span style="display: flex; justify-content: center;">
+                        <input style="padding: 10px 20px;
+                               background-color: #0056b3;
+                               color: white;
+                               border: none;
+                               border-radius: 4px;
+                               cursor: pointer;
+                               font-size: 16px; margin-bottom: 5%" type="submit" value="Back">
+                    </span>
+                </form>
             </c:when>
             <c:otherwise>
             <tr>

@@ -71,12 +71,6 @@
                 </div> <!-- container -->
             </section>
 
-            <form action="" method="" style="padding-top: 1%; margin-left: 5%">
-                <div class="search-container">
-                    <input name="name" type="text" id="searchInput" placeholder="Search..." style="padding-left: 5%">
-                    <button type="submit" >Submit</button>
-                </div>
-            </form>
         <c:choose>
             <c:when test="${not empty sessionScope.ListStatistic}">
                 <div class="table-wrapper">

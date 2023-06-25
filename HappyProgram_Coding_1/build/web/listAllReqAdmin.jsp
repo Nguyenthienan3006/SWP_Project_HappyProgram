@@ -48,10 +48,13 @@
 
         <!--====== Responsive css ======-->
         <link rel="stylesheet" href="css/responsive.css">  
+
+
         <title> List of requests</title>
     </head>
     <body>
         <jsp:include page="header.jsp"></jsp:include>
+
 
             <section id="page-banner" class="pt-105 pb-110 bg_cover" data-overlay="8" style="background-image: url(images/page-banner-3.jpg)">
                 <div class="container">
@@ -72,132 +75,292 @@
             </section>
 
 
-            <form action="listreqadmin" method="post">
-                <div style="margin-top: 10px; margin-left: 80px">
-                    <input type="text" name="searchText" id="searchInput" placeholder="Search...">
-                    <select name="status">
-                        <option value="" >All</option>
-                        <option value="Open">Open</option>
-                        <option value="Processing">Processing</option>
-                        <option value="Reject">Reject</option>
-                        <option value="Finish">Finish</option>
-                        <option value="Close">Close</option>
-                        
-
-                    </select>
-
-                    <input type="date" name="startDate" >
-                    <input type="date" name="endDate" >
-                    <input type="submit" value="Tìm kiếm">
-                </div>
-            </form>
 
         <c:choose>
             <c:when test="${not empty sessionScope.listreq}">
-                <div class="table-wrapper">
-                    <table class="fl-table">
-                        <thead>
+                <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                <div  style="    width:100%;
+                      margin-right:auto;
+                      margin-left:auto;
+                      margin-top: 100px;
+                      padding-left: 5%;
+                      margin-bottom: 100px">
+                    <div class="row">
+                        <!-- BEGIN SEARCH RESULT -->
+                        <div class="col-md-12">
+                            <div class="grid search">
+                                <div class="grid-body">
+                                    <div class="row">
+                                        <!-- BEGIN FILTERS -->
+                                        <div  class="col-md-3">
+                                            <h2 class="grid-title"><i class="fa fa-filter"></i> Filters</h2><br>
 
-                            <tr>
-                                <th>Request ID</th>
-                                <th>ID</th>
-                                <th>Account Name</th>
-                                <th>Title Of Request</th>
-                                <th>Status</th>
-                                <th>Request Detail</th>
+                                            <!-- BEGIN FILTER BY CATEGORY -->
+                                            <form action="listreqadmin" method="post">
+
+                                                <!-- BEGIN SEARCH INPUT -->
+                                                <form action="listreqadmin" method="post">
+                                                    <div class="input-group">
+                                                        <div class="col-sm-6">
+                                                            <h4 style="font-size: 20px">By name:</h4>
+                                                            <input type="text" name="searchText" id="searchInput" placeholder="Search..." style="width: 200px;"><br><br>
 
 
-                            </tr>
-                        </thead>
-                        <tbody> 
-                            <c:forEach items="${sessionScope.listreq}" var="list">
-                                <tr>
-                                    <td>${list.getRequestID()}</td>
-                                    <td>${list.getMenteeID()}</td>
-                                    <td>${list.getMenteeName()}</td>
-                                    <td>${list.getTitle_of_request()}</td>  
-                                    <td>${list.getRequestStatus()}</td>
+                                                            <h4 style="font-size: 20px">By status:</h4>
+                                                            <select name="status" style="width: 200%;">
+                                                                <option value="" >All</option>
+                                                                <option value="Open">Open</option>
+                                                                <option value="Processing">Processing</option>
+                                                                <option value="Reject">Reject</option>
+                                                                <option value="Finish">Finish</option>
+                                                                <option value="Close">Close</option>
 
-                                    <td>
-                                        <a href="reqdetailadmin?requestid=${list.getRequestID()}">
-                                            <input style=" font-weight: bold;" type="Submit" value="Request Detail">
-                                        </a>
-                                    </td>
 
-                                </tr>
-                            </c:forEach>
-                        <tbody>
+                                                            </select> <br><br><br>
 
-                    </table>   
+                                                            <h4 style="font-size: 20px">By date:</h4>
+                                                            From <br>
+
+                                                            <input type="date" name="startDate"  style="width: 200px;"><br>
+                                                            To <br>
+                                                            <input type="date" name="endDate"  style="width: 200px;"><br><br>
+
+
+                                                            <div>
+
+                                                                <span>
+                                                                    <input style="padding: 10px 20px;
+                                                                           background-color: #0056b3;
+                                                                           color: white;
+                                                                           border: none;
+                                                                           border-radius: 10px;
+                                                                           cursor: pointer;
+                                                                           font-size: 16px;
+                                                                           font-weight: bold" type="submit" value="Search">
+                                                                </span>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- END SEARCH INPUT -->
+
+
+                                                </form>
+                                                <!-- END FILTER BY PRICE -->
+                                        </div>
+                                        <!-- END FILTERS -->
+                                        <!-- BEGIN RESULT -->
+                                        <div class="col-md-9">
+                                            <h2><i class="fa fa-file-o"></i> Result</h2>
+                                            <div class="row">
+                                            </div>
+
+                                            <!-- BEGIN TABLE RESULT -->
+                                            <div class="table-responsive">
+
+                                                <div class="table-wrapper">
+                                                    <table class="fl-table">
+                                                        <thead>
+
+                                                            <tr>
+                                                                <th>Request ID</th>
+                                                                <th>ID</th>
+                                                                <th>Account Name</th>
+                                                                <th>Title Of Request</th>
+                                                                <th>Status</th>
+                                                                <th>Request Detail</th>
+
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody> 
+                                                            <c:forEach items="${sessionScope.listreq}" var="list">
+                                                                <tr>
+                                                                    <td>${list.getRequestID()}</td>
+                                                                    <td>${list.getMenteeID()}</td>
+                                                                    <td>${list.getMenteeName()}</td>
+                                                                    <td>${list.getTitle_of_request()}</td>  
+                                                                    <td>${list.getRequestStatus()}</td>
+
+                                                                    <td>
+                                                                        <a href="reqdetailadmin?requestid=${list.getRequestID()}">
+                                                                            <input style=" font-weight: bold;" type="Submit" value="Request Detail">
+                                                                        </a>
+                                                                    </td>
+
+                                                                </tr>
+                                                            </c:forEach>
+                                                        <tbody>
+
+                                                    </table>   
+                                                </div>
+                                            </div>
+                                            <!-- END TABLE RESULT -->
+
+
+                                        </div>
+                                        <!-- END RESULT -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END SEARCH RESULT -->
+                    </div>
                 </div>
             </c:when>
             <c:otherwise>
-            <tr>
-                <td colspan="9">No mentors found</td>
-            </tr>
-        </c:otherwise>
-    </c:choose>
 
-    <!--====== TEACHERS PART ENDS ======-->
+                <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                <div style="    width:100%;
+                     margin-right:auto;
+                     margin-left:auto;
+                     margin-top: 100px;
+                     padding-left: 5%;
+                     margin-bottom: 100px">
+                    <div class="row">
+                        <!-- BEGIN SEARCH RESULT -->
+                        <div class="col-md-12">
+                            <div class="grid search">
+                                <div class="grid-body">
+                                    <div class="row">
+                                        <!-- BEGIN FILTERS -->
+                                        <div class="col-md-3">
+                                            <h2 class="grid-title"><i class="fa fa-filter"></i> Filters</h2>
 
-    <!--====== FOOTER PART START ======-->
+                                            <!-- BEGIN FILTER BY CATEGORY -->
+                                            <form action="listreqadmin" method="post">
 
-    <jsp:include page="footer.jsp"></jsp:include>
-
-
-    <!--====== FOOTER PART ENDS ======-->
-
-    <!--====== BACK TO TP PART START ======-->
-
-    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
-
-    <!--====== BACK TO TP PART ENDS ======-->
+                                                <!-- BEGIN SEARCH INPUT -->
+                                                <form action="listreqadmin" method="post">
+                                                    <div class="input-group">
+                                                        <div class="col-sm-6">
+                                                            <h4 style="font-size: 20px">By name:</h4>
+                                                            <input type="text" name="searchText" id="searchInput" placeholder="Search...">
 
 
+                                                            <h4 style="font-size: 20px">By status:</h4>
+                                                            <select name="status">
+                                                                <option value="" >All</option>
+                                                                <option value="Open">Open</option>
+                                                                <option value="Processing">Processing</option>
+                                                                <option value="Reject">Reject</option>
+                                                                <option value="Finish">Finish</option>
+                                                                <option value="Close">Close</option>
+
+
+                                                            </select> <br><br>
+
+                                                            <h4 style="font-size: 20px">By date:</h4>
+                                                            From <br>
+
+                                                            <input type="date" name="startDate" ><br>
+                                                            To <br>
+                                                            <input type="date" name="endDate" ><br><br>
+
+
+                                                            <div>
+
+                                                                <span>
+                                                                    <input style="padding: 10px 20px;
+                                                                           background-color: #4CAF50;
+                                                                           color: white;
+                                                                           border: none;
+                                                                           border-radius: 4px;
+                                                                           cursor: pointer;
+                                                                           font-size: 16px;" type="submit" value="Search">
+                                                                </span>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- END SEARCH INPUT -->
+
+
+                                                </form>
+                                                <!-- END FILTER BY PRICE -->
+                                        </div>
+
+                                        <!-- END FILTERS -->
+                                        <!-- BEGIN RESULT -->
+                                        <div class="col-md-9">
+                                            <h2><i class="fa fa-file-o"></i> Result</h2>
+
+                                            <tr>
+                                                <td colspan="9">No mentors found</td>
+                                            </tr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:otherwise>
+        </c:choose>
+
+        <!--====== TEACHERS PART ENDS ======-->
+
+        <!--====== FOOTER PART START ======-->
+
+        <jsp:include page="footer.jsp"></jsp:include>
+
+
+        <!--====== FOOTER PART ENDS ======-->
+
+        <!--====== BACK TO TP PART START ======-->
+
+        <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+        <!--====== BACK TO TP PART ENDS ======-->
 
 
 
 
 
 
-    <!--====== jquery js ======-->
 
-    <script src="js/vendor/modernizr-3.6.0.min.js"></script>
-    <script src="js/vendor/jquery-1.12.4.min.js"></script>
 
-    <!--====== Bootstrap js ======-->
-    <script src="js/bootstrap.min.js"></script>
+        <!--====== jquery js ======-->
 
-    <!--====== Slick js ======-->
-    <script src="js/slick.min.js"></script>
+        <script src="js/vendor/modernizr-3.6.0.min.js"></script>
+        <script src="js/vendor/jquery-1.12.4.min.js"></script>
 
-    <!--====== Magnific Popup js ======-->
-    <script src="js/jquery.magnific-popup.min.js"></script>
+        <!--====== Bootstrap js ======-->
+        <script src="js/bootstrap.min.js"></script>
 
-    <!--====== Counter Up js ======-->
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
+        <!--====== Slick js ======-->
+        <script src="js/slick.min.js"></script>
 
-    <!--====== Nice Select js ======-->
-    <script src="js/jquery.nice-select.min.js"></script>
+        <!--====== Magnific Popup js ======-->
+        <script src="js/jquery.magnific-popup.min.js"></script>
 
-    <!--====== Nice Number js ======-->
-    <script src="js/jquery.nice-number.min.js"></script>
+        <!--====== Counter Up js ======-->
+        <script src="js/waypoints.min.js"></script>
+        <script src="js/jquery.counterup.min.js"></script>
 
-    <!--====== Count Down js ======-->
-    <script src="js/jquery.countdown.min.js"></script>
+        <!--====== Nice Select js ======-->
+        <script src="js/jquery.nice-select.min.js"></script>
 
-    <!--====== Validator js ======-->
-    <script src="js/validator.min.js"></script>
+        <!--====== Nice Number js ======-->
+        <script src="js/jquery.nice-number.min.js"></script>
 
-    <!--====== Ajax Contact js ======-->
-    <script src="js/ajax-contact.js"></script>
+        <!--====== Count Down js ======-->
+        <script src="js/jquery.countdown.min.js"></script>
 
-    <!--====== Main js ======-->
-    <script src="js/main.js"></script>
+        <!--====== Validator js ======-->
+        <script src="js/validator.min.js"></script>
 
-    <!--====== Map js ======-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
-    <script src="js/map-script.js"></script>
-</body>
+        <!--====== Ajax Contact js ======-->
+        <script src="js/ajax-contact.js"></script>
+
+        <!--====== Main js ======-->
+        <script src="js/main.js"></script>
+
+        <!--====== Map js ======-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
+        <script src="js/map-script.js"></script>
+    </body>
 </html>

@@ -86,8 +86,15 @@
 
             <form action="View_mentorList" method="post" style="padding-top: 1%; margin-left: 11%">
                 <div class="search-container">
-                    <input name="name" type="text" id="searchInput" placeholder="Search..." style="padding-left: 5%">
-                    <button type="submit" >Submit</button>
+                    <input name="name" type="text" id="searchInput" placeholder="Enter Name.." style="padding-left: 5%; 
+                           padding-bottom: 0.5%; padding-top: 0.5%">
+                    <button style="padding: 10px 20px;
+                               background-color: #0056b3;
+                               color: white;
+                               border: none;
+                               border-radius: 10px;
+                               font-size: 16px;
+                               font-weight: bold" type="submit" >Search</button>
                 </div>
             </form>
 

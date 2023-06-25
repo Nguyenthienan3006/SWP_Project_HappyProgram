@@ -71,12 +71,6 @@
                 </div> <!-- container -->
             </section>
 
-            <form action="" method="" style="padding-top: 1%; margin-left: 5%">
-                <div class="search-container">
-                    <input name="name" type="text" id="searchInput" placeholder="Search..." style="padding-left: 5%">
-                    <button type="submit" >Submit</button>
-                </div>
-            </form>
             <div class="table-wrapper">
                 <table class="fl-table">
                     <thead>
@@ -111,16 +105,30 @@
                             <c:if test="${list.getStatus().equals('Open')}">
                                 <td>
                                     <a  href="acceptreq?requestid=${list.getRequestID()}">
-                                        <input style=" font-weight: bold;" type="Submit" value="Accept Request">
+                                        <input style="padding: 10px 20px;
+                                               background-color: #218838;
+                                               color: white;
+                                               border: none;
+                                               border-radius: 4px;  
+                                               cursor: pointer;
+                                               font-size: 12px; margin-bottom: 5%;
+                                               font-weight: bold" type="Submit" value="Accept Request">
                                     </a>
                                 </td> 
 
                                 <td>
                                     <a href="RejectRequest?requestid=${list.getRequestID()}">
-                                        <input style=" font-weight: bold;" type="Submit" value="Reject Request">
+                                        <input style="padding: 10px 20px;
+                                               background-color: #b21f2d;
+                                               color: white;
+                                               border: none;
+                                               border-radius: 4px;
+                                               cursor: pointer;
+                                               font-size: 12px; margin-bottom: 5%;
+                                               font-weight: bold"" type="Submit" value="Reject Request">
                                     </a>
                                 </td>
-                                </c:if>
+                            </c:if>
                         </tr>
                     </c:forEach>
                 <tbody>

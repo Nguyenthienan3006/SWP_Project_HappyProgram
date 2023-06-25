@@ -70,13 +70,6 @@
                     </div> <!-- row -->
                 </div> <!-- container -->
             </section>
-
-            <form action="" method="" style="padding-top: 1%; margin-left: 5%">
-                <div class="search-container">
-                    <input name="name" type="text" id="searchInput" placeholder="Search..." style="padding-left: 5%">
-                    <button type="submit" >Submit</button>
-                </div>
-            </form>
         <c:choose>
             <c:when test="${not empty sessionScope.ListRequest}">
                 <div class="table-wrapper">
@@ -119,7 +112,13 @@
                                     <td>${list.getRequest_hour()}</td>
                                     <td>
                                         <a>
-                                            <input style=" font-weight: bold;" type="Submit" value="Update Request">
+                                            <input style="padding: 10px 20px;
+                                                   background-color: #0056b3;
+                                                   color: white;
+                                                   border: none;
+                                                   border-radius: 4px;
+                                                   cursor: pointer;
+                                                   font-size: 12px; margin-bottom: 5%" type="Submit" value="Update Request">
                                         </a>
                                     </td>
 

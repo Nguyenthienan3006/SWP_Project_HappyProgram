@@ -101,7 +101,9 @@
                                     <a>Skills</a>
                                     <ul class="sub-menu">
                                         <li><a href="SkillServlet">Skills List</a></li>
-                                        <li><a href="courses-singel.jsp">Skills Singel</a></li>
+                                            <c:if test="${sessionScope.user.getRole() == 3}">
+                                            <li><a href="updateskill">Update Skills</a></li>
+                                            </c:if>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
