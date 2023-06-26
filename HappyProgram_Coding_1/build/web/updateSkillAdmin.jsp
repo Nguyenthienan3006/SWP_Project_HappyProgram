@@ -79,34 +79,123 @@
                 </div> <!-- container -->
             </section>
 
-            <div style="margin: 10%; margin-left: 40%">
+            <div style="margin: 5%;">
+                <style>
+                    .form-container {
+                        padding: 20px;
+                        border: 1px solid #ccc;
+                        border-radius: 10px;
+                        background-color: #f2f2f2;
+                        max-width: 500px;
+                        margin: 0 auto;
+                    }
 
-                <form action="updateskill" method="post">
-                    <h2>Update Skill</h2> <br>
+                    .form-container h2 {
+                        font-size: 24px;
+                        margin-bottom: 10px;
+                    }
 
-                    <select id="" name="SkillId" required>
-                        <option value="" selected disabled hidden>Select Skill Name</option>
-                    <c:forEach items="${sessionScope.skillsList}" var="list">
-                        <option value="${list.getSkillId()}">${list.getSkillName()}</option>
-                    </c:forEach>
-                </select>    
-                <br><br>   
+                    .form-container h4 {
+                        font-size: 20px;
+                        margin-bottom: 5px;
+                    }
 
-                <select id="skillStatus" name="skillStatus" required>
-                    <option value="" selected disabled hidden>Select Status</option>
-                    <option value="1">Active</option>
-                    <option value="0">Inactive</option>
-                </select>
-                <br><br>
+                    .form-container select,
+                    .form-container input[type="text"] {
+                        width: 100%;
+                        padding: 10px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        margin-bottom: 10px;
+                    }
 
-                <div>
-                    <input type="text"  name="skillName" placeholder="Enter New Name" required>
-                </div>
-                <br><br>    
+                    .form-container input[type="submit"] {
+                        padding: 10px 20px;
+                        background-color: #0056b3;
+                        color: white;
+                        border: none;
+                        border-radius: 10px;
+                        cursor: pointer;
+                        font-size: 16px;
+                        font-weight: bold;
+                    }
+                </style>
+                <div class="form-container" >
+                    <h2 class="grid-title">Update Skill</h2><br>
 
-                <input type="submit" value="Update">
+                    <!-- BEGIN FILTER BY CATEGORY -->
+                    <form action="updateskill" method="post">
 
-            </form>
+                        <!-- BEGIN SEARCH INPUT -->
+                        <form action="listreqadmin" method="post">
+                            <div class="input-group">
+                                <div class="col-sm-6">
+                                    <h4 style="font-size: 20px">Select skill name:</h4>
+                                    <select id="" name="SkillId" required>
+                                        <option value="" selected disabled hidden>Skill Name</option>
+                                    <c:forEach items="${sessionScope.skillsList}" var="list">
+                                        <option value="${list.getSkillId()}">${list.getSkillName()}</option>
+                                    </c:forEach>
+                                </select>  <br><br><br>
+
+
+                                <h4 style="font-size: 20px">Select status:</h4>
+                                <select id="skillStatus" name="skillStatus" required>
+                                    <option value="" selected disabled hidden>Status</option>
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
+                                <br><br><br>
+
+                                <h4 style="font-size: 20px">Enter new name:</h4>
+                                <div>
+                                    <input type="text"  name="skillName" placeholder="typing..." required>
+                                </div>
+                                <br><br>    
+
+
+                                <div>
+
+                                    <span>
+
+                                        <input style="padding: 10px 20px;
+                                               background-color: #0056b3;
+                                               color: white;
+                                               border: none;
+                                               border-radius: 10px;
+                                               cursor: pointer;
+                                               font-size: 16px;
+                                               font-weight: bold" type="submit" value="Update">
+
+
+
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- END SEARCH INPUT -->
+
+
+                    </form>
+                    <!-- END FILTER BY PRICE -->
+
+                    <a href="home.jsp">
+                        <input style="padding: 10px 20px;
+                               background-color: #b21f2d;
+                               color: white;
+                               border: none;
+                               border-radius: 10px;
+                               cursor: pointer;
+                               font-size: 16px;
+                               font-weight: bold;
+                               margin-left: 18%;
+                               margin-top: 2%" type="Submit" value="Cancel">
+                    </a>
+            </div>
+            <!-- END FILTERS -->
+
         </div>
 
 

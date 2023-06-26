@@ -166,7 +166,7 @@
                                                             <tr>
                                                                 <th>Request ID</th>
                                                                 <th>ID</th>
-                                                                <th>Account Name</th>
+                                                                <th>Mentee Name</th>
                                                                 <th>Title Of Request</th>
                                                                 <th>Status</th>
                                                                 <th>Request Detail</th>

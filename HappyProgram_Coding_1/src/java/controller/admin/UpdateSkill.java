@@ -85,6 +85,7 @@ public class UpdateSkill extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        HttpSession session = request.getSession();
         SkillDAO d = new SkillDAO();
         int SkillId = Integer.parseInt(request.getParameter("SkillId"));
         int skillStatus = Integer.parseInt(request.getParameter("skillStatus"));
@@ -93,10 +94,10 @@ public class UpdateSkill extends HttpServlet {
         int check = d.UpdateSkillAdmin(SkillId, skillStatus, skillName);
 
         if (check == 0) {
-            request.setAttribute("message", "Update success full!");
+            session.setAttribute("message", "Update success full!");
             request.getRequestDispatcher("home.jsp").forward(request, response);
         } else {
-            request.setAttribute("message", "Update fail!");
+            session.setAttribute("message", "Update fail!");
             request.getRequestDispatcher("home.jsp").forward(request, response);
         }
 
