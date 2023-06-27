@@ -89,7 +89,7 @@
             </section>
 
 
-        <div class="table-wrapper">
+            <div class="table-wrapper">
                 <table class="fl-table">
                     <thead>
                         <tr>
@@ -115,13 +115,13 @@
                         <td>${finish}</td>
                         <td>${finish / total * 100}%</td>
                     </tr>
-                    
+
                     <tr>
                         <td>Rejected Request</td>
                         <td>${rejected}</td>
                         <td>${rejected / total * 100}%</td>
                     </tr>
-                    
+
                     <tr>
                         <td>Total number of request</td>
                         <td>${total}</td>
@@ -135,6 +135,20 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div style="display: flex; justify-content: center; margin-bottom: 3%">
+            <a href="suggest">
+                <input style="
+
+                       padding: 10px 20px;
+                       background-color: #004085;
+                       color: white;
+                       border: none;
+                       border-radius: 10px;
+                       cursor: pointer;
+                       font-size: 16px;
+                       font-weight: bold;" type="Submit" value="Back to homepage">
+            </a>
         </div>
 
 

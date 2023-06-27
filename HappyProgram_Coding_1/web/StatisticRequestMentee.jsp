@@ -74,6 +74,7 @@
         <c:choose>
             <c:when test="${not empty sessionScope.ListStatistic}">
                 <div class="table-wrapper">
+
                     <table class="fl-table">
                         <thead>
 
@@ -100,6 +101,24 @@
                         </tbody>
 
                     </table>   
+
+
+
+                </div>
+                <div style="display: flex; justify-content: center;">
+                    <a href="suggest">
+                        <input style="
+
+                               padding: 10px 20px;
+                               background-color: #004085;
+                               color: white;
+                               border: none;
+                               border-radius: 10px;
+                               cursor: pointer;
+                               font-size: 16px;
+                               font-weight: bold;
+                               margin-bottom: 4%" type="Submit" value="Back to homepage">
+                    </a>
                 </div>
             </c:when>
             <c:otherwise>

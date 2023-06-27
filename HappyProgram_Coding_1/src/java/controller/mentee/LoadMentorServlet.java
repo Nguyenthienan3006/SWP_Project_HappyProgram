@@ -4,6 +4,7 @@
  */
 package controller.mentee;
 
+import controller.common.RoleChecker;
 import dao.ListRequestDAO;
 import dao.*;
 import jakarta.servlet.RequestDispatcher;
@@ -26,79 +27,98 @@ import model.*;
 @WebServlet(name = "LoadMentorServlet", urlPatterns = {"/loadmentor"})
 public class LoadMentorServlet extends HttpServlet {
 
+    String[] skillSelected;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        //khởi tạo sesion
+        //khoi tao session va lay nguoi dung hien tai
         HttpSession session = request.getSession();
-        //gọi ra dữ liệu của phiên người dùng hiện tại
-        User u = (User) session.getAttribute("user");
-
-        int menteeRole = 1;
-        if (u == null || u.getRole() != menteeRole) {
-            // Đặt thông báo vào session
-            session.setAttribute("message", "Bạn Không có quyền truy cập!");
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+        User user = (User) session.getAttribute("user");
+        //check role
+        if (!RoleChecker.isMentee(user)) {
+            RoleChecker.redirectToHome(session, response);
         } else {
-            String[] skillSelected;
-            skillSelected = request.getParameterValues("skills");
+            try {
+                SkillDAO sd = new SkillDAO();
+                List<Skill> ls = sd.getAllskill();
+                request.setAttribute("ls", ls);
 
-            UserDAO ud = new UserDAO();
-            List<User> lu = new ArrayList<>();
+                skillSelected = request.getParameterValues("skills");
 
-            SkillDAO sd = new SkillDAO();
-            List<Skill> lss = new ArrayList<>();
+                UserDAO ud = new UserDAO();
+                List<User> lu = new ArrayList<>();
 
-            switch (skillSelected.length) {
-                case 1:
-                    lu = ud.getMentorBy1Skill(skillSelected[0]);
-                    lss.add(sd.getSkillById(skillSelected[0]));
-                    break;
-                case 2:
-                    lu = ud.getMentorBy2Skill(skillSelected[0], skillSelected[1]);
-                    lss.add(sd.getSkillById(skillSelected[0]));
-                    lss.add(sd.getSkillById(skillSelected[1]));
-                    break;
-                case 3:
-                    lu = ud.getMentorBy3Skill(skillSelected[0], skillSelected[1], skillSelected[2]);
-                    lss.add(sd.getSkillById(skillSelected[0]));
-                    lss.add(sd.getSkillById(skillSelected[1]));
-                    lss.add(sd.getSkillById(skillSelected[2]));
-                    break;
-                default:
-                    break;
+                List<Skill> lss = new ArrayList<>();
+
+                switch (skillSelected.length) {
+                    case 1:
+                        lu = ud.getMentorBy1Skill(skillSelected[0]);
+                        lss.add(sd.getSkillById(skillSelected[0]));
+                        break;
+                    case 2:
+                        lu = ud.getMentorBy2Skill(skillSelected[0], skillSelected[1]);
+                        lss.add(sd.getSkillById(skillSelected[0]));
+                        lss.add(sd.getSkillById(skillSelected[1]));
+                        break;
+                    case 3:
+                        lu = ud.getMentorBy3Skill(skillSelected[0], skillSelected[1], skillSelected[2]);
+                        lss.add(sd.getSkillById(skillSelected[0]));
+                        lss.add(sd.getSkillById(skillSelected[1]));
+                        lss.add(sd.getSkillById(skillSelected[2]));
+                        break;
+                    default:
+                        break;
+                }
+
+                request.setAttribute("lss", lss);
+                request.setAttribute("lu", lu);
+
+            } catch (Exception e) {
+                log("Error at SkillServlet: " + e.toString());
+            } finally {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("create_request.jsp");
+                dispatcher.forward(request, response);
             }
 
-            request.setAttribute("lss", lss);
-            request.setAttribute("lu", lu);
             //request.getRequestDispatcher("create_request.jsp").forward(request, response);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("loadskill");
-            dispatcher.forward(request, response);
+            /*  RequestDispatcher dispatcher = request.getRequestDispatcher("loadskill");
+            dispatcher.forward(request, response);*/
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+
         // Lấy session
         HttpSession session = request.getSession();
-
         // Xóa thông báo từ session
         session.removeAttribute("message");
+        //gọi ra dữ liệu của phiên người dùng hiện tại
+        User u = (User) session.getAttribute("user");
+        int menteeID = u.getUid();
 
+        int mentorID = Integer.parseInt(request.getParameter("mentor"));
+
+        String Title_of_request = request.getParameter("Title_of_request");
+        String createdDate = request.getParameter("createdDate");
+        String finishDate = request.getParameter("finishDate");
+        String Date_hour = request.getParameter("Date_hour");
+        int Request_hour = Integer.parseInt(request.getParameter("Request_hour"));
+        String Desciption_of_request = request.getParameter("Desciption_of_request");
+
+        RequestDAO d = new RequestDAO();
+        d.createRequest(menteeID, mentorID, 1, createdDate, finishDate, Date_hour, Request_hour, Title_of_request, Desciption_of_request);
+
+        for (int i = 0; i < skillSelected.length; i++) {
+            d.createRequestskill(skillSelected[i]);
+        }
+        request.getRequestDispatcher("home.jsp").forward(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

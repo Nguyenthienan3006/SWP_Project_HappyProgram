@@ -13,11 +13,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import DB.DBConnect;
+import com.mysql.cj.xdevapi.PreparableStatement;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 
 public class MentorDAO {
-    
-     public ArrayList<ListMentor> displayMentorList() {
+
+    public ArrayList<ListMentor> displayMentorList() {
         //list chứa danh sách mentor
         ArrayList<ListMentor> mentorList = new ArrayList<>();
         try {
@@ -85,5 +87,73 @@ public class MentorDAO {
             ex.printStackTrace();
         }
         return mentorList;
-    } 
+    }
+
+    public ArrayList<ListMentor> getMentorSuggestBySkill(String skillId) {
+        ArrayList<ListMentor> mentorList = new ArrayList<>();
+        try {
+            DBConnect db = new DBConnect();
+            Connection con = db.getJDBCConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT\n"
+                    + "    U.u_Id AS ID,\n"
+                    + "     ROW_NUMBER() OVER (ORDER BY U.u_Id) AS STT,\n"
+                    + "    U.full_name AS Fullname,\n"
+                    + "    U.image AS Image,\n"
+                    + "    U.username AS Accountname,\n"
+                    + "    CD.professional_summary AS Profession,\n"
+                    + "    COUNT(CM.mentor_Id) AS NumberOfAcceptedRequest,\n"
+                    + "    CONCAT(ROUND((COUNT(CM.mentor_Id) / COUNT(CD.cv_Id)) * 100, 0), '%') AS PercentageCompleted,\n"
+                    + "    ROUND(AVG(R.Rated_point), 0) AS RateStar,\n"
+                    + "    'Link_or_button' AS Action\n"
+                    + "FROM\n"
+                    + "    User U\n"
+                    + "    INNER JOIN CvOfMentor CM ON U.u_Id = CM.mentor_Id\n"
+                    + "    INNER JOIN CvDetail CD ON CM.cv_Id = CD.cv_Id\n"
+                    + "    JOIN skillofcv SC on CD.cv_Id = SC.cv_Id\n"
+                    + "    LEFT JOIN Rate R ON U.u_Id = R.mentorID\n"
+                    + "WHERE\n"
+                    + "    U.role = (SELECT role_Id FROM Role WHERE role_name = 'Mentor') AND SC.skill_Id = ?\n"
+                    + "GROUP BY\n"
+                    + "    U.u_Id, U.full_name, U.username, CD.professional_summary\n"
+                    + "ORDER BY\n"
+                    + "    RateStar DESC\n"
+                    + "LIMIT 3;"
+            );
+
+            ps.setString(1, skillId);
+
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                String Image = resultSet.getString("image");
+                int STT = resultSet.getInt("STT");
+                int ID = resultSet.getInt("ID");
+                String Fullname = resultSet.getString("Fullname");
+                String Accountname = resultSet.getString("Accountname");
+                String Profession = resultSet.getString("Profession");
+                int NumberOfAcceptedRequest = resultSet.getInt("NumberOfAcceptedRequest");
+                String PercentageCompleted = resultSet.getString("PercentageCompleted");
+                float RateStar = resultSet.getFloat("RateStar");
+                String Action = resultSet.getString("Action");
+
+                //add mentor từ database vào list
+                ListMentor user = new ListMentor(STT, ID, Fullname, Accountname, Profession, NumberOfAcceptedRequest, PercentageCompleted, RateStar, Action, Image);
+                mentorList.add(user);
+            }
+
+            resultSet.close();
+            ps.close();
+            con.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return mentorList;
+    }
+
+    public static void main(String[] args) {
+        MentorDAO md = new MentorDAO();
+        System.out.println(md.getMentorSuggestBySkill("1"));
+
+    }
 }

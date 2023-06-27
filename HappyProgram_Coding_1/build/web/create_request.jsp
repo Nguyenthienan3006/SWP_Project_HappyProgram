@@ -98,15 +98,16 @@
                             <header>Create Request</header>  
                         </div>
                     </div>
-                    <form action="loadmentor" onsubmit="return validateForm();"> 
+                <%--  code anh Danh--%>
+                <form action="loadmentor" onsubmit="return validateForm();"> 
+                    <div class="gender-boxx">
                         <div class="gender-boxx">
-                            <div class="gender-boxx">
-                                <label style="font-size: 15px; font-weight: bold;">Skill</label>
-                                <div class="gender-option ">
+                            <label style="font-size: 15px; font-weight: bold;">Skill</label>
+                            <div class="gender-option ">
 
                                 <c:set var="skillIds" value="" />
                                 <c:set var="rowCounter" value="0" />
-
+                                <%--  check các skill dã chon --%>
                                 <c:forEach items="${lss}" var="skill">
                                     <c:set var="skillIds" value="${skillIds},${skill.skillId}" />
                                 </c:forEach>
@@ -121,7 +122,7 @@
                                             <div style="clear: both;"></div> <!-- Tạo dòng mới -->
                                             <c:set var="rowCounter" value="0" /> <!-- Đặt lại giá trị rowCounter -->
                                         </c:if>
-
+                                        <%--  check các skill dã chon --%>
                                         <p>
                                             <input type="checkbox" name="skills" value="${ls.skillId}" ${fn:contains(skillIds, ls.skillId) ? 'checked' : ''}>
                                             ${ls.skillName}
@@ -136,7 +137,9 @@
                         </div>  
                     </div>
                 </form>
-                <form action="requestMentor" method="post" class="formm">
+                <%--  load danh sách mentor  --%>          
+                <form action="loadmentor" method="post" class="formm">
+                    <input name="skillid" value="${ssl}" type="hidden">
                     <select name="mentor">
                         <option value="" selected disabled hidden>Mentor for you</option>
                         <c:forEach items="${lu}" var="lu" varStatus="status">
@@ -144,20 +147,20 @@
                         </c:forEach>
 
                     </select>
-
+                    <%-- ket thúc code anh Danh  --%>  
                     <div class="input-boxx">
                         <label>Title</label>
-                        <input type="text" placeholder="Enter the title" name="Title"required />
+                        <input type="text" placeholder="Enter the title" name="Title_of_request"required />
                     </div>
 
                     <div class="columnn">
                         <div class="input-boxx">
                             <label>Create Date</label>
-                            <input type="datetime-local"id="start-time" placeholder="Enter start time" name="Create Date" required />
+                            <input type="datetime-local"id="start-time" placeholder="Enter start time" name="createdDate" required />
                         </div>
                         <div class="input-boxx">
                             <label>Deadline Date</label>
-                            <input type="datetime-local" id="end-time" placeholder="Enter end time"name="Deadline Date" required />
+                            <input type="datetime-local" id="end-time" placeholder="Enter end time"name="finishDate" required />
                         </div>
                     </div>
                     <script>
@@ -209,7 +212,7 @@
                     <div class="input-boxx">
                         <label>Term of the request</label>
                         <div class="select-boxx" >
-                            <select name="sogiohoc">
+                            <select name="Request_hour">
                                 <option hidden >Choose time</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -223,7 +226,7 @@
 
                     <div class="input-boxx">
                         <label>Content</label><br>
-                        <textarea placeholder="Content required" name="noidung"></textarea>
+                        <textarea placeholder="Content required" name="Desciption_of_request"></textarea>
                     </div>
                     <c:if test="${requestScope.errE!=null}">
                         <h6 style="color: red">${requestScope.errE}</h6>

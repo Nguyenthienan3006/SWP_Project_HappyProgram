@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <welcome-file-list>
-        <welcome-file>home.jsp</welcome-file>
+        <welcome-file>suggest</welcome-file>
     </welcome-file-list>
     <servlet>
         <servlet-name>SigninServlet</servlet-name>
@@ -47,6 +47,18 @@
         <servlet-name>UpdateSkill</servlet-name>
         <servlet-class>controller.admin.UpdateSkill</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadSkillSuggestServlet</servlet-name>
+        <servlet-class>controller.common.LoadSkillSuggestServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateProfile</servlet-name>
+        <servlet-class>controller.common.UpdateProfile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RoleChecker</servlet-name>
+        <servlet-class>controller.common.RoleChecker</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SigninServlet</servlet-name>
         <url-pattern>/signin</url-pattern>
@@ -90,6 +102,18 @@
     <servlet-mapping>
         <servlet-name>UpdateSkill</servlet-name>
         <url-pattern>/updateskill</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadSkillSuggestServlet</servlet-name>
+        <url-pattern>/suggest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProfile</servlet-name>
+        <url-pattern>/updateprofile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RoleChecker</servlet-name>
+        <url-pattern>/rolecheck</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -4,7 +4,7 @@
  */
 package controller.admin;
 
-
+import controller.common.RoleChecker;
 import dao.SkillDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import model.Skill;
+import model.User;
 
 /**
  *
@@ -37,10 +38,12 @@ public class SkillServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        //khoi tao session va lay nguoi dung hien tai
+        HttpSession session = request.getSession();
+
         try {
             SkillDAO s = new SkillDAO();
             List<Skill> skillsList = s.getAllskill();
-            HttpSession session = request.getSession();
             session.setAttribute("skillsList", skillsList);
         } catch (Exception e) {
             log("Error at SkillServlet: " + e.toString());

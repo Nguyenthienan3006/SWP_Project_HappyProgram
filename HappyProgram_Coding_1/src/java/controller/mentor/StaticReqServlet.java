@@ -1,5 +1,6 @@
 package controller.mentor;
 
+import controller.common.RoleChecker;
 import dao.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,15 +19,13 @@ public class StaticReqServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
+        //khoi tao session va lay nguoi dung hien tai
         HttpSession session = request.getSession();
-        User u = (User) session.getAttribute("user");
-        int uid = u.getUid();
-        int mentorRole = 2;
-        if (u == null || u.getRole() != mentorRole) {
-            // Đặt thông báo vào session
-            session.setAttribute("message", "Bạn Không có quyền truy cập!");
-            request.getRequestDispatcher("home.jsp").forward(request, response);
-
+        User user = (User) session.getAttribute("user");
+        int uid = user.getUid();
+        //check role
+        if (!RoleChecker.isMentor(user)) {
+            RoleChecker.redirectToHome(session, response);
         } else {
 
             RateDAO rd = new RateDAO();

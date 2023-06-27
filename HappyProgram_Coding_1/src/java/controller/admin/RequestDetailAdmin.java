@@ -4,6 +4,7 @@
  */
 package controller.admin;
 
+import controller.common.RoleChecker;
 import dao.ListRequestDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,16 +26,14 @@ public class RequestDetailAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        ListRequestDAO d = new ListRequestDAO();
-        //gọi ra dữ liệu của phiên người dùng hiện tại
-        User u = (User) session.getAttribute("user");
 
-        int menteeRole = 3;
-        if (u == null || u.getRole() != menteeRole) {
-            // Đặt thông báo vào session
-            session.setAttribute("message", "Bạn Không có quyền truy cập!");
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+        ListRequestDAO d = new ListRequestDAO();
+        //khoi tao session va lay nguoi dung hien tai
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        //check role
+        if (!RoleChecker.isAdmin(user)) {
+            RoleChecker.redirectToHome(session, response);
         } else {
             int requestID = Integer.parseInt(request.getParameter("requestid"));
             ArrayList<ListRequest> listreqdetail = d.RequestDetail(requestID);

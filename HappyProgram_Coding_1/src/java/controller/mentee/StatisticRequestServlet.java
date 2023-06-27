@@ -4,6 +4,7 @@
  */
 package controller.mentee;
 
+import controller.common.RoleChecker;
 import dao.ListRequestDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,33 +26,21 @@ public class StatisticRequestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        //khởi tạo sesion
+        //khoi tao session va lay nguoi dung hien tai
         HttpSession session = request.getSession();
-        //gọi ra dữ liệu của phiên người dùng hiện tại
-        User u = (User) session.getAttribute("user");
-
-        int menteeRole = 1;
-        if (u == null || u.getRole() != menteeRole) {
-            // Đặt thông báo vào session
-            session.setAttribute("message", "Bạn Không có quyền truy cập!");
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+        User user = (User) session.getAttribute("user");
+        //check role
+        if (!RoleChecker.isMentee(user)) {
+            RoleChecker.redirectToHome(session, response);
         } else {
             ListRequestDAO m = new ListRequestDAO();
-            ArrayList<StatisticRequestMentee> ListStatistic = m.StatisticRequest(u.getUid());
+            ArrayList<StatisticRequestMentee> ListStatistic = m.StatisticRequest(user.getUid());
             session.setAttribute("ListStatistic", ListStatistic);
             request.getRequestDispatcher("StatisticRequestMentee.jsp").forward(request, response);
         }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -63,11 +52,6 @@ public class StatisticRequestServlet extends HttpServlet {
         session.removeAttribute("message");
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

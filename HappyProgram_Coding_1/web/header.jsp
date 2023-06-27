@@ -15,6 +15,52 @@
     </div>
 </div>
 
+<style>
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        display: none;
+        padding: 0;
+        margin: 0;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+    }
+
+    .dropdown:hover ul {
+        display: block;
+    }
+
+    .dropdown li {
+        display: block;
+    }
+
+    .dropdown a {
+        padding: 5px;
+        text-decoration: none;
+        /*color: rgba(255,255,255,.55);*/
+        color: #0062cc;
+        margin-right: 0px
+    }
+
+    .dropdown a:hover {
+        background-color: #ddd;
+    }
+
+    .navbar-nav a {
+        text-decoration: none; /* Loại bỏ dấu gạch chân */
+    }
+
+    .support float-left{
+
+    }
+</style>
+
 <!--====== PRELOADER PART START ======-->
 
 <!--====== HEADER PART START ======-->
@@ -35,7 +81,11 @@
         </div> <!-- container -->
     </div> <!-- header top -->
 
-    <div class="header-logo-support pt-30 pb-30">
+    <div style="
+         padding-top: 20px;
+         border-bottom: 1px solid #cecece;
+         display: flex;
+         justify-content: center;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
@@ -63,16 +113,38 @@
 
                             </div>
                         </c:if>
-                        <c:if test="${sessionScope.user != null}">
-                            <div class="button float-left">
-                                <a href="signout" class="main-btn">Sign out</a> 
-                                <a href="change" class="main-btn">Change Pass</a>
-                            </div>
-                        </c:if>
+
+
                     </div>
                 </div>
             </div> <!-- row -->
         </div> <!-- container -->
+        <div style="margin-right:  5%; margin-top: 1%">
+            <c:if test="${sessionScope.user != null}">
+
+                <div class="dropdown">
+                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <img src="${sessionScope.user.img}" class="rounded-circle" height="50" alt="Avatar" loading="lazy" />
+                    </a>
+                    <div>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                            <li>
+                                <a class="dropdown-item" href="profile.jsp">My profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="profilesetting.jsp">Profile Settings</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="change">Change Password</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="signout">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </c:if>
+        </div>
     </div> <!-- header logo support -->
 
     <div class="navigation">
@@ -91,7 +163,7 @@
                                 <li class="nav-item">
                                     <div class="icon">
                                         <i class="fa fa-home"></i>
-                                        <a href="home.jsp">Home</a>   
+                                        <a href="suggest">Home</a>   
                                     </div>         
                                 </li>
                                 <li class="nav-item">

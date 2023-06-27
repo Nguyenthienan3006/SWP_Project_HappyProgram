@@ -77,7 +77,7 @@
                             </div>
                             <div class="form-group text-center">
                                 <input type="submit" value="Change Password" class="btn btn-primary">
-                                <a href="home.jsp" class="btn btn-link">Back to Homepage</a>
+                                <a href="suggest" class="btn btn-link">Back to Homepage</a>
                             </div>
                         </form>
                     </div>

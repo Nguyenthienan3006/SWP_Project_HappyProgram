@@ -109,7 +109,7 @@
                                                background-color: #218838;
                                                color: white;
                                                border: none;
-                                               border-radius: 4px;  
+                                               border-radius: 10px;
                                                cursor: pointer;
                                                font-size: 12px; margin-bottom: 5%;
                                                font-weight: bold" type="Submit" value="Accept Request">
@@ -122,7 +122,7 @@
                                                background-color: #b21f2d;
                                                color: white;
                                                border: none;
-                                               border-radius: 4px;
+                                               border-radius: 10px;
                                                cursor: pointer;
                                                font-size: 12px; margin-bottom: 5%;
                                                font-weight: bold"" type="Submit" value="Reject Request">
@@ -134,6 +134,22 @@
                 <tbody>
 
             </table>   
+
+
+        </div>
+        <div style="display: flex; justify-content: center; margin-bottom: 3%">
+            <a href="suggest">
+                <input style="
+
+                       padding: 10px 20px;
+                       background-color: #004085;
+                       color: white;
+                       border: none;
+                       border-radius: 10px;
+                       cursor: pointer;
+                       font-size: 16px;
+                       font-weight: bold;" type="Submit" value="Back to homepage">
+            </a>
         </div>
 
 

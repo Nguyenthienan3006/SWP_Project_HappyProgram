@@ -26,7 +26,7 @@
                                 <img src="images/signin-image.jpg" alt="sing up image">
                             </figure>
                             <a href="signup.jsp" class="signup-image-link">Create an account</a>
-                            <a href="home.jsp" class="signup-image-link">Back to homepage</a>
+                            <a href="suggest" class="signup-image-link">Back to homepage</a>
                         </div>
 
                         <div class="signin-form">

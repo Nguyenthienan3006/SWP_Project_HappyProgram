@@ -4,6 +4,7 @@
  */
 package controller.mentor;
 
+import controller.common.RoleChecker;
 import dao.RequestDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,6 +12,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.User;
 
 /**
  *
@@ -56,17 +59,26 @@ public class AcceptRequest extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        int requestId = Integer.parseInt(request.getParameter("requestid"));
-        RequestDAO d = new RequestDAO();
-        int check = d.UpdateRequest_Mentor(requestId);
-        
-        if (check == 0) {
-            request.setAttribute("mess", "Update success full!");
-            request.getRequestDispatcher("listreqmentor").forward(request, response);
+
+        //khoi tao session va lay nguoi dung hien tai
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        //check role
+        if (!RoleChecker.isMentor(user)) {
+            RoleChecker.redirectToHome(session, response);
         } else {
-            request.setAttribute("mess", "Update success fail!");
-            request.getRequestDispatcher("listreqmentor").forward(request, response);
+            //processRequest(request, response);
+            int requestId = Integer.parseInt(request.getParameter("requestid"));
+            RequestDAO d = new RequestDAO();
+            int check = d.UpdateRequest_Mentor(requestId);
+
+            if (check == 0) {
+                request.setAttribute("mess", "Update success full!");
+                request.getRequestDispatcher("listreqmentor").forward(request, response);
+            } else {
+                request.setAttribute("mess", "Update success fail!");
+                request.getRequestDispatcher("listreqmentor").forward(request, response);
+            }
         }
     }
 

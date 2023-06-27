@@ -1,5 +1,6 @@
 package controller.mentor;
 
+import controller.common.RoleChecker;
 import dao.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,20 +22,16 @@ public class ListReqMentorServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        //khởi tạo sesion
+        //khoi tao session va lay nguoi dung hien tai
         HttpSession session = request.getSession();
-        //gọi ra dữ liệu của phiên người dùng hiện tại
-        User u = (User) session.getAttribute("user");
-
-        int mentorRole = 2;
-        if (u == null || u.getRole() != mentorRole) {
-            // Đặt thông báo vào session
-            session.setAttribute("message", "Bạn Không có quyền truy cập!");
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+        User user = (User) session.getAttribute("user");
+        //check role
+        if (!RoleChecker.isMentor(user)) {
+            RoleChecker.redirectToHome(session, response);
         } else {
             //Xử lý khi đối tượng là null
             ListRequestMentorDAO lrd = new ListRequestMentorDAO();
-            List<ListRequest> lr = lrd.listRequestMentor(u.getUid());
+            List<ListRequest> lr = lrd.listRequestMentor(user.getUid());
             request.setAttribute("lr", lr);
             request.getRequestDispatcher("list-request-mentor.jsp").forward(request, response);
         }

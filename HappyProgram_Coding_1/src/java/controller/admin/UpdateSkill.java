@@ -4,6 +4,7 @@
  */
 package controller.admin;
 
+import controller.common.RoleChecker;
 import dao.SkillDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -61,15 +62,22 @@ public class UpdateSkill extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        try {
-            SkillDAO s = new SkillDAO();
-            List<Skill> skillsList = s.getAllskill();
-            HttpSession session = request.getSession();
-            session.setAttribute("skillsList", skillsList);
-        } catch (Exception e) {
-            log("Error at SkillServlet: " + e.toString());
-        } finally {
-            request.getRequestDispatcher("updateSkillAdmin.jsp").forward(request, response);
+        //khoi tao session va lay nguoi dung hien tai
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        //check role
+        if (!RoleChecker.isAdmin(user)) {
+            RoleChecker.redirectToHome(session, response);
+        } else {
+            try {
+                SkillDAO s = new SkillDAO();
+                List<Skill> skillsList = s.getAllskill();
+                session.setAttribute("skillsList", skillsList);
+            } catch (Exception e) {
+                log("Error at SkillServlet: " + e.toString());
+            } finally {
+                request.getRequestDispatcher("updateSkillAdmin.jsp").forward(request, response);
+            }
         }
     }
 

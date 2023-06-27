@@ -18,7 +18,7 @@ public class SignoutServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.removeAttribute("user");
-        response.sendRedirect("home.jsp");
+        response.sendRedirect("suggest");
 
     }
 

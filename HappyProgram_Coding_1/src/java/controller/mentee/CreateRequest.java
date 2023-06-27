@@ -4,6 +4,7 @@
  */
 package controller.mentee;
 
+import controller.common.RoleChecker;
 import dao.RequestDAO;
 import dao.SkillDAO;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.Skill;
+import model.User;
 
 /**
  *
@@ -39,23 +41,29 @@ public class CreateRequest extends HttpServlet {
         }
     }
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        try {
-            SkillDAO s = new SkillDAO();
-            List<Skill> skillsList = s.getAllskill();
-            HttpSession session = request.getSession();
-            session.setAttribute("skillsList", skillsList);
-        } catch (Exception e) {
-            log("Error at SkillServlet: " + e.toString());
-        } finally {
-            request.getRequestDispatcher("create_request.jsp").forward(request, response);
+
+        //khoi tao session va lay nguoi dung hien tai
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        //check role
+        if (!RoleChecker.isMentee(user)) {
+            RoleChecker.redirectToHome(session, response);
+        } else {
+            try {
+                SkillDAO s = new SkillDAO();
+                List<Skill> skillsList = s.getAllskill();
+                session.setAttribute("skillsList", skillsList);
+            } catch (Exception e) {
+                log("Error at SkillServlet: " + e.toString());
+            } finally {
+                request.getRequestDispatcher("create_request.jsp").forward(request, response);
+            }
         }
     }
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

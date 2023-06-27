@@ -90,7 +90,7 @@
                                 <th>Title_of_request</th>
                                 <th>Desciption_of_request</th>  
                                 <th>Request_hour</th>  
-                                <th>Update Request</th>
+                                <th>Action</th>
 
                             </tr>
                         </thead>
@@ -116,7 +116,7 @@
                                                    background-color: #0056b3;
                                                    color: white;
                                                    border: none;
-                                                   border-radius: 4px;
+                                                   border-radius: 15px;
                                                    cursor: pointer;
                                                    font-size: 12px; margin-bottom: 5%" type="Submit" value="Update Request">
                                         </a>
@@ -126,8 +126,25 @@
                             </c:forEach>
                         <tbody>
 
-                    </table>   
+                    </table>
                 </div>
+                <div style="display: flex; justify-content: center;">
+                    <a href="suggest">
+                        <input style="
+
+                               padding: 10px 20px;
+                               background-color: #004085;
+                               color: white;
+                               border: none;
+                               border-radius: 10px;
+                               cursor: pointer;
+                               font-size: 16px;
+                               font-weight: bold;
+                               margin-bottom: 4%" type="Submit" value="Back to homepage">
+                    </a>
+                </div>
+
+
             </c:when>
             <c:otherwise>
             <tr>

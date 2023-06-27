@@ -4,6 +4,7 @@
  */
 package controller.mentee;
 
+import controller.common.RoleChecker;
 import dao.ListRequestDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,19 +28,16 @@ public class ListRequestSerVlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //khởi tạo sesion
+        //khoi tao session va lay nguoi dung hien tai
         HttpSession session = request.getSession();
-        //gọi ra dữ liệu của phiên người dùng hiện tại
-        User u = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
+        //check role
+        if (!RoleChecker.isMentee(user)) {
+            RoleChecker.redirectToHome(session, response);
 
-        int menteeRole = 1;
-        if (u == null || u.getRole() != menteeRole) {
-            // Đặt thông báo vào session
-            session.setAttribute("message", "Bạn Không có quyền truy cập!");
-            request.getRequestDispatcher("home.jsp").forward(request, response);
         } else {
             ListRequestDAO m = new ListRequestDAO();
-            ArrayList<ListRequest> ListRequest = m.ListRequest(u.getUid());
+            ArrayList<ListRequest> ListRequest = m.ListRequest(user.getUid());
             session.setAttribute("ListRequest", ListRequest);
             request.getRequestDispatcher("ListRequest.jsp").forward(request, response);
         }

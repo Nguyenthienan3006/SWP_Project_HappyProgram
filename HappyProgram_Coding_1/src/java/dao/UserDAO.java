@@ -2,9 +2,13 @@ package dao;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import model.*;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserDAO extends MyDAO {
 
@@ -281,11 +285,50 @@ public class UserDAO extends MyDAO {
             e.printStackTrace();
         }
         return list;
+
     }
+
+    public void updateProfile(String fullname, Date dob, String email, String phonenumber, String address, String gender, String img, int uid) {
+
+        xSql = "update swp391_2.user set "
+                + "full_name=?, "
+                + "date_of_birth=?, "
+                + "email=?, "
+                + "phonenumber=?, "
+                + "image=?, "
+                + "gender=?, "
+                + "address=? where u_id = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, fullname);
+            ps.setDate(2, dob);
+            ps.setString(3, email);
+            ps.setString(4, phonenumber);
+            ps.setString(5, img);
+            ps.setInt(6, Integer.parseInt(gender));
+            ps.setString(7, address);
+            ps.setInt(8, uid);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         UserDAO ud = new UserDAO();
-        List<User> lu = ud.getMentorBy1Skill("1");
-        System.out.println(lu);
+        // Tham số cho hàm updateProfile
+        String fullname = "Thien an";
+        Date dob = Date.valueOf("1990-01-01");
+        String email = "johndoe@example.com";
+        String phonenumber = "123456789";
+        String address = "123 Main St, City";
+        String gender = "1"; // Giả sử 1 là giá trị cho nam, 2 là giá trị cho nữ
+        String img = "profile.jpg";
+        int uid = 1;
+
+        // Gọi hàm updateProfile
+        ud.updateProfile(fullname, dob, email, phonenumber, address, gender, img, uid);
     }
 
 }
