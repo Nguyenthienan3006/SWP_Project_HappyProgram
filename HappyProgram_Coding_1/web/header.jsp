@@ -172,10 +172,15 @@
                                 <li class="nav-item">
                                     <a>Skills</a>
                                     <ul class="sub-menu">
-                                        <li><a href="SkillServlet">Skills List</a></li>
-                                            <c:if test="${sessionScope.user.getRole() == 3}">
+                                        <c:if test="${sessionScope.user.getRole() == 3}">
+                                            <li><a href="createskill">Create Skills</a></li>
+                                            </c:if>
+
+                                        <c:if test="${sessionScope.user.getRole() == 3}">
                                             <li><a href="updateskill">Update Skills</a></li>
                                             </c:if>
+
+                                        <li><a href="SkillServlet">Skills List</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item">

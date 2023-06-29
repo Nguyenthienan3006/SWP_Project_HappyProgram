@@ -59,6 +59,10 @@
         <servlet-name>RoleChecker</servlet-name>
         <servlet-class>controller.common.RoleChecker</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Create_Skill</servlet-name>
+        <servlet-class>controller.admin.Create_Skill</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SigninServlet</servlet-name>
         <url-pattern>/signin</url-pattern>
@@ -114,6 +118,10 @@
     <servlet-mapping>
         <servlet-name>RoleChecker</servlet-name>
         <url-pattern>/rolecheck</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Create_Skill</servlet-name>
+        <url-pattern>/createskill</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

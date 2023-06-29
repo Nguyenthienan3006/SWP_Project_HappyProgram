@@ -49,7 +49,7 @@
 
         <!--====== Responsive css ======-->
         <link rel="stylesheet" href="css/responsive.css">  
-        <title>Update Skill</title>
+        <title>Create Skill</title>
         <style>
             label {
                 display: block;
@@ -70,7 +70,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Update Skill</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Create Skill</li>
                                     </ol>
                                 </nav>
                             </div>  <!-- page banner cont -->
@@ -121,64 +121,32 @@
                     }
                 </style>
                 <div class="form-container" >
-                    <h2 class="grid-title">Update Skill</h2><br>
+                    <h2 class="grid-title">Create Skill</h2><br>
 
                     <!-- BEGIN FILTER BY CATEGORY -->
-                    <form action="updateskill" method="post">
-
-                        <!-- BEGIN SEARCH INPUT -->
-                        <form action="listreqadmin" method="post">
-                            <div class="input-group">
-                                <div class="col-sm-6">
-                                    <h4 style="font-size: 20px">Select skill name:</h4>
-                                    <select id="" name="SkillId" required>
-                                        <option value="" selected disabled hidden>Skill Name</option>
-                                    <c:forEach items="${sessionScope.skillsList}" var="list">
-                                        <option value="${list.getSkillId()}">${list.getSkillName()}</option>
-                                    </c:forEach>
-                                </select>  <br><br><br>
-
-
-                                <h4 style="font-size: 20px">Select status:</h4>
-                                <select id="skillStatus" name="skillStatus" required>
-                                    <option value="" selected disabled hidden>Status</option>
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
-                                </select>
-                                <br><br><br>
-
-                                <h4 style="font-size: 20px">Enter new name:</h4>
-                                <div>
-                                    <input type="text"  name="skillName" placeholder="typing..." required>
-                                </div>
-                                <br><br>    
-
-
-                                <div>
-
-                                    <span>
-
-                                        <input style="padding: 10px 20px;
-                                               background-color: #0056b3;
-                                               color: white;
-                                               border: none;
-                                               border-radius: 10px;
-                                               cursor: pointer;
-                                               font-size: 16px;
-                                               font-weight: bold" type="submit" value="Update">
+                    <form action="createskill" method="post">
 
 
 
-                                    </span>
-                                </div>
 
+
+
+                        <div class="input-boxx">
+                            <h5 style="font-size: 20px">Enter skill name:</h5>
+                            <div>
+                                <input type="text"  name="skillName" placeholder="typing..." required>
                             </div>
                         </div>
-
-                        <!-- END SEARCH INPUT -->
-
-
-                    </form>
+                        <input style="padding: 10px 20px;
+                               background-color: #0056b3;
+                               color: white;
+                               border: none;
+                               border-radius: 10px;
+                               cursor: pointer;
+                               font-size: 16px;
+                               font-weight: bold;
+                               margin-top: 4%" type="Submit" value="Ok"  >
+                    </form  >
                     <!-- END FILTER BY PRICE -->
 
                     <a href="home.jsp">
@@ -190,18 +158,18 @@
                                cursor: pointer;
                                font-size: 16px;
                                font-weight: bold;
-                               margin-left: 18%;
+
                                margin-top: 2%" type="Submit" value="Cancel">
                     </a>
+                </div>
+                <!-- END FILTERS -->
+
             </div>
-            <!-- END FILTERS -->
-
-        </div>
 
 
-        <!--====== TEACHERS PART ENDS ======-->
+            <!--====== TEACHERS PART ENDS ======-->
 
-        <!--====== FOOTER PART START ======-->
+            <!--====== FOOTER PART START ======-->
 
         <jsp:include page="footer.jsp"></jsp:include>
 

@@ -57,8 +57,7 @@ public class SkillDAO extends MyDAO {
         }
         return x;
     }
-    
-    
+
     public int UpdateSkillAdmin(int skillID, int status, String newName) {
         int mess = 0;
         // Chuỗi truy vấn SELECT để lấy danh sách mentor
@@ -83,6 +82,22 @@ public class SkillDAO extends MyDAO {
         return mess;
     }
 
+    public int CreateSkill(String skillName, int skill_Status, String img) {
+        int check = 0;
+        String xMySql = "INSERT INTO swp391.skills(  Skill_Name,skill_Status,SKill_Image) value (?,?,?);;";
+        try {
+            PreparedStatement st = getJDBCConnection().prepareStatement(xMySql);
+            // st.setInt(1,skillId);
+            st.setString(1, skillName);
+            st.setInt(2, skill_Status);
+            st.setString(3, img);
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException e) {
+            check = 1;
+        }
+        return check;
+    }
 
 }
 

@@ -4,24 +4,23 @@
  */
 package controller.admin;
 
-import controller.common.RoleChecker;
 import dao.SkillDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.List;
-import model.Skill;
 import model.User;
 
 /**
  *
- * @author An Nguyen
+ * @author dongx
  */
-public class UpdateSkill extends HttpServlet {
+//createskill
+public class Create_Skill extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class UpdateSkill extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UpdateSkill</title>");
+            out.println("<title>Servlet Create_Skill</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UpdateSkill at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Create_Skill at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,24 +60,7 @@ public class UpdateSkill extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        //khoi tao session va lay nguoi dung hien tai
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        //check role
-        if (!RoleChecker.isAdmin(user)) {
-            RoleChecker.redirectToHome(session, response);
-        } else {
-            try {
-                SkillDAO s = new SkillDAO();
-                List<Skill> skillsList = s.getAllskill();
-                session.setAttribute("skillsList", skillsList);
-            } catch (Exception e) {
-                log("Error at SkillServlet: " + e.toString());
-            } finally {
-                request.getRequestDispatcher("updateSkillAdmin.jsp").forward(request, response);
-            }
-        }
+        request.getRequestDispatcher("create_skill.jsp").forward(request, response);
     }
 
     /**
@@ -94,21 +76,20 @@ public class UpdateSkill extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         HttpSession session = request.getSession();
-        SkillDAO d = new SkillDAO();
-        int SkillId = Integer.parseInt(request.getParameter("SkillId"));
-        int skillStatus = Integer.parseInt(request.getParameter("skillStatus"));
         String skillName = request.getParameter("skillName");
-
-        int check = d.UpdateSkillAdmin(SkillId, skillStatus, skillName);
-
+        // int skill_Status = Integer.parseInt(request.getParameter("skill_Statusr"));
+        String img = request.getParameter("img_skill");
+        SkillDAO d = new SkillDAO();
+        int check = d.CreateSkill(skillName, 0, "images/skillImg/dotnet.jpg");
         if (check == 0) {
-            session.setAttribute("message", "Update success full!");
+            session.setAttribute("message", "Create success full!");
             request.getRequestDispatcher("suggest").forward(request, response);
         } else {
-            session.setAttribute("message", "Update fail!");
+            session.setAttribute("message", "Create fail!");
             request.getRequestDispatcher("suggest").forward(request, response);
         }
 
+        response.sendRedirect("home.jsp");
     }
 
     /**
