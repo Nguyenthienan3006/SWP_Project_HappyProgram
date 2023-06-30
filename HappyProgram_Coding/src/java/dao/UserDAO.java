@@ -290,7 +290,7 @@ public class UserDAO extends MyDAO {
 
     public void updateProfile(String fullname, Date dob, String email, String phonenumber, String address, String gender, String img, int uid) {
 
-        xSql = "update swp391_2.user set "
+        xSql = "update swp391.user set "
                 + "full_name=?, "
                 + "date_of_birth=?, "
                 + "email=?, "

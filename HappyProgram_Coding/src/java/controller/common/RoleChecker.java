@@ -30,6 +30,6 @@ public class RoleChecker extends HttpServlet {
             throws ServletException, IOException {
         //day ve trang home va thong bao
         session.setAttribute("message", "Bạn không có quyền truy cập!");
-        response.sendRedirect("home.jsp");
+        response.sendRedirect("suggest");
     }
 }

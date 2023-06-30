@@ -88,8 +88,6 @@ public class Create_Skill extends HttpServlet {
             session.setAttribute("message", "Create fail!");
             request.getRequestDispatcher("suggest").forward(request, response);
         }
-
-        response.sendRedirect("home.jsp");
     }
 
     /**

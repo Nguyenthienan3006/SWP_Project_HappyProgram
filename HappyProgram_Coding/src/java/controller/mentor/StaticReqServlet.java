@@ -22,12 +22,12 @@ public class StaticReqServlet extends HttpServlet {
         //khoi tao session va lay nguoi dung hien tai
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        int uid = user.getUid();
+
         //check role
         if (!RoleChecker.isMentor(user)) {
             RoleChecker.redirectToHome(session, response);
         } else {
-
+            int uid = user.getUid();
             RateDAO rd = new RateDAO();
             double avgRate = rd.getAvgRateByUserID(uid);
 
