@@ -27,7 +27,8 @@ public class ListRequest {
     private float Request_hour;
     private String Status;
 
-    public ListRequest( String menteeName, String Skill_Name, String created_date, String finish_date, Time Date_hour, String Title_of_request, String Desciption_of_request, float Request_hour, String Status, int requestID) {
+    public ListRequest( String menteeName, String Skill_Name, String created_date, String finish_date, Time Date_hour, 
+            String Title_of_request, String Desciption_of_request, float Request_hour, String Status, int requestID) {
         this.menteeName = menteeName;
         this.Skill_Name = Skill_Name;
         this.created_date = created_date;
@@ -39,13 +40,30 @@ public class ListRequest {
         this.Status = Status;
         this.requestID = requestID;
     }
-
-    public ListRequest(int requestID, String menteeName, int menteeID, String RequestStatus, String Title_of_request) {
+    
+        public ListRequest(int requestID, String menteeName, int menteeID, String RequestStatus, String Title_of_request) {
         this.requestID = requestID;
         this.menteeName = menteeName;
         this.menteeID = menteeID;
         this.RequestStatus = RequestStatus;
         this.Title_of_request = Title_of_request;
+
+    }
+
+    public ListRequest(String mentorName, int mentorID, String menteeName, int menteeID, String created_date, String finish_date, String RequestStatus, 
+            Time Date_hour, String Title_of_request, String Desciption_of_request, float Request_hour, int requestID) {
+        this.requestID = requestID;
+        this.mentorName = mentorName;
+        this.mentorID = mentorID;
+        this.menteeName = menteeName;
+        this.menteeID = menteeID;
+        this.created_date = created_date;
+        this.finish_date = finish_date;
+        this.RequestStatus = RequestStatus;
+        this.Date_hour = Date_hour;
+        this.Title_of_request = Title_of_request;
+        this.Desciption_of_request = Desciption_of_request;
+        this.Request_hour = Request_hour;
     }
     
     

@@ -33,7 +33,7 @@ public class SignupServlet extends HttpServlet {
         email = request.getParameter("email");
         phone = request.getParameter("phone");
         address = request.getParameter("address");
-
+        
         if (!pass.equals(cfpass)) {
             request.setAttribute("mess", "Password not match!");
             request.getRequestDispatcher("signup.jsp").forward(request, response);
@@ -159,7 +159,7 @@ public class SignupServlet extends HttpServlet {
         out.println("<label class=\"otp-label\" for=\"otp\">Enter OTP:</label>");
         out.println("<input name=\"otp\" class=\"otp-input\" type=\"text\" id=\"otp-input\" required>");
         out.println("<input class=\"otp-input\" type=\"submit\" value=\"Enter\">");
-        out.println("<br><a href=\"home.jsp\">Back to home</a>");
+        out.println("<br><a href=\"suggest\">Back to home</a>");
         out.println("<form>");
         out.println("</div>");
         out.println("</body>");
