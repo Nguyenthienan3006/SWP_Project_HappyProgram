@@ -76,65 +76,33 @@
                     <thead>
                         <tr>
                             <th>RequestID</th>
-                            <th>Mentee ID </th>
-                            <th>Mentee Name</th>
-                            <th>Title of request</th>                         
+                            <th>Mentee Name </th>
+                            <th>Skill Name</th>
+                            <th>Title of request</th>
+                            <th>Desciption_of_request</th>
+                            <th>created_date</th>
+                            <th>finish_date</th>
+                            <th>Date_hour</th>
+                            <th>Request_hour</th>
                             <th>Status</th>
-                            <th>Accepct</th>
-                            <th>Reject</th>
-                            <th>Action</th>
+
                         </tr>
                     </thead>
                     <tbody> 
                     <c:forEach items="${lr}" var="list">
                         <tr>
                             <td>${list.getRequestID()}</td>
-                            <td>${list.getMenteeID()}</td>                            
-                            <td>${list.getMenteeName()}</td>                            
-                            <td>${list.getTitle_of_request()}</td>                   
-                            <td>${list.getRequestStatus()}</td>
-
-                            <td>
-                                <a href="listreqmentordetail?requestid=${list.getRequestID()}">
-                                    <input style="padding: 10px 20px;
-                                           background-color: #138496;
-                                           color: white;
-                                           border: none;
-                                           border-radius: 10px;
-                                           cursor: pointer;
-                                           font-size: 12px;
-                                           font-weight: bold" type="Submit" value="Request Detail">
-                                </a>
-                            </td>
-                            <c:if test="${list.getRequestStatus().equals('Open')}">
-                                <td>
-                                    <a  href="acceptreq?requestid=${list.getRequestID()}">
-                                        <input style="padding: 10px 20px;
-                                               background-color: #218838;
-                                               color: white;
-                                               border: none;
-                                               border-radius: 10px;
-                                               cursor: pointer;
-                                               font-size: 12px; margin-bottom: 5%;
-                                               font-weight: bold" type="Submit" value="Accept Request">
-                                    </a>
-                                </td> 
-
-                                <td>
-                                    <a href="RejectRequest?requestid=${list.getRequestID()}">
-                                        <input style="padding: 10px 20px;
-                                               background-color: #b21f2d;
-                                               color: white;
-                                               border: none;
-                                               border-radius: 10px;
-                                               cursor: pointer;
-                                               font-size: 12px; margin-bottom: 5%;
-                                               font-weight: bold"" type="Submit" value="Reject Request">
-                                    </a>
-                                </td>
+                            <td>${list.getMenteeName()}</td>
+                            <td>${list.getSkill_Name()}</td>
+                            <td>${list.getTitle_of_request()}</td>
+                            <td>${list.getDesciption_of_request()}</td>
+                            <td>${list.getCreated_date()}</td>
+                            <td>${list.getFinish_date()}</td>
+                            <td>${list.getDate_hour()}</td>
+                            <td>${list.getRequest_hour()}</td>
+                            <td>${list.getStatus()}</td>
 
 
-                            </c:if>
                         </tr>
                     </c:forEach>
                 <tbody>

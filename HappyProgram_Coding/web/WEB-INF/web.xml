@@ -63,6 +63,10 @@
         <servlet-name>Create_Skill</servlet-name>
         <servlet-class>controller.admin.Create_Skill</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListReqMentorDetailServlet</servlet-name>
+        <servlet-class>controller.mentor.ListReqMentorDetailServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SigninServlet</servlet-name>
         <url-pattern>/signin</url-pattern>
@@ -122,6 +126,10 @@
     <servlet-mapping>
         <servlet-name>Create_Skill</servlet-name>
         <url-pattern>/createskill</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListReqMentorDetailServlet</servlet-name>
+        <url-pattern>/listreqmentordetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
