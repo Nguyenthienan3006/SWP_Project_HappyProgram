@@ -10,7 +10,8 @@ import model.*;
 
 public class SkillDAO extends MyDAO {
 
-    private static final String GET_ALL_SKILL = "SELECT * FROM swp391.skills  ;";
+    private static final String GET_ALL_SKILL = "SELECT * FROM swp391.skills where skill_Status =1  ;";
+    private static final String GET_ALL_SKILL_ADMIN = "SELECT * FROM swp391.skills  ;";
 
     public List<Skill> getAllskill() throws SQLException {
         List<Skill> list = new ArrayList<>();
@@ -34,6 +35,8 @@ public class SkillDAO extends MyDAO {
 
         return list;
     }
+    
+    
 
     public Skill getSkillById(String skill_id) {
         xSql = "select * from Skills where skill_Id = ?";
@@ -99,6 +102,30 @@ public class SkillDAO extends MyDAO {
         return check;
     }
 
+    
+    
+    public List<Skill> getAllskillAdmin() throws SQLException {
+        List<Skill> list = new ArrayList<>();
+
+        if (con != null) {
+            ps = con.prepareStatement(GET_ALL_SKILL_ADMIN);
+            rs = ps.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    int skillId = rs.getInt("skill_Id");
+                    String skillName = rs.getString("skill_Name");
+                    String img = rs.getString("skill_Image");
+
+                    Skill skill = new Skill(skillId, skillName, img);
+                    list.add(skill);
+                }
+            }
+        } else {
+            System.err.println("adadadadad");
+        }
+
+        return list;
+    }
 }
 
 class t2 {

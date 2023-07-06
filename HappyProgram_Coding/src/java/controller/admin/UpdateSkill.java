@@ -71,7 +71,7 @@ public class UpdateSkill extends HttpServlet {
         } else {
             try {
                 SkillDAO s = new SkillDAO();
-                List<Skill> skillsList = s.getAllskill();
+                List<Skill> skillsList = s.getAllskillAdmin();
                 session.setAttribute("skillsList", skillsList);
             } catch (Exception e) {
                 log("Error at SkillServlet: " + e.toString());

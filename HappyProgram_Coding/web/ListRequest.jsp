@@ -111,7 +111,7 @@
                                     <td>${list.getDesciption_of_request()}</td>
                                     <td>${list.getRequest_hour()}</td>
                                     <td>
-                                        <a>
+                                        <a href="updatereq?reqId=${list.getRequestID()}">
                                             <input style="padding: 10px 20px;
                                                    background-color: #0056b3;
                                                    color: white;

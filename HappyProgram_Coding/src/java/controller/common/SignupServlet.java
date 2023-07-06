@@ -33,9 +33,12 @@ public class SignupServlet extends HttpServlet {
         email = request.getParameter("email");
         phone = request.getParameter("phone");
         address = request.getParameter("address");
-        
+
         if (!pass.equals(cfpass)) {
             request.setAttribute("mess", "Password not match!");
+            request.getRequestDispatcher("signup.jsp").forward(request, response);
+        } else if (!(phone.startsWith("0") && phone.length() == 10)) {
+            request.setAttribute("mess", "Phone must start with 0 and include 10 number");
             request.getRequestDispatcher("signup.jsp").forward(request, response);
         }
 
@@ -44,6 +47,10 @@ public class SignupServlet extends HttpServlet {
         for (User u : lu) {
             if (u.getUsername().equals(user)) {
                 request.setAttribute("mess", "Username already exist!");
+                request.getRequestDispatcher("signup.jsp").forward(request, response);
+            }
+            if (u.getEmail().equals(email)) {
+                request.setAttribute("mess", "Email already exist!");
                 request.getRequestDispatcher("signup.jsp").forward(request, response);
             }
         }
