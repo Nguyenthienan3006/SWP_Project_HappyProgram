@@ -78,14 +78,19 @@
 
                             <tr>
                                 <th>Request ID</th>
-                                <th>Mentor ID</th>
                                 <th>Mentor Name</th>
-                                <th>Title_of_request</th> 
-                                <th>Request Status</th> 
-                                <th>Request detail</th> 
-                                <th>Action1</th>
-                                <th>Action2</th>
-                                <th>Action3</th>
+                                <th>Mentor ID</th>
+                                <th>Mentee Name</th>
+                                <th>Mentee ID</th>
+                                <th>Skill_Name</th>   
+                                <th>Created_date</th>    
+                                <th>Finish_date</th>   
+                                <th>Request Status</th>   
+                                <th>Deadline_hour</th>
+                                <th>Title_of_request</th>
+                                <th>Desciption_of_request</th>  
+                                <th>Request_hour</th>  
+
 
                             </tr>
                         </thead>
@@ -93,62 +98,19 @@
                             <c:forEach items="${sessionScope.ListRequest}" var="list">
                                 <tr>
                                     <td>${list.getRequestID()}</td>
-                                    <td>${list.getMentorID()}</td>
                                     <td>${list.getMentorName()}</td>
-                                    <td>${list.getTitle_of_request()}</td>
+                                    <td>${list.getMentorID()}</td>
+                                    <td>${list.getMenteeName()}</td>
+                                    <td>${list.getMenteeID()}</td>
+                                    <td>${list.getSkill_Name()}</td>
+                                    <td>${list.getCreated_date()}</td>
+                                    <td>${list.getFinish_date()}</td>
                                     <td>${list.getRequestStatus()}</td>
-
-                                    <td>
-                                        <a href="listreqdetailmentee?reqId=${list.getRequestID()}">
-                                            <input style="padding: 10px;
-                                                   background-color: #0056b3;
-                                                   color: white;
-                                                   border: none;
-                                                   border-radius: 15px;
-                                                   cursor: pointer;
-                                                   font-size: 12px; margin-bottom: 5%" type="Submit" value="Request detail">
-                                        </a>
-                                    </td>
-
-                                    <td>
-                                        <a href="updatereq?reqId=${list.getRequestID()}">
-                                            <input style="padding: 10px 20px;
-                                                   background-color: #0056b3;
-                                                   color: white;
-                                                   border: none;
-                                                   border-radius: 15px;
-                                                   cursor: pointer;
-                                                   font-size: 12px; margin-bottom: 5%" type="Submit" value="Update Request">
-                                        </a>
-                                    </td>
-
-                                    <c:if test="${list.getRequestStatus().equals('Finish')}">
-                                        <td>
-                                            <a href="closereq?requestid=${list.getRequestID()}">
-                                                <input style="padding: 10px ;
-                                                       background-color: #d34836;
-                                                       color: white;
-                                                       border: none;
-                                                       border-radius: 10px;
-                                                       cursor: pointer;
-                                                       font-size: 12px; margin-bottom: 5%;
-                                                       font-weight: bold"" type="Submit" value="Close Request">
-                                            </a>
-                                        </td>
-
-                                        <td>
-                                            <a href="continuereq?requestid=${list.getRequestID()}">
-                                                <input style="padding: 10px ;
-                                                       background-color: #4CAF50;
-                                                       color: white;
-                                                       border: none;
-                                                       border-radius: 10px;
-                                                       cursor: pointer;
-                                                       font-size: 12px; margin-bottom: 5%;
-                                                       font-weight: bold"" type="Submit" value="Continue Request">
-                                            </a>
-                                        </td>
-                                    </c:if>
+                                    <td>${list.getDate_hour()}</td>
+                                    <td>${list.getTitle_of_request()}</td>
+                                    <td>${list.getDesciption_of_request()}</td>
+                                    <td>${list.getRequest_hour()}</td>
+                                    
 
                                 </tr>
                             </c:forEach>
@@ -157,7 +119,7 @@
                     </table>
                 </div>
                 <div style="display: flex; justify-content: center;">
-                    <a href="suggest">
+                    <a href="listrequest">
                         <input style="
 
                                padding: 10px 20px;
@@ -168,7 +130,7 @@
                                cursor: pointer;
                                font-size: 16px;
                                font-weight: bold;
-                               margin-bottom: 4%" type="Submit" value="Back to homepage">
+                               margin-bottom: 4%" type="Submit" value="Back">
                     </a>
                 </div>
 

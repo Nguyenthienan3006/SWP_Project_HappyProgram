@@ -71,6 +71,22 @@
         <servlet-name>UpdateRequestServlet</servlet-name>
         <servlet-class>controller.mentee.UpdateRequestServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FinishRequest</servlet-name>
+        <servlet-class>controller.mentor.FinishRequest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListRequestDetailServlet</servlet-name>
+        <servlet-class>controller.mentee.ListRequestDetailServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CloseRequest</servlet-name>
+        <servlet-class>controller.mentee.CloseRequest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ContinueRequest</servlet-name>
+        <servlet-class>controller.mentee.ContinueRequest</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SigninServlet</servlet-name>
         <url-pattern>/signin</url-pattern>
@@ -138,6 +154,22 @@
     <servlet-mapping>
         <servlet-name>UpdateRequestServlet</servlet-name>
         <url-pattern>/updatereq</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FinishRequest</servlet-name>
+        <url-pattern>/finishreq</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListRequestDetailServlet</servlet-name>
+        <url-pattern>/listreqdetailmentee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CloseRequest</servlet-name>
+        <url-pattern>/closereq</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContinueRequest</servlet-name>
+        <url-pattern>/continuereq</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

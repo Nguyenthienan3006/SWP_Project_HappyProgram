@@ -23,6 +23,89 @@ import model.StatisticRequestMentee;
  */
 public class ListRequestDAO extends DBConnect {
 
+    public ArrayList<ListRequest> ListRequestDetailMentee(int menteeId, int requestId) {
+        //list chứa danh sách request by mentee
+        ArrayList<ListRequest> ListRequest = new ArrayList<>();
+        // Chuỗi truy vấn SELECT để lấy danh sách mentor
+        String query = "with R as (\n"
+                + "select R.requestID, U.full_name as 'MentorName', R.RequestStatus, R.created_date, R.finish_date, R.menteeID, R.mentorID, S.Skill_Name,\n"
+                + "DATE_FORMAT(R.Date_hour, '%H:%i:%s') AS Deadline_hour, R.Title_of_request, R.Desciption_of_request, R.Request_hour\n"
+                + "from request as R, user as U, skills as S, skillofrequest S2\n"
+                + "where R.mentorID = U.u_id and S2.request_id = R.RequestID and S.skill_Id = S2.skill_Id and U.role = 2\n"
+                + ")\n"
+                + "select R.requestID, R.MentorName, R.mentorID, U.full_name as 'MenteeName', R.menteeID, R.Skill_Name, R.created_date, R.finish_date, \n"
+                + "E.Name as 'RequestStatus', R.Deadline_hour,  R.Title_of_request, R.Desciption_of_request, R.Request_hour\n"
+                + "from R, user as U, requeststatus as E\n"
+                + "where R.menteeID = U.u_Id and R.RequestStatus = E.status_Id and U.u_Id = ? and R.requestID = ?;";
+        try {
+            PreparedStatement st = getJDBCConnection().prepareStatement(query);
+            st.setInt(1, menteeId);
+            st.setInt(2, requestId);
+            ResultSet resultSet = st.executeQuery();
+            // Duyệt qua kết quả truy vấn và hiển thị thông tin request
+            while (resultSet.next()) {
+                int reuqestID = resultSet.getInt("requestID");
+                String mentorName = resultSet.getString("MentorName");
+                int mentorID = resultSet.getInt("mentorID");
+                String menteeName = resultSet.getString("MenteeName");
+                int menteeID = resultSet.getInt("menteeID");
+                String Skill_Name = resultSet.getString("Skill_Name");
+                String created_date = resultSet.getString("created_date");
+                String finish_date = resultSet.getString("finish_date");
+                String RequestStatus = resultSet.getString("RequestStatus");
+                Time Deadline_hour = resultSet.getTime("Deadline_hour");
+                String Title_of_request = resultSet.getString("Title_of_request");
+                String Desciption_of_request = resultSet.getString("Desciption_of_request");
+                float Request_hour = resultSet.getFloat("Request_hour");
+
+                //add mentor từ database vào list
+                ListRequest list = new ListRequest(mentorName, mentorID, menteeName, menteeID, Skill_Name, created_date,
+                        finish_date, RequestStatus, Deadline_hour, Title_of_request, Desciption_of_request, Request_hour, reuqestID);
+                ListRequest.add(list);
+
+            }
+
+            // Đóng kết nối và giải phóng tài nguyên
+            resultSet.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return ListRequest;
+    }
+
+    public ArrayList<ListRequest> listRequestMentee(int menteeId) {
+        ArrayList<ListRequest> list = new ArrayList<>();
+        String xSql = "Select R.RequestID, R.mentorID as 'MentorID', U.full_name as 'MentorName', R.Title_of_request as 'TitleOfRequest',"
+                + "R2.Name as 'RequestStatus'\n"
+                + "from request as R, User as U, requeststatus as R2\n"
+                + "where R.mentorID = U.u_id and R.RequestStatus = R2.status_Id and R.menteeID = ?\n"
+                + "order by R.RequestID";
+        try {
+            String mentorName, TitleOfRequest, RequestStatus;
+            int requestID, mentorID;
+            PreparedStatement st = getJDBCConnection().prepareStatement(xSql);
+            st.setInt(1, menteeId);
+            ResultSet resultSet = st.executeQuery();
+
+            resultSet = st.executeQuery();
+            while (resultSet.next()) {
+                requestID = resultSet.getInt("requestID");
+                mentorID = resultSet.getInt("MentorID");
+                mentorName = resultSet.getString("MentorName");
+                TitleOfRequest = resultSet.getString("TitleOfRequest");
+                RequestStatus = resultSet.getString("RequestStatus");
+
+                //add mentor từ database vào list
+                ListRequest listallreqMentor = new ListRequest(requestID, mentorID, mentorName, TitleOfRequest, RequestStatus);
+                list.add(listallreqMentor);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     public ArrayList<ListRequest> ListRequest(int u_Id) {
         //list chứa danh sách request by mentee
         ArrayList<ListRequest> ListRequest = new ArrayList<>();

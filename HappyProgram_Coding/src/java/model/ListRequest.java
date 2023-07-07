@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
-import java.sql.Time;
 
+import java.sql.Time;
 
 /**
  *
@@ -27,7 +27,7 @@ public class ListRequest {
     private float Request_hour;
     private String Status;
 
-    public ListRequest(String menteeName, String Skill_Name, String created_date, String finish_date, Time Date_hour, 
+    public ListRequest(String menteeName, String Skill_Name, String created_date, String finish_date, Time Date_hour,
             String Title_of_request, String Desciption_of_request, float Request_hour, String Status, int requestID) {
         this.menteeName = menteeName;
         this.Skill_Name = Skill_Name;
@@ -40,8 +40,8 @@ public class ListRequest {
         this.Status = Status;
         this.requestID = requestID;
     }
-    
-        public ListRequest(int requestID, String menteeName, int menteeID, String RequestStatus, String Title_of_request) {
+
+    public ListRequest(int requestID, String menteeName, int menteeID, String RequestStatus, String Title_of_request) {
         this.requestID = requestID;
         this.menteeName = menteeName;
         this.menteeID = menteeID;
@@ -50,7 +50,7 @@ public class ListRequest {
 
     }
 
-    public ListRequest(String mentorName, int mentorID, String menteeName, int menteeID, String created_date, String finish_date, String RequestStatus, 
+    public ListRequest(String mentorName, int mentorID, String menteeName, int menteeID, String created_date, String finish_date, String RequestStatus,
             Time Date_hour, String Title_of_request, String Desciption_of_request, float Request_hour, int requestID) {
         this.requestID = requestID;
         this.mentorName = mentorName;
@@ -65,9 +65,8 @@ public class ListRequest {
         this.Desciption_of_request = Desciption_of_request;
         this.Request_hour = Request_hour;
     }
-    
-    //constructor dùng cho function list req detail mentor
 
+    //constructor dùng cho function list req detail mentor
     public ListRequest(int requestID, String menteeName, String Skill_Name, String created_date, String finish_date, Time Date_hour, String Title_of_request, String Desciption_of_request, float Request_hour, String Status) {
         this.requestID = requestID;
         this.menteeName = menteeName;
@@ -80,7 +79,16 @@ public class ListRequest {
         this.Request_hour = Request_hour;
         this.Status = Status;
     }
-    
+
+    //hàm dùng cho list request (mentee)
+    public ListRequest(int requestID, int mentorID, String mentorName, String Title_of_request, String RequestStatus) {
+        this.requestID = requestID;
+        this.mentorName = mentorName;
+        this.mentorID = mentorID;
+        this.RequestStatus = RequestStatus;
+        this.Title_of_request = Title_of_request;
+
+    }
 
     public String getStatus() {
         return Status;
@@ -89,13 +97,11 @@ public class ListRequest {
     public void setStatus(String Status) {
         this.Status = Status;
     }
-    
-    
 
     public ListRequest() {
     }
 
-    public ListRequest(String mentorName, int mentorID, String menteeName, int menteeID, String Skill_Name, String created_date, String finish_date, String RequestStatus, 
+    public ListRequest(String mentorName, int mentorID, String menteeName, int menteeID, String Skill_Name, String created_date, String finish_date, String RequestStatus,
             Time Date_hour, String Title_of_request, String Desciption_of_request, float Request_hour, int requestID) {
         this.requestID = requestID;
         this.mentorName = mentorName;
@@ -216,5 +222,4 @@ public class ListRequest {
         this.requestID = requestID;
     }
 
-   
 }

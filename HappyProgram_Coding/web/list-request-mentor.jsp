@@ -75,14 +75,16 @@
                 <table class="fl-table">
                     <thead>
                         <tr>
+                        <tr>
                             <th>RequestID</th>
                             <th>Mentee ID </th>
                             <th>Mentee Name</th>
                             <th>Title of request</th>                         
                             <th>Status</th>
-                            <th>Accepct</th>
-                            <th>Reject</th>
-                            <th>Action</th>
+                            <th>Request Detail</th>             
+                            <th>Action1</th>
+                            <th>Action2</th>
+                        </tr>
                         </tr>
                     </thead>
                     <tbody> 
@@ -134,6 +136,20 @@
                                 </td>
 
 
+                            </c:if>
+                            <c:if test="${list.getRequestStatus().equals('Processing')}">
+                                <td>
+                                    <a href="finishreq?requestid=${list.getRequestID()}">
+                                        <input style="padding: 10px ;
+                                               background-color: #c69500;
+                                               color: white;
+                                               border: none;
+                                               border-radius: 10px;
+                                               cursor: pointer;
+                                               font-size: 12px; margin-bottom: 5%;
+                                               font-weight: bold"" type="Submit" value="Finish Request">
+                                    </a>
+                                </td>
                             </c:if>
                         </tr>
                     </c:forEach>

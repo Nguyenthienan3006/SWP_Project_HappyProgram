@@ -9,6 +9,49 @@ import java.time.format.DateTimeFormatter;
 import model.*;
 
 public class RequestDAO extends MyDAO {
+    
+        //hàm close request (mentee)
+    public int CloseRequest_Mentee(int requestID) {
+        int mess = 0;
+        // Chuỗi truy vấn SELECT để lấy danh sách mentor
+        String query = "UPDATE Request\n"
+                + "SET RequestStatus = 5\n"
+                + "WHERE RequestID = ?;";
+        try {
+            ps = con.prepareStatement(query);
+            ps.setInt(1, requestID);
+            // Đóng kết nối và giải phóng tài nguyên
+
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            mess = 1;
+        }
+        return mess;
+    }
+    
+    public int finishRequest_Mentor(int requestID) {
+        int mess = 0;
+        // Chuỗi truy vấn SELECT để lấy danh sách mentor
+        String query = "UPDATE Request\n"
+                + "SET RequestStatus = 4\n"
+                + "WHERE RequestID = ?;";
+        try {
+            ps = con.prepareStatement(query);
+            ps.setInt(1, requestID);
+            // Đóng kết nối và giải phóng tài nguyên
+
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            mess = 1;
+        }
+        return mess;
+    }
 
     public int UpdateRequest_Mentor(int requestID) {
         int mess = 0;

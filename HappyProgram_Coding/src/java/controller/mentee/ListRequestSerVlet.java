@@ -37,7 +37,7 @@ public class ListRequestSerVlet extends HttpServlet {
 
         } else {
             ListRequestDAO m = new ListRequestDAO();
-            ArrayList<ListRequest> ListRequest = m.ListRequest(user.getUid());
+            ArrayList<ListRequest> ListRequest = m.listRequestMentee(user.getUid());
             session.setAttribute("ListRequest", ListRequest);
             request.getRequestDispatcher("ListRequest.jsp").forward(request, response);
         }
