@@ -5,6 +5,7 @@
 package controller.mentee;
 
 import controller.common.RoleChecker;
+import dao.ListRequestDAO;
 import dao.RequestDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,7 +22,7 @@ import model.User;
  *
  * @author admin
  */
-public class CloseRequest extends HttpServlet {
+public class CommentAndRating extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +41,10 @@ public class CloseRequest extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CloseRequest</title>");
+            out.println("<title>Servlet CommentAndRating</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CloseRequest at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CommentAndRating at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -68,27 +69,8 @@ public class CloseRequest extends HttpServlet {
         if (!RoleChecker.isMentee(user)) {
             RoleChecker.redirectToHome(session, response);
         } else {
-            //processRequest(request, response);
-            int requestId = Integer.parseInt(request.getParameter("requestid"));
-            int mentorID = Integer.parseInt(request.getParameter("mentorID"));
-            String reqTittle = request.getParameter("reqTittle");
-            String mentorName = request.getParameter("mentorName");
-            RequestDAO d = new RequestDAO();
-            int menteeID = user.getUid();
-            int check = d.CloseRequest_Mentee(requestId);
-
-            if (check == 0) {
-                request.setAttribute("mess", "close success full!");
-                request.setAttribute("requestId", requestId);
-                request.setAttribute("reqTittle", reqTittle);
-                request.setAttribute("mentorName", mentorName);
-                request.setAttribute("mentorID", mentorID);
-                request.setAttribute("menteeID", menteeID);
-                request.getRequestDispatcher("cmtandrate").forward(request, response);
-            } else {
-                request.setAttribute("mess", "close fail!");
-                request.getRequestDispatcher("Suggest").forward(request, response);
-            }
+            request.setAttribute("mess", "close success full!");
+            request.getRequestDispatcher("CommentAndRating.jsp").forward(request, response);
         }
     }
 
@@ -103,7 +85,41 @@ public class CloseRequest extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
+        // Lấy giá trị được truyền từ JSP
+        String mentorID = request.getParameter("mentorID");
+        String menteeID = request.getParameter("menteeID");
+        String comment = request.getParameter("comment");
+        String rating = request.getParameter("rating");
+
+        // Ép kiểu các thông số ID sang kiểu int (nếu có giá trị)
+        int mentorIDInt = 0;
+        int menteeIDInt = 0;
+        int ratingInt = 0;
+
+        if (mentorID != null && !mentorID.isEmpty()) {
+            mentorIDInt = Integer.parseInt(mentorID);
+        }
+
+        if (menteeID != null && !menteeID.isEmpty()) {
+            menteeIDInt = Integer.parseInt(menteeID);
+        }
+        if (rating != null && !rating.isEmpty()) {
+            ratingInt = Integer.parseInt(rating);
+        }
+
+        // Xử lý các giá trị         
+        RequestDAO d = new RequestDAO();
+        int check = d.CommentMentee(menteeIDInt, mentorIDInt, comment);
+        if (check == 0) {
+            session.setAttribute("message", "close request successfully!");
+            request.getRequestDispatcher("suggest").forward(request, response);
+        } else {
+            session.setAttribute("message", "close request fail!");
+            request.getRequestDispatcher("suggest").forward(request, response);
+
+        }
     }
 
     /**

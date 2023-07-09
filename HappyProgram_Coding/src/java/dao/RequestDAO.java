@@ -9,8 +9,8 @@ import java.time.format.DateTimeFormatter;
 import model.*;
 
 public class RequestDAO extends MyDAO {
-    
-        //hàm close request (mentee)
+
+    //hàm close request (mentee)
     public int CloseRequest_Mentee(int requestID) {
         int mess = 0;
         // Chuỗi truy vấn SELECT để lấy danh sách mentor
@@ -31,7 +31,31 @@ public class RequestDAO extends MyDAO {
         }
         return mess;
     }
-    
+
+    //hàm comment (mentee)
+    public int CommentMentee(int menteeID, int mentorID, String comment_Content) {
+        int mess = 0;
+        // Chuỗi truy vấn SELECT để lấy danh sách mentor
+        String query = "INSERT INTO Comment (menteeID, mentorID, comment_Content) VALUES\n"
+                + "(?, ?, ?)";
+        try {
+            ps = con.prepareStatement(query);
+            ps.setInt(1, menteeID);
+            ps.setInt(2, mentorID);
+            ps.setString(3, comment_Content);
+
+            // Đóng kết nối và giải phóng tài nguyên
+
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            mess = 1;
+        }
+        return mess;
+    }
+
     public int finishRequest_Mentor(int requestID) {
         int mess = 0;
         // Chuỗi truy vấn SELECT để lấy danh sách mentor
@@ -250,9 +274,9 @@ public class RequestDAO extends MyDAO {
     public static void main(String[] args) {
         RequestDAO r = new RequestDAO();
         //r.createRequest(2, 3, 1, "2023-01-01", "2023-01-10", "2023-01-10 06:00:00", 2, "Hoc lap trinh",
-               // "Lap trinh co ban cho ngươi moi");
+        // "Lap trinh co ban cho ngươi moi");
 //        r.createRequestskill(4, 2);
-         r.createRequestskill("1");
+        r.createRequestskill("1");
     }
 
 }

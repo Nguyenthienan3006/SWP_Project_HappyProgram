@@ -124,7 +124,7 @@
 
                                     <c:if test="${list.getRequestStatus().equals('Finish')}">
                                         <td>
-                                            <a href="closereq?requestid=${list.getRequestID()}">
+                                            <a href="closereq?requestid=${list.getRequestID()}&reqTittle=${list.getTitle_of_request()}&mentorName=${list.getMentorName()}&mentorID=${list.getMentorID()}">
                                                 <input style="padding: 10px ;
                                                        background-color: #d34836;
                                                        color: white;
