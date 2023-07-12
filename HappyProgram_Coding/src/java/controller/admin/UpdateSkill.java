@@ -98,8 +98,9 @@ public class UpdateSkill extends HttpServlet {
         int SkillId = Integer.parseInt(request.getParameter("SkillId"));
         int skillStatus = Integer.parseInt(request.getParameter("skillStatus"));
         String skillName = request.getParameter("skillName");
+        String skillImg = "images/skillImg/" +  request.getParameter("img");
 
-        int check = d.UpdateSkillAdmin(SkillId, skillStatus, skillName);
+        int check = d.UpdateSkillAdmin(SkillId, skillStatus,skillImg ,skillName);
 
         if (check == 0) {
             session.setAttribute("message", "Update success full!");

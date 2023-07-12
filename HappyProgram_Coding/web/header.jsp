@@ -179,10 +179,17 @@
                                         <c:if test="${sessionScope.user.getRole() == 3}">
                                             <li><a href="updateskill">Update Skills</a></li>
                                             </c:if>
+                                            <c:if test="${sessionScope.user.getRole() == 3}">
+                                            <li><a href="SkillAdminServlet">Skills List</a></li>
+                                            </c:if>
 
-                                        <li><a href="SkillServlet">Skills List</a></li>
+                                        <c:if test="${sessionScope.user.getRole() != 3}">
+                                            <li><a href="SkillServlet">Skills List</a></li>
+                                            </c:if>
+
                                     </ul>
                                 </li>
+
                                 <li class="nav-item">
                                     <a>Our Mentors</a>
                                     <ul class="sub-menu">

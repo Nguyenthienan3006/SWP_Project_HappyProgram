@@ -81,7 +81,7 @@
 
 
             <div class="comment-form-wrapper">
-                <form action="cmtandrate" method="post">
+                <form action="closereq" method="post">
                     <h4>Leave a comment</h4>
                     <p name="mentorName" value="${mentorName}">Mentor name: ${mentorName}</p>
                 <input type="hidden" name="mentorName" value="${mentorName}">

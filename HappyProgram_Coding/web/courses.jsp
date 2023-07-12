@@ -11,6 +11,75 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!--====== Title ======-->
         <title>Happy Programming</title>
+        <style>
+            /* Đặt font chữ và màu nền cho phần tiêu đề */
+            h2 {
+                font-family: Arial, sans-serif;
+                padding: 10px;
+            }
+
+            /* Điều chỉnh kích thước và màu sắc của breadcrumb */
+            .breadcrumb-item a {
+                font-size: 14px;
+                color: #999999;
+            }
+
+
+
+            /* Điều chỉnh kiểu nền và khoảng cách của phần khóa học */
+            #courses-part {
+                background-color: #f9f9f9;
+                padding-top: 120px;
+                padding-bottom: 120px;
+            }
+
+            /* Điều chỉnh kích thước và màu sắc của tiêu đề khóa học */
+            .singel-course h4 {
+                font-size: 18px;
+                color: #333333;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            /* Điều chỉnh kích thước và màu sắc của trạng thái khóa học */
+            .singel-course h5 {
+                font-size: 16px;
+                color: #666666;
+                margin-top: 5px;
+                margin-bottom: 0;
+            }
+
+            /* Tùy chỉnh kiểu nền và màu sắc của nút "Join with us" */
+            .course-teacher .name a {
+                background-color: #ff6600;
+                color: #ffffff;
+                padding: 10px 20px;
+                border-radius: 5px;
+                text-decoration: none;
+                display: inline-block;
+            }
+
+            /* Điều chỉnh kích thước và màu sắc của nút "Change Status" */
+            .status-button a {
+                font-size: 14px;
+                color: #ffffff;
+                padding: 8px 16px;
+                background-color: #333333;
+                border-radius: 5px;
+                text-decoration: none;
+                display: inline-block;
+            }
+
+
+
+            /* Điều chỉnh kích thước ảnh khóa học */
+            .singel-course .image img {
+                width: 100%;
+                height: auto;
+            }
+
+        </style>
+
 
         <!--====== Favicon Icon ======-->
         <link rel="shortcut icon" href="images/favicon.png" type="image/png">
@@ -80,7 +149,7 @@
             <section id="courses-part" class="pt-120 pb-120 gray-bg">
                 <div class="container">
                     <div class="row">
-                       
+
                     </div> <!-- row -->
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="courses-grid" role="tabpanel" aria-labelledby="courses-grid-tab">
@@ -97,18 +166,45 @@
                                             </div>
                                         </div>
                                         <div class="cont">
-                                            <a><h4>Skill Name: ${LS.getSkillName()}</h4></a><br>
-                                            <a><h5>Status: </h5></a>
+                                            <a>
+                                                <h4>Skill Name: ${LS.getSkillName()}</h4>
+                                                <c:if test="${sessionScope.user.getRole() == 3}">
+                                                    <h5>
+                                                        Status:
+                                                        <c:if test="${LS.getSkill_Status() == 1}">
+                                                            <span style="font-size: 16px;
+                                                                  font-weight: bold;
+                                                                  margin-top: 0;
+                                                                  color: #008000;">Active</span>
+                                                        </c:if>
+                                                        <c:if test="${LS.getSkill_Status() == 0}">
+                                                            <span style="  font-size: 16px;
+                                                                  font-weight: bold;
+                                                                  margin-top: 0;
+                                                                  color: #ff0000; /* Màu đỏ */">Inactive</span>
+                                                        </c:if>
+                                                    </h5>
+                                                </c:if>
+
+                                            </a>
+
+
+
                                             <div class="course-teacher">
                                                 <c:if test="${sessionScope.user == null}">
-                                                    <div class="name">
+                                                    <div >
                                                         <a href="signin.jsp"><h6>Join with us!</h6></a>
                                                     </div>
                                                 </c:if>
-                                                
-                                                <c:if test="${sessionScope.user != null}">
+
+                                                <c:if test="${sessionScope.user.getRole() == 1}">
+                                                    <div >
+                                                        <a href="loadmentor"><h6>Join with us!</h6></a>
+                                                    </div>
+                                                </c:if>
+                                                <c:if test="${sessionScope.user.getRole() == 3}">
                                                     <div class="name">
-                                                        <a href="#"><h6>Join with us!</h6></a>
+                                                        <a href="updateskillstatus?id=${LS.getSkillId()}">Change Status</a>
                                                     </div>
                                                 </c:if>
                                             </div>
@@ -116,11 +212,11 @@
                                     </div> <!-- singel course -->
                                 </div>
                             </c:forEach>
-                            </div>
                         </div>
                     </div>
+                </div>
 
-                     
+
         </section>
 
         <!--====== COURSES PART ENDS ======-->

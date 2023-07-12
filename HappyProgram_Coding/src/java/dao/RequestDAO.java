@@ -45,7 +45,29 @@ public class RequestDAO extends MyDAO {
             ps.setString(3, comment_Content);
 
             // Đóng kết nối và giải phóng tài nguyên
+            ps.executeUpdate();
+            ps.close();
 
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            mess = 1;
+        }
+        return mess;
+    }
+
+    //hàm comment (mentee)
+    public int RateMentee(int menteeID, int mentorID, int star) {
+        int mess = 0;
+        // Chuỗi truy vấn SELECT để lấy danh sách mentor
+        String query = "INSERT INTO Rate (menteeID, mentorID, Rated_point) VALUES\n"
+                + "(?, ?, ?)";
+        try {
+            ps = con.prepareStatement(query);
+            ps.setInt(1, menteeID);
+            ps.setInt(2, mentorID);
+            ps.setInt(3, star);
+
+            // Đóng kết nối và giải phóng tài nguyên
             ps.executeUpdate();
             ps.close();
 
@@ -261,6 +283,22 @@ public class RequestDAO extends MyDAO {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, skill_Id);
             ps.setInt(2, requestId);
+            ps.executeUpdate();
+            ps.close();
+            System.out.print("thanh cong ");
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Error in BlogDAO.createBlog()");
+            return false;
+        }
+    }
+
+    public boolean deleteRequest(int requestID) {
+
+        try {
+            String sql = " Delete from request where requestID = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, requestID);
             ps.executeUpdate();
             ps.close();
             System.out.print("thanh cong ");

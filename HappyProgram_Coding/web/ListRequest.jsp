@@ -150,6 +150,19 @@
                                         </td>
                                     </c:if>
 
+                                    <c:if test="${list.getRequestStatus().equals('Open')}">
+                                        <td>
+                                            <a href="deletereq?reqId=${list.getRequestID()}">
+                                                <input style="padding: 10px 20px;
+                                                       background-color: red;
+                                                       color: white;
+                                                       border: none;
+                                                       border-radius: 15px;
+                                                       cursor: pointer;
+                                                       font-size: 12px; margin-bottom: 5%" type="Submit" value="Delete Request">
+                                            </a>
+                                        </td>
+                                    </c:if>
                                 </tr>
                             </c:forEach>
                         <tbody>

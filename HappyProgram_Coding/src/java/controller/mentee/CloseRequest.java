@@ -103,16 +103,50 @@ public class CloseRequest extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        // Lấy giá trị được truyền từ JSP
+        String mentorID = request.getParameter("mentorID");
+        String menteeID = request.getParameter("menteeID");
+        String comment = request.getParameter("comment");
+        String rating = request.getParameter("rating");
+
+        // Ép kiểu các thông số ID sang kiểu int (nếu có giá trị)
+        int mentorIDInt = 0;
+        int menteeIDInt = 0;
+        int ratingInt = 0;
+
+        if (mentorID != null && !mentorID.isEmpty()) {
+            mentorIDInt = Integer.parseInt(mentorID);
+        }
+
+        if (menteeID != null && !menteeID.isEmpty()) {
+            menteeIDInt = Integer.parseInt(menteeID);
+        }
+        if (rating != null && !rating.isEmpty()) {
+            ratingInt = Integer.parseInt(rating);
+        }
+
+        // Xử lý các giá trị         
+        RequestDAO d = new RequestDAO();
+        int check = d.CommentMentee(menteeIDInt, mentorIDInt, comment);
+        int check2 = d.RateMentee(menteeIDInt, mentorIDInt, ratingInt);
+        if (check == 0 && check2 == 0) {
+            session.setAttribute("message", "Review mentor successfully!");
+            request.getRequestDispatcher("suggest").forward(request, response);
+        } else {
+            session.setAttribute("message", "close request fail!");
+            request.getRequestDispatcher("suggest").forward(request, response);
+
+        }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
+/**
+ * Returns a short description of the servlet.
+ *
+ * @return a String containing servlet description
+ */
+@Override
+public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

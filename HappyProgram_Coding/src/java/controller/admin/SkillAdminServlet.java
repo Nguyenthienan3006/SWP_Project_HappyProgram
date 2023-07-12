@@ -1,26 +1,27 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package controller.admin;
 
+
 import dao.SkillDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.User;
+import java.util.List;
+import model.Skill;
 
 /**
  *
  * @author dongx
  */
-//createskill
-public class Create_Skill extends HttpServlet {
+@WebServlet(name = "SkillAdminServlet", urlPatterns = {"/SkillAdminServlet"})
+public class SkillAdminServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,17 +35,17 @@ public class Create_Skill extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Create_Skill</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Create_Skill at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        //khoi tao session va lay nguoi dung hien tai
+        HttpSession session = request.getSession();
+
+        try {
+            SkillDAO s = new SkillDAO();
+            List<Skill> skillsList = s.getAllskillAdmin();
+            session.setAttribute("skillsList", skillsList);
+        } catch (Exception e) {
+            log("Error at SkillServlet: " + e.toString());
+        } finally {
+            request.getRequestDispatcher("courses.jsp").forward(request, response);
         }
     }
 
@@ -60,7 +61,7 @@ public class Create_Skill extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("create_skill.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -74,20 +75,7 @@ public class Create_Skill extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        HttpSession session = request.getSession();
-        String skillName = request.getParameter("skillName");
-        // int skill_Status = Integer.parseInt(request.getParameter("skill_Statusr"));
-        String img = "images/skillImg/" + request.getParameter("img");
-        SkillDAO d = new SkillDAO();
-        int check = d.CreateSkill(skillName, 1, img);
-        if (check == 0) {
-            session.setAttribute("message", "Create success full!");
-            request.getRequestDispatcher("suggest").forward(request, response);
-        } else {
-            session.setAttribute("message", "Create fail!");
-            request.getRequestDispatcher("suggest").forward(request, response);
-        }
+        processRequest(request, response);
     }
 
     /**

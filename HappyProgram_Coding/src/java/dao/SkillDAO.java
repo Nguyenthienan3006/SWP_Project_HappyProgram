@@ -24,8 +24,9 @@ public class SkillDAO extends MyDAO {
                     int skillId = rs.getInt("skill_Id");
                     String skillName = rs.getString("skill_Name");
                     String img = rs.getString("skill_Image");
+                    int skillStatus = rs.getInt("skill_status");
 
-                    Skill skill = new Skill(skillId, skillName, img);
+                    Skill skill = new Skill(skillId, skillName, img, skillStatus);
                     list.add(skill);
                 }
             }
@@ -35,8 +36,6 @@ public class SkillDAO extends MyDAO {
 
         return list;
     }
-    
-    
 
     public Skill getSkillById(String skill_id) {
         xSql = "select * from Skills where skill_Id = ?";
@@ -61,18 +60,18 @@ public class SkillDAO extends MyDAO {
         return x;
     }
 
-    public int UpdateSkillAdmin(int skillID, int status, String newName) {
+    public int UpdateSkillStatus(int skillID) {
         int mess = 0;
         // Chuỗi truy vấn SELECT để lấy danh sách mentor
         String query = "UPDATE Skills\n"
-                + "SET Skill_Name = ?,\n"
-                + "    skill_Status = ?\n"
-                + "WHERE skill_Id = ?;";
+                + "SET skill_Status = CASE\n"
+                + "    WHEN skill_Status = 1 THEN 0\n"
+                + "    WHEN skill_Status = 0 THEN 1\n"
+                + "END\n"
+                + "WHERE skill_Id = ?";
         try {
             ps = con.prepareStatement(query);
-            ps.setString(1, newName);
-            ps.setInt(2, status);
-            ps.setInt(3, skillID);
+            ps.setInt(1, skillID);
             // Đóng kết nối và giải phóng tài nguyên
 
             ps.executeUpdate();
@@ -85,9 +84,35 @@ public class SkillDAO extends MyDAO {
         return mess;
     }
 
+    public int UpdateSkillAdmin(int skillID, int status,String img, String newName) {
+        int mess = 0;
+        // Chuỗi truy vấn SELECT để lấy danh sách mentor
+        String query = "UPDATE Skills\n"
+                + "SET Skill_Name = ?,\n"
+                + "    skill_Status = ?,\n"
+                + "    SKill_Image = ?\n"
+                + "WHERE skill_Id = ?;";
+        try {
+            ps = con.prepareStatement(query);
+            ps.setString(1, newName);
+            ps.setInt(2, status);
+            ps.setString(3, img);
+            ps.setInt(4, skillID);
+
+            // Đóng kết nối và giải phóng tài nguyên
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            mess = 1;
+        }
+        return mess;
+    }
+
     public int CreateSkill(String skillName, int skill_Status, String img) {
         int check = 0;
-        String xMySql = "INSERT INTO swp391.skills(  Skill_Name,skill_Status,SKill_Image) value (?,?,?);;";
+        String xMySql = "INSERT INTO swp391.skills(Skill_Name,skill_Status,SKill_Image) value (?,?,?);;";
         try {
             PreparedStatement st = getJDBCConnection().prepareStatement(xMySql);
             // st.setInt(1,skillId);
@@ -102,8 +127,6 @@ public class SkillDAO extends MyDAO {
         return check;
     }
 
-    
-    
     public List<Skill> getAllskillAdmin() throws SQLException {
         List<Skill> list = new ArrayList<>();
 
@@ -115,8 +138,9 @@ public class SkillDAO extends MyDAO {
                     int skillId = rs.getInt("skill_Id");
                     String skillName = rs.getString("skill_Name");
                     String img = rs.getString("skill_Image");
+                    int skillStatus = rs.getInt("skill_status");
 
-                    Skill skill = new Skill(skillId, skillName, img);
+                    Skill skill = new Skill(skillId, skillName, img, skillStatus);
                     list.add(skill);
                 }
             }

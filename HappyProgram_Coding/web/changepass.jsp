@@ -58,13 +58,15 @@
                     <div class="login-form">
                         <form action="change" method="post">
                             <h2 class="text-center">Change Password</h2>
+                            <p  class="text-center">Please enter your user name and password</p>
+                            
                             <p class="text-danger">${mess}</p>
                             <div class="form-group">
                                 <label for="userName">Username:</label>
                                 <input type="text" id="userName" name="userName" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label for="currentPassword">Current Password:</label>
+                                <label for="currentPassword">Old Password:</label>
                                 <input type="password" id="currentPassword" name="currentPassword" class="form-control" required>
                             </div>
                             <div class="form-group">
@@ -72,7 +74,7 @@
                                 <input type="password" id="newPassword" name="newPassword" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label for="confirmPassword">Confirm Password:</label>
+                                <label for="confirmPassword">Confirm new Password:</label>
                                 <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required>
                             </div>
                             <div class="form-group text-center">

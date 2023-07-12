@@ -138,19 +138,25 @@
                                     </c:forEach>
                                 </select>  <br><br><br>
 
+                                <h4 style="font-size: 20px">Enter new name:</h4>
+                                <div>
+                                    <input type="text"  name="skillName" placeholder="typing..." required>
+                                </div>
 
                                 <h4 style="font-size: 20px">Select status:</h4>
                                 <select id="skillStatus" name="skillStatus" required>
                                     <option value="" selected disabled hidden>Status</option>
                                     <option value="1">Active</option>
                                     <option value="0">Inactive</option>
-                                </select>
-                                <br><br><br>
+                                </select>                                <br><br><br>
 
-                                <h4 style="font-size: 20px">Enter new name:</h4>
+
+                                <h4 style="font-size: 20px">Input image:</h4>
                                 <div>
-                                    <input type="text"  name="skillName" placeholder="typing..." required>
+                                    <input type="file"  name="img"  required>
                                 </div>
+
+
                                 <br><br>    
 
 
@@ -181,7 +187,7 @@
                     </form>
                     <!-- END FILTER BY PRICE -->
 
-                    <a href="home.jsp">
+                    <a href="suggest">
                         <input style="padding: 10px 20px;
                                background-color: #b21f2d;
                                color: white;

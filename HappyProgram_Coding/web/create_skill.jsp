@@ -125,16 +125,14 @@
 
                     <!-- BEGIN FILTER BY CATEGORY -->
                     <form action="createskill" method="post">
-
-
-
-
-
-
                         <div class="input-boxx">
                             <h5 style="font-size: 20px">Enter skill name:</h5>
                             <div>
                                 <input type="text"  name="skillName" placeholder="typing..." required>
+                            </div>
+                            <div>                  
+                                <h5 style="font-size: 20px">Input skill image:</h5>
+                                <input type="file"  name="img"  required>
                             </div>
                         </div>
                         <input style="padding: 10px 20px;
@@ -149,7 +147,7 @@
                     </form  >
                     <!-- END FILTER BY PRICE -->
 
-                    <a href="home.jsp">
+                    <a href="suggest">
                         <input style="padding: 10px 20px;
                                background-color: #b21f2d;
                                color: white;
