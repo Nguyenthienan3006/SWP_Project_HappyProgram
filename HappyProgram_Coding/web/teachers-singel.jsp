@@ -4,6 +4,7 @@
     Author     : havie
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -221,129 +222,29 @@
                                         <div class="title">
                                             <h6>Student Reviews</h6>
                                         </div>
-                                        <ul>
+                                        <ul>                             
                                             <li>
-                                                <div class="singel-reviews">
-                                                    <div class="reviews-author">
-                                                        <div class="author-thum">
-                                                            <img src="images/review/r-1.jpg" alt="Reviews">
+                                                <c:forEach items="${sessionScope.commentList}" var="cmt">
+                                                    <div class="singel-reviews">                                                        
+                                                        <div class="reviews-description pt-20">   
+                                                            <a class="pull-left" href="#fakelink">
+                                                                <img style="width: 50px;" src="https://bootdey.com/img/Content/User_for_snippets.png" alt="Avatar">                                                   
+                                                                <a style="font-weight: bold" href="#">Anonymous</a>    
+                                                            </a>
+                                                            <div class="rating">
+                                                                <span>${cmt.getRateStar()}</span>
+                                                                <ul>
+                                                                    <li><i class="fa fa-star"></i></li>                                            
+                                                                </ul>                                                              
+                                                            </div>                                                            
+                                                            <br>
+                                                            <p>${cmt.getCommentContent()}</p>
                                                         </div>
-                                                        <div class="author-name">
-                                                            <h6>Bobby Aktar</h6>
-                                                            <span>April 03, 2019</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="reviews-description pt-20">
-                                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which.</p>
-                                                        <div class="rating">
-                                                            <ul>
-                                                                <li><i class="fa fa-star"></i></li>
-                                                                <li><i class="fa fa-star"></i></li>
-                                                                <li><i class="fa fa-star"></i></li>
-                                                                <li><i class="fa fa-star"></i></li>
-                                                                <li><i class="fa fa-star"></i></li>
-                                                            </ul>
-                                                            <span>/ 5 Star</span>
-                                                        </div>
-                                                    </div>
-                                                </div> <!-- singel reviews -->
-                                            </li>
-                                            <li>
-                                                <div class="singel-reviews">
-                                                    <div class="reviews-author">
-                                                        <div class="author-thum">
-                                                            <img src="images/review/r-2.jpg" alt="Reviews">
-                                                        </div>
-                                                        <div class="author-name">
-                                                            <h6>Humayun Ahmed</h6>
-                                                            <span>April 13, 2019</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="reviews-description pt-20">
-                                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which.</p>
-                                                        <div class="rating">
-                                                            <ul>
-                                                                <li><i class="fa fa-star"></i></li>
-                                                                <li><i class="fa fa-star"></i></li>
-                                                                <li><i class="fa fa-star"></i></li>
-                                                                <li><i class="fa fa-star"></i></li>
-                                                                <li><i class="fa fa-star"></i></li>
-                                                            </ul>
-                                                            <span>/ 5 Star</span>
-                                                        </div>
-                                                    </div>
-                                                </div> <!-- singel reviews -->
-                                            </li>
-                                            <li>
-                                                <div class="singel-reviews">
-                                                    <div class="reviews-author">
-                                                        <div class="author-thum">
-                                                            <img src="images/review/r-3.jpg" alt="Reviews">
-                                                        </div>
-                                                        <div class="author-name">
-                                                            <h6>Tania Aktar</h6>
-                                                            <span>April 20, 2019</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="reviews-description pt-20">
-                                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which.</p>
-                                                        <div class="rating">
-                                                            <ul>
-                                                                <li><i class="fa fa-star"></i></li>
-                                                                <li><i class="fa fa-star"></i></li>
-                                                                <li><i class="fa fa-star"></i></li>
-                                                                <li><i class="fa fa-star"></i></li>
-                                                                <li><i class="fa fa-star"></i></li>
-                                                            </ul>
-                                                            <span>/ 5 Star</span>
-                                                        </div>
-                                                    </div>
-                                                </div> <!-- singel reviews -->
+                                                    </div> <!-- singel reviews -->
+                                                </c:forEach>
                                             </li>
                                         </ul>
-                                        <div class="title pt-15">
-                                            <h6>Leave A Comment</h6>
-                                        </div>
-                                        <div class="reviews-form">
-                                            <form action="#">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-singel">
-                                                            <input type="text" placeholder="Fast name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-singel">
-                                                            <input type="text" placeholder="Last Name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-singel">
-                                                            <div class="rate-wrapper">
-                                                                <div class="rate-label">Your Rating:</div>
-                                                                <div class="rate">
-                                                                    <div class="rate-item"><i class="fa fa-star" aria-hidden="true"></i></div>
-                                                                    <div class="rate-item"><i class="fa fa-star" aria-hidden="true"></i></div>
-                                                                    <div class="rate-item"><i class="fa fa-star" aria-hidden="true"></i></div>
-                                                                    <div class="rate-item"><i class="fa fa-star" aria-hidden="true"></i></div>
-                                                                    <div class="rate-item"><i class="fa fa-star" aria-hidden="true"></i></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-singel">
-                                                            <textarea placeholder="Comment"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-singel">
-                                                            <button type="button" class="main-btn">Post Comment</button>
-                                                        </div>
-                                                    </div>
-                                                </div> <!-- row -->
-                                            </form>
-                                        </div>
+
                                     </div> <!-- reviews cont -->
                                 </div>
                             </div> <!-- tab content -->

@@ -5,6 +5,7 @@
 package controller.common;
 
 import controller.common.RoleChecker;
+import dao.CommentDAO;
 import dao.CvOfMentorDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,8 +16,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Session;
+import model.Comment;
 import model.CvOfMentor;
 import model.ListMentor;
 import model.User;
@@ -41,12 +45,14 @@ public class CvOfMentorServlet extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            //khoi tao session va lay nguoi dung hien tai
-
+            //khoi tao session
+            HttpSession session = request.getSession();
+            CommentDAO c2 = new CommentDAO();
             int Uid = Integer.parseInt(request.getParameter("uid"));
             CvOfMentorDAO c = new CvOfMentorDAO();
             ListMentor lm = c.GetCvOfMentor(Uid);
+            ArrayList<Comment> commentList = c2.getComment(Uid);
+            session.setAttribute("commentList", commentList);
             request.setAttribute("cv", lm);
             request.getRequestDispatcher("teachers-singel.jsp").forward(request, response);
 

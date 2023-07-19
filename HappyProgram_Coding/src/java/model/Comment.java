@@ -5,6 +5,7 @@ public class Comment {
     private int menteeId;
     private int mentorId;
     private String commentContent;
+    private int rateStar;
 
     public Comment() {
     }
@@ -15,6 +16,22 @@ public class Comment {
         this.mentorId = mentorId;
         this.commentContent = commentContent;
     }
+
+    public Comment(String commentContent, int rateStar) {
+        this.commentContent = commentContent;
+        this.rateStar = rateStar;
+    }
+
+    public int getRateStar() {
+        return rateStar;
+    }
+
+    public void setRateStar(int rateStar) {
+        this.rateStar = rateStar;
+    }
+
+
+    
 
     public int getCommentId() {
         return commentId;
