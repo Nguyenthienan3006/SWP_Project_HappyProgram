@@ -57,6 +57,7 @@
                 <div class="col-lg-8 col-md-10">
                     <div class="forgot">
                         <h2>Forgot your password?</h2>
+                        
                         <p>Change your password in three easy steps. This will help you
                             to secure your password!</p>
                         <ol class="list-unstyled">
@@ -72,16 +73,16 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="email-for-pass">Enter your email address</label> <input
-                                    class="form-control" type="text" name="email" id="email-for-pass" required=""><small
+                                    class="form-control" type="email" name="email" id="email-for-pass" required=""><small
                                     class="form-text text-muted">Enter the registered email address . Then we'll
                                     email a OTP to this address.</small>
+                                <p style="color: red;">${mess}</p>
                             </div>
                         </div>
                         <div class="card-footer">
                             <button class="btn btn-success" type="submit">Get New
                                 Password</button>
-                            <button  class="btn btn-danger" >Back to
-                                Login</button>
+                            <a href="home.jsp" class="btn btn-danger">Back to Homepage</a>
                         </div>
                     </form>
                 </div>

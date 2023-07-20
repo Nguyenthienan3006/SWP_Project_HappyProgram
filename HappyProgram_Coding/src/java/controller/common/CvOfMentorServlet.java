@@ -7,6 +7,7 @@ package controller.common;
 import controller.common.RoleChecker;
 import dao.CommentDAO;
 import dao.CvOfMentorDAO;
+import dao.SkillDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,6 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Session;
@@ -50,11 +52,13 @@ public class CvOfMentorServlet extends HttpServlet {
             HttpSession session = request.getSession();
             CommentDAO c2 = new CommentDAO();
             CvOfMentorDAO c = new CvOfMentorDAO();
+            SkillDAO sd = new SkillDAO();
             //Get mentorID
-            int Uid = Integer.parseInt(request.getParameter("uid"));           
+            int Uid = Integer.parseInt(request.getParameter("uid"));
             //Cv information
             ListMentor lm = c.GetCvOfMentor(Uid);
             CvOfMentor mentorCV = c.getMentorInfoReq(Uid);
+            List<String> skillMentor = sd.getSkillByMentorId(Uid);
             //Get comment
             ArrayList<Comment> commentList = c2.getComment(Uid);
             //Get average rateStar
@@ -63,6 +67,7 @@ public class CvOfMentorServlet extends HttpServlet {
             session.setAttribute("commentList", commentList);
             session.setAttribute("rs", rateStar);
             session.setAttribute("mentorCV", mentorCV);
+            request.setAttribute("skillMentor", skillMentor);
             request.setAttribute("cv", lm);
             request.getRequestDispatcher("teachers-singel.jsp").forward(request, response);
 

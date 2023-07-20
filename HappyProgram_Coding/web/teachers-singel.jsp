@@ -130,27 +130,29 @@
                                         </div> <!-- singel dashboard -->
                                         <div class="singel-dashboard pt-40">
                                             <h5>Acchivments</h5>
-                                            <p>${cv.getAchievements()}</p>
+                                            <p>-${cv.getAchievements()}</p>
                                         </div> <!-- singel dashboard -->
-                                        
+
                                         <div class="singel-dashboard pt-40">
                                             <h5>My Professinal</h5>
-                                            <p>${cv.getProfession()}</p>
+                                            <p>-${cv.getProfession()}</p>
                                         </div> <!-- singel dashboard -->
-                                        
+
                                         <div class="singel-dashboard pt-40">
-                                            <h5>My Contact</h5>
-                                            <p>${cv.getContact()}</p>
+                                            <h5>Skills</h5>
+                                            <c:forEach items="${skillMentor}" var="skill">
+                                                <td>-${skill}<br></td>
+                                                </c:forEach>
                                         </div> <!-- singel dashboard -->
-                                        
+
                                         <div class="singel-dashboard pt-40">
                                             <h5>My Education</h5>
-                                            <p>${cv.getEducation()}</p>
+                                            <p>-${cv.getEducation()}</p>
                                         </div> <!-- singel dashboard -->
-                                        
+
                                         <div class="singel-dashboard pt-40">
                                             <h5>My Work Experience</h5>
-                                            <p>${cv.getWorkExperience()}</p>
+                                            <p>-${cv.getWorkExperience()}</p>
                                         </div> <!-- singel dashboard -->
                                     </div> <!-- dashboard cont -->
                                 </div>
@@ -158,7 +160,7 @@
                                     /* Định dạng cho các phần tử <p> */
                                     p {
                                         font-size: 16px;
-                                        
+
                                     }
 
                                     /* Định dạng cho Mentor ID */
@@ -186,7 +188,7 @@
                                     <p class="request-count">Number of Complete requests: ${sessionScope.mentorCV.getCompleteReq()}</p>
                                     <p class="percentage">Percentage completed: ${sessionScope.mentorCV.getCompletePer()}%</p>
                                 </div>
-                                
+
                                 <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                                     <div class="reviews-cont">
                                         <div class="title">

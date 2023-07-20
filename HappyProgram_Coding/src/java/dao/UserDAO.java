@@ -315,6 +315,41 @@ public class UserDAO extends MyDAO {
         }
     }
 
+    public User getUserByEmail(String email) {
+        xSql = "select * from User where email = ?";
+        String xUser, xPass, xName, xEmail, xAddress, xPhone, xImage;
+        int xUid, xRole, xAvgRate;
+        Date xDob;
+        boolean xGender, xUserStatus;
+        User x = null;
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, email);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                xUser = rs.getString("username");
+                xPass = rs.getString("password");
+                xName = rs.getString("full_name");
+                xGender = rs.getBoolean("gender");
+                xEmail = rs.getString("email");
+                xAddress = rs.getString("address");
+                xPhone = rs.getString("phonenumber");
+                xUid = rs.getInt("u_Id");
+                xRole = rs.getInt("role");
+                xImage = rs.getString("image"); //Image
+                xAvgRate = rs.getInt("avg_rate");
+                xDob = rs.getDate("date_of_birth");
+                xUserStatus = rs.getBoolean("user_status");
+
+                x = new User(xUid, xUser, xPass, xName, xGender, xDob, xEmail, xAddress, xPhone, xRole, xUserStatus, xAvgRate, xImage);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return x;
+    }   
+
     public static void main(String[] args) {
         UserDAO ud = new UserDAO();
         // Tham số cho hàm updateProfile

@@ -41,16 +41,24 @@ public class NewPassword extends HttpServlet {
                 int rowCount = pst.executeUpdate();
                 if (rowCount > 0) {
                     request.setAttribute("status", "resetSuccess");
-                    dispatcher = request.getRequestDispatcher("signin.jsp");
+                    request.setAttribute("mess", "Your password reset successfully");
+//                    dispatcher = request.getRequestDispatcher("signin.jsp");
+                    request.getRequestDispatcher("suggest").forward(request, response);
+                    
                 } else {
                     request.setAttribute("status", "resetFailed");
-                    dispatcher = request.getRequestDispatcher("signin.jsp");
+//                    dispatcher = request.getRequestDispatcher("signin.jsp");
+                    request.getRequestDispatcher("suggest").forward(request, response);
                 }
                 dispatcher.forward(request, response);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }else if(!newPassword.equals(confPassword)){
+                request.getRequestDispatcher("newPassword.jsp").forward(request, response);
+                request.setAttribute("messs", "Email is not exist!");
+            }
         }
     }
 
-}
+

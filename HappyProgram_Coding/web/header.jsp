@@ -214,7 +214,16 @@
                                         <ul class="sub-menu">
                                             <li><a href="listreqmentor">Invited Request</a></li>
                                             <li><a href="staticreq">Requests statistics</a></li>
+                                            
 
+                                        </ul>
+                                    </li>
+                                </c:if>
+                                <c:if test="${sessionScope.user.getRole() == 2}">
+                                    <li class="nav-item">
+                                        <a>Cv</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="createcv">Create CV</a></li>
                                         </ul>
                                     </li>
                                 </c:if>

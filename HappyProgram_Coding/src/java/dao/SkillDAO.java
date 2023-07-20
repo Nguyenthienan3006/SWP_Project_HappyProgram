@@ -84,7 +84,7 @@ public class SkillDAO extends MyDAO {
         return mess;
     }
 
-    public int UpdateSkillAdmin(int skillID, int status,String img, String newName) {
+    public int UpdateSkillAdmin(int skillID, int status, String img, String newName) {
         int mess = 0;
         // Chuỗi truy vấn SELECT để lấy danh sách mentor
         String query = "UPDATE Skills\n"
@@ -150,6 +150,35 @@ public class SkillDAO extends MyDAO {
 
         return list;
     }
+
+    public List<String> getSkillByMentorId(int mentor_id) {
+
+        List<String> list = new ArrayList<>();
+
+        xSql = "select s.Skill_Name from skills s\n"
+                + "join skillofcv socv on s.Skill_Id = socv.Skill_id\n"
+                + "join cvdetail cv on socv.cv_Id = cv.cv_id\n"
+                + "join cvofmentor cvom on cvom.cv_id = cv.cv_id\n"
+                + "join user u on u.u_Id = cvom.mentor_Id\n"
+                + "where cvom.mentor_Id = ?";
+        String xSkill_Name;
+
+        Skill x = null;
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, mentor_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                xSkill_Name = rs.getString("Skill_Name");
+
+                String str = xSkill_Name;
+                list.add(str);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }
 
 class t2 {
@@ -157,9 +186,7 @@ class t2 {
     public static void main(String[] args) throws SQLException {
 
         SkillDAO d = new SkillDAO();
-        for (Skill s : d.getAllskill()) {
-            System.out.println(s);
-        }
+        d.getSkillByMentorId(3);
 
     }
 }
