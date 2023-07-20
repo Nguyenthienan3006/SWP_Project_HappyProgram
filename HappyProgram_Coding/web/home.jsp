@@ -407,7 +407,7 @@
 
                                     </div>
 
-                                    <!--                                    <span>(20 Reviws)</span>-->
+
                                     <span> AccountName: ${mentor.getAccountname()}</span> <br>
                                     <span>Accepted request: ${mentor.getNumberOfAcceptedRequest()}</span> <br>   
                                     <ul>
@@ -416,10 +416,33 @@
                                     <div class="admin d-flex justify-content-center align-items-center">
                                         <ul>
                                             <c:if test="${sessionScope.user == null}">
-                                                <button><a href="signin.jsp"><span style="color: #ffffff">Invite</span></a></button>
+                                                <a href="signin.jsp">
+                                                    <input style="
+
+                                                           padding: 10px 20px;
+                                                           background-color: #004085;
+                                                           color: white;
+                                                           border: none;
+                                                           border-radius: 10px;
+                                                           cursor: pointer;
+                                                           font-size: 16px;
+                                                           font-weight: bold;" type="Submit" value="Invite">
+                                                </a>
                                             </c:if>
                                             <c:if test="${sessionScope.user.getRole() == 1}">
-                                                <button><a href="loadskill"><span style="color: #ffffff">Invite</span></a></button>
+
+                                                <a href="loadskill">
+                                                    <input style="
+
+                                                           padding: 10px 20px;
+                                                           background-color: #004085;
+                                                           color: white;
+                                                           border: none;
+                                                           border-radius: 10px;
+                                                           cursor: pointer;
+                                                           font-size: 16px;
+                                                           font-weight: bold;" type="Submit" value="Invite">
+                                                </a>
                                             </c:if>
                                         </ul>
                                     </div>

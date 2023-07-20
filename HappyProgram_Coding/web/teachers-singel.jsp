@@ -103,7 +103,8 @@
                             </div>
                             <div class="description">
                                 <p>Rate Star</p>
-                                <p>${cv.getRateStar()}/5.0</p>
+                                <p>${sessionScope.rs}/5.0</p>
+
                             </div>
                         </div> <!-- teachers left -->
                     </div>
@@ -125,7 +126,7 @@
                                     <div class="dashboard-cont">
                                         <div class="singel-dashboard pt-40">
                                             <h5>About</h5>
-                                            <p>Lorem ipsum gravida nibh vel velit auctor aliquetn sollicitudirem quibibendum auci elit cons equat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus .</p>
+                                            <p>Welcome to our programming language learning website! Our exceptional team of Mentors is eager to guide you through the world of coding. Whether you're a beginner or an experienced programmer, they are dedicated to supporting your learning goals. With engaging lessons and practical projects, you'll master programming skills and tackle real-world challenges. Join us and explore the joy of coding with our trustworthy Mentors!</p>
                                         </div> <!-- singel dashboard -->
                                         <div class="singel-dashboard pt-40">
                                             <h5>Acchivments</h5>
@@ -137,86 +138,39 @@
                                         </div> <!-- singel dashboard -->
                                     </div> <!-- dashboard cont -->
                                 </div>
-                                <div class="tab-pane fade" id="courses" role="tabpanel" aria-labelledby="courses-tab">
-                                    <div class="courses-cont pt-20">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="singel-course mt-30">
-                                                    <div class="thum">
-                                                        <div class="image">
-                                                            <img src="images/course/cu-2.jpg" alt="Course">
-                                                        </div>
-                                                        <div class="price">
-                                                            <span>$10</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont border">
-                                                        <ul>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                        <span>(20 Reviws)</span>
-                                                        <a href="#"><h4>Learn basis javascirpt from start for beginner</h4></a>
-                                                        <div class="course-teacher">
-                                                            <div class="thum">
-                                                                <a href="#"><img src="images/course/teacher/t-2.jpg" alt="teacher"></a>
-                                                            </div>
-                                                            <div class="name">
-                                                                <a href="#"><h6>Mark anthem</h6></a>
-                                                            </div>
-                                                            <div class="admin">
-                                                                <ul>
-                                                                    <li><a href="#"><i class="fa fa-user"></i><span>31</span></a></li>
-                                                                    <li><a href="#"><i class="fa fa-heart"></i><span>10</span></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> <!-- singel course -->
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="singel-course mt-30">
-                                                    <div class="thum">
-                                                        <div class="image">
-                                                            <img src="images/course/cu-3.jpg" alt="Course">
-                                                        </div>
-                                                        <div class="price">
-                                                            <span>$30</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont border">
-                                                        <ul>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                        <span>(20 Reviws)</span>
-                                                        <a href="#"><h4>Learn basis javascirpt from start for beginner</h4></a>
-                                                        <div class="course-teacher">
-                                                            <div class="thum">
-                                                                <a href="#"><img src="images/course/teacher/t-2.jpg" alt="teacher"></a>
-                                                            </div>
-                                                            <div class="name">
-                                                                <a href="#"><h6>Mark anthem</h6></a>
-                                                            </div>
-                                                            <div class="admin">
-                                                                <ul>
-                                                                    <li><a href="#"><i class="fa fa-user"></i><span>31</span></a></li>
-                                                                    <li><a href="#"><i class="fa fa-heart"></i><span>10</span></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> <!-- singel course -->
-                                            </div>
-                                        </div> <!-- row -->
-                                    </div> <!-- courses cont -->
+                                <style>
+                                    /* Định dạng cho các phần tử <p> */
+                                    p {
+                                        font-size: 16px;
+                                        
+                                    }
+
+                                    /* Định dạng cho Mentor ID */
+                                    .mentor-id {
+                                        font-weight: bold;
+                                    }
+
+                                    /* Định dạng cho số lượng request */
+                                    .request-count {
+                                        color: #007bff; /* Màu xanh dương */
+                                    }
+
+                                    /* Định dạng cho phần trăm hoàn thành */
+                                    .percentage {
+                                        color: #28a745; /* Màu xanh lá cây */
+                                        font-weight: bold;
+                                    }
+                                </style>
+                                <br>
+                                <div class="tab-pane fade" id="courses" role="tabpanel" aria-labelledby="courses-tab" >
+                                    <!-- HTML -->
+                                    <p class="mentor-id">Mentor ID: ${sessionScope.mentorCV.getMentorID()}</p>
+                                    <p class="request-count">Number of all requests: ${sessionScope.mentorCV.getTotalReq()}</p>
+                                    <p class="request-count">Number of currently accepted requests: ${sessionScope.mentorCV.getAcceptReq()}</p>
+                                    <p class="request-count">Number of Complete requests: ${sessionScope.mentorCV.getCompleteReq()}</p>
+                                    <p class="percentage">Percentage completed: ${sessionScope.mentorCV.getCompletePer()}%</p>
                                 </div>
+                                
                                 <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                                     <div class="reviews-cont">
                                         <div class="title">

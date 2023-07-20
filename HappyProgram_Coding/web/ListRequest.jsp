@@ -85,7 +85,7 @@
                                 <th>Request detail</th> 
                                 <th>Action1</th>
                                 <th>Action2</th>
-                                <th>Action3</th>
+                                
 
                             </tr>
                         </thead>
@@ -98,35 +98,58 @@
                                     <td>${list.getTitle_of_request()}</td>
                                     <td>${list.getRequestStatus()}</td>
 
-                                    <td>
-                                        <a href="listreqdetailmentee?reqId=${list.getRequestID()}">
-                                            <input style="padding: 10px;
-                                                   background-color: #0056b3;
-                                                   color: white;
-                                                   border: none;
-                                                   border-radius: 15px;
-                                                   cursor: pointer;
-                                                   font-size: 12px; margin-bottom: 5%" type="Submit" value="Request detail">
-                                        </a>
-                                    </td>
+                                    <c:if test="${list.getRequestStatus() != null}">
+                                        <td>
+                                            <a href="listreqdetailmentee?reqId=${list.getRequestID()}">
+                                                <input style="padding: 13px 13px;
+                                                       background-color: #0056b3;
+                                                       color: white;
+                                                       border: none;
+                                                       border-radius: 10px;
+                                                       cursor: pointer;
+                                                       font-size: 12px; margin-bottom: 5%;
+                                                       font-weight: bold" type="Submit" value="Request detail">
+                                            </a>
+                                        </td>
+                                    </c:if>
 
-                                    <td>
-                                        <a href="updatereq?reqId=${list.getRequestID()}">
-                                            <input style="padding: 10px 20px;
-                                                   background-color: #0056b3;
-                                                   color: white;
-                                                   border: none;
-                                                   border-radius: 15px;
-                                                   cursor: pointer;
-                                                   font-size: 12px; margin-bottom: 5%" type="Submit" value="Update Request">
-                                        </a>
-                                    </td>
+                                    <c:if test="${list.getRequestStatus().equals('Open')}">
+                                        <td>
+                                            <a href="updatereq?reqId=${list.getRequestID()}">
+                                                <input style="padding: 13px 13px ;
+                                                       background-color: cadetblue;
+                                                       color: white;
+                                                       border: none;
+                                                       border-radius: 10px;
+                                                       cursor: pointer;
+                                                       font-size: 12px; margin-bottom: 5%;
+                                                       font-weight: bold" type="Submit" value="Update Request">
+                                            </a>
+                                        </td>
+
+
+                                        <td>
+                                            <a href="deletereq?reqId=${list.getRequestID()}">
+                                                <input style="padding: 13px 13px ;
+                                                       background-color: #d34836;
+                                                       color: white;
+                                                       border: none;
+                                                       border-radius: 10px;
+                                                       cursor: pointer;
+                                                       font-size: 12px; margin-bottom: 5%;
+                                                       font-weight: bold" type="Submit" value="Delete Request">
+                                            </a>
+                                        </td>
+
+
+                                    </c:if>
+
 
                                     <c:if test="${list.getRequestStatus().equals('Finish')}">
                                         <td>
                                             <a href="closereq?requestid=${list.getRequestID()}&reqTittle=${list.getTitle_of_request()}&mentorName=${list.getMentorName()}&mentorID=${list.getMentorID()}">
-                                                <input style="padding: 10px ;
-                                                       background-color: #d34836;
+                                                <input style="padding: 13px 13px ;
+                                                       background-color: #e0a800;
                                                        color: white;
                                                        border: none;
                                                        border-radius: 10px;
@@ -138,31 +161,19 @@
 
                                         <td>
                                             <a href="continuereq?requestid=${list.getRequestID()}">
-                                                <input style="padding: 10px ;
-                                                       background-color: #4CAF50;
+                                                <input style="padding: 13px 13px ;
+                                                       background-color: #28a745;
                                                        color: white;
                                                        border: none;
                                                        border-radius: 10px;
                                                        cursor: pointer;
                                                        font-size: 12px; margin-bottom: 5%;
-                                                       font-weight: bold"" type="Submit" value="Continue Request">
+                                                       font-weight: bold" type="Submit" value="Continue Request">
                                             </a>
                                         </td>
                                     </c:if>
 
-                                    <c:if test="${list.getRequestStatus().equals('Open')}">
-                                        <td>
-                                            <a href="deletereq?reqId=${list.getRequestID()}">
-                                                <input style="padding: 10px 20px;
-                                                       background-color: red;
-                                                       color: white;
-                                                       border: none;
-                                                       border-radius: 15px;
-                                                       cursor: pointer;
-                                                       font-size: 12px; margin-bottom: 5%" type="Submit" value="Delete Request">
-                                            </a>
-                                        </td>
-                                    </c:if>
+
                                 </tr>
                             </c:forEach>
                         <tbody>

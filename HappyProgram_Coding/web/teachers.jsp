@@ -119,11 +119,9 @@
                                         </div>
                                         <div class="cont" style="padding-left: 0px">
                                             <a><h5>Name: ${mentor.getFullname()}</h5></a> <br>
-                                            <span> AccName: ${mentor.getAccountname()}</span> <br>
+                                            <span> Account Name: ${mentor.getAccountname()}</span> <br>
                                             <span>Profession: ${mentor.getProfession()}</span> <br>
-                                            <span>Accepted request: ${mentor.getNumberOfAcceptedRequest()}</span> <br>
-                                            <span>Status:  ${mentor.getPercentageCompleted()}</span> <br>
-                                            <span>Rate: ${mentor.getRateStar()}*/5.0*</span>
+                                            
                                         </div>
 
 

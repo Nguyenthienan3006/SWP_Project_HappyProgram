@@ -3,14 +3,12 @@ package model;
 public class Rate {
     private int menteeId;
     private int mentorId;
-    private int ratePoint;
+    private double ratePoint;
 
     public Rate() {
     }
 
-    public Rate(int menteeId, int mentorId, int ratePoint) {
-        this.menteeId = menteeId;
-        this.mentorId = mentorId;
+    public Rate(double ratePoint) {
         this.ratePoint = ratePoint;
     }
 
@@ -30,13 +28,14 @@ public class Rate {
         this.mentorId = mentorId;
     }
 
-    public int getRatePoint() {
+    public double getRatePoint() {
         return ratePoint;
     }
 
-    public void setRatePoint(int ratePoint) {
+    public void setRatePoint(double ratePoint) {
         this.ratePoint = ratePoint;
     }
+
 
     @Override
     public String toString() {

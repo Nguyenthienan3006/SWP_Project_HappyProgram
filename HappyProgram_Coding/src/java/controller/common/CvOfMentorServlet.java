@@ -23,6 +23,7 @@ import javax.mail.Session;
 import model.Comment;
 import model.CvOfMentor;
 import model.ListMentor;
+import model.Rate;
 import model.User;
 
 /**
@@ -48,11 +49,20 @@ public class CvOfMentorServlet extends HttpServlet {
             //khoi tao session
             HttpSession session = request.getSession();
             CommentDAO c2 = new CommentDAO();
-            int Uid = Integer.parseInt(request.getParameter("uid"));
             CvOfMentorDAO c = new CvOfMentorDAO();
+            //Get mentorID
+            int Uid = Integer.parseInt(request.getParameter("uid"));           
+            //Cv information
             ListMentor lm = c.GetCvOfMentor(Uid);
+            CvOfMentor mentorCV = c.getMentorInfoReq(Uid);
+            //Get comment
             ArrayList<Comment> commentList = c2.getComment(Uid);
+            //Get average rateStar
+            double rateStar = c2.getAVGStar(Uid);
+            //Set attribute
             session.setAttribute("commentList", commentList);
+            session.setAttribute("rs", rateStar);
+            session.setAttribute("mentorCV", mentorCV);
             request.setAttribute("cv", lm);
             request.getRequestDispatcher("teachers-singel.jsp").forward(request, response);
 

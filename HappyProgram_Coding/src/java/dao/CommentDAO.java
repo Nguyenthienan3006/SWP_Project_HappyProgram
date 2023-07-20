@@ -29,8 +29,34 @@ public class CommentDAO extends MyDAO {
         return ListComment;
     }
 
+    public double getAVGStar(int mentorID) {
+        xSql = "select round(avg(Rated_point),1) as Rate\n"
+                + "from rate\n"
+                + "where mentorID = ?";
+
+        double rateStar = 0;
+        
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, mentorID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+            rateStar = rs.getDouble("Rate");
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rateStar;
+    }
+    
+    
+    
+    
+
     public static void main(String[] args) {
         CommentDAO c = new CommentDAO();
-        c.getComment(3);
+        c.getAVGStar(3);
     }
 }

@@ -1,9 +1,11 @@
 package dao;
 
+import static DB.DBConnect.getJDBCConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import model.*;
 
 public class CvOfMentorDAO extends MyDAO {
@@ -35,6 +37,35 @@ public class CvOfMentorDAO extends MyDAO {
             + "ORDER BY\n"
             + "U.u_Id;";
 
+    private static final String getCV = "SELECT\n"
+            + "    q1.mentorID,\n"
+            + "    q1.TotalRequests,\n"
+            + "    (q2.NumberOfOpenReq) AS NumberOfAccReq,\n"
+            + "    q1.CompleteRequests,\n"
+            + "	Round((q1.CompleteRequests / IFNULL(q1.TotalRequests, 0))*100,2) AS CompletePercentage\n"
+            + "FROM\n"
+            + "    (SELECT\n"
+            + "        mentorID,\n"
+            + "        COUNT(CASE WHEN RequestStatus IN (1,2,4,5) THEN 1 END) AS TotalRequests,\n"
+            + "         COUNT(CASE WHEN RequestStatus IN (4, 5) THEN 1 END) AS CompleteRequests\n"
+            + "    FROM\n"
+            + "        request\n"
+            + "    WHERE\n"
+            + "        RequestStatus IN (1, 2, 3, 4, 5) \n"
+            + "    GROUP BY\n"
+            + "        mentorID) q1\n"
+            + "JOIN\n"
+            + "    (SELECT\n"
+            + "        mentorID,\n"
+            + "         COUNT(CASE WHEN RequestStatus IN (2) THEN 1 END) AS NumberOfOpenReq\n"
+            + "    FROM\n"
+            + "        request\n"
+            + "    WHERE\n"
+            + "        RequestStatus IN (1, 2, 3, 4, 5)\n"
+            + "    GROUP BY\n"
+            + "        mentorID) q2\n"
+            + "ON q1.mentorID = q2.mentorID and q1.mentorID = ?;";
+
     public ListMentor GetCvOfMentor(int Uid) throws SQLException {
         ListMentor ls = null;
 
@@ -54,10 +85,30 @@ public class CvOfMentorDAO extends MyDAO {
                 ls = new ListMentor(ID, Fullname, Accountname, Achievements, Profession, NumberOfAcceptedRequest, RateStar, Image);
             }
         }
-
         return ls;
     }
 
+    public CvOfMentor getMentorInfoReq(int mentorID) throws SQLException {
+        CvOfMentor cv = null;
+
+        if (con != null) {
+            ps = con.prepareStatement(getCV);
+            ps.setInt(1, mentorID);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                int ID = rs.getInt("mentorID");
+                int totalReq = rs.getInt("TotalRequests");
+                int acceptReq = rs.getInt("NumberOfAccReq");
+                int completeReq = rs.getInt("CompleteRequests");
+                double completePer = rs.getDouble("CompletePercentage");
+
+                //add mentor từ database vào list
+                cv = new CvOfMentor(ID, totalReq, acceptReq, completeReq, completePer);
+
+            }
+        }
+        return cv;
+    }
 }
 
 class t1 {
@@ -66,7 +117,6 @@ class t1 {
 
         CvOfMentorDAO d = new CvOfMentorDAO();
 
-        System.out.println(d.GetCvOfMentor(3));
 
     }
 }
