@@ -91,7 +91,7 @@
                             </div>
                             <div class="name">
                                 <h6>${cv.getFullname()}</h6>   
-                                <span>${cv.getAccountname()}</span>
+                                <span>Username: ${cv.getAccountname()}</span>
                             </div>
                             <div class="social">
                                 <ul>
@@ -132,9 +132,25 @@
                                             <h5>Acchivments</h5>
                                             <p>${cv.getAchievements()}</p>
                                         </div> <!-- singel dashboard -->
+                                        
                                         <div class="singel-dashboard pt-40">
-                                            <h5>My Objective</h5>
+                                            <h5>My Professinal</h5>
                                             <p>${cv.getProfession()}</p>
+                                        </div> <!-- singel dashboard -->
+                                        
+                                        <div class="singel-dashboard pt-40">
+                                            <h5>My Contact</h5>
+                                            <p>${cv.getContact()}</p>
+                                        </div> <!-- singel dashboard -->
+                                        
+                                        <div class="singel-dashboard pt-40">
+                                            <h5>My Education</h5>
+                                            <p>${cv.getEducation()}</p>
+                                        </div> <!-- singel dashboard -->
+                                        
+                                        <div class="singel-dashboard pt-40">
+                                            <h5>My Work Experience</h5>
+                                            <p>${cv.getWorkExperience()}</p>
                                         </div> <!-- singel dashboard -->
                                     </div> <!-- dashboard cont -->
                                 </div>

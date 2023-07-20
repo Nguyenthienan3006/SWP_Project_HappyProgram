@@ -123,12 +123,6 @@
 
                             <br>
 
-                            <select name="mentor">
-                                <option value="" selected disabled hidden>Mentor for you</option>
-                                <c:forEach items="${lu}" var="lu" varStatus="status">
-                                    <option value="${lu.getUid()}">${lu.getFullname()}</option>
-                                </c:forEach>
-                            </select>
 
                             <input style="padding: 12px 10px;
                                    background-color: #4e6ce6;
@@ -143,7 +137,6 @@
                         </div>
                     </div>
                 </form>
-
                 <style>
                     .skill-grid {
                         display: grid;
@@ -152,9 +145,18 @@
                     }
                 </style>
 
+
                 <%--  load danh sách mentor  --%>          
                 <form action="loadmentor" method="post" class="formm">
                     <input name="skillid" value="${ssl}" type="hidden">
+
+                    <select name="mentor">
+                        <option value="" selected disabled hidden>Mentor for you</option>
+                        <c:forEach items="${lu}" var="lu" varStatus="status">
+                            <option value="${lu.getUid()}">${lu.getFullname()}</option>
+                        </c:forEach>
+                    </select><br><br>
+
 
                     <%-- ket thúc code anh Danh  --%>  
                     <div class="input-boxx">
@@ -168,7 +170,7 @@
                             <input type="datetime-local"id="start-time" placeholder="Enter start time" name="createdDate" required />
                         </div>
                         <div class="input-boxx">
-                            <label>Deadline Date</label>
+                            <label style="font-weight: bold; color: black">Deadline Date</label>
                             <input type="datetime-local" id="end-time" placeholder="Enter end time"name="finishDate" required />
                         </div>
                     </div>

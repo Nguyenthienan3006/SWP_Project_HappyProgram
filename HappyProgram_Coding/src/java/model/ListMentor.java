@@ -9,6 +9,7 @@ package model;
  * @author An Nguyen
  */
 public class ListMentor {
+
     private int STT;
     private int ID;
     private String Fullname;
@@ -21,10 +22,17 @@ public class ListMentor {
     private String Achievements;
     private String img;
 
+    private String contact;
+    private String education;
+    private String workExperience;
+
+
     public ListMentor() {
     }
-    
-    public ListMentor(int ID, String Fullname, String Accountname, String Achievements,String Profession ,int NumberOfAcceptedRequest, float RateStar, String img) {
+
+    //get mentor CV detail
+    public ListMentor(int ID, String Fullname, String Accountname, String Achievements, String Profession, int NumberOfAcceptedRequest, float RateStar, String img, String contact,
+ String education, String workExperience) {
         this.ID = ID;
         this.Fullname = Fullname;
         this.Accountname = Accountname;
@@ -33,6 +41,9 @@ public class ListMentor {
         this.NumberOfAcceptedRequest = NumberOfAcceptedRequest;
         this.RateStar = RateStar;
         this.img = img;
+        this.contact = contact;
+        this.education = education;
+        this.workExperience = workExperience;
     }
 
     public ListMentor(int STT, int ID, String Fullname, String Accountname, String Profession, int NumberOfAcceptedRequest, String PercentageCompleted, float RateStar, String Action, String img) {
@@ -48,6 +59,32 @@ public class ListMentor {
         this.img = img;
     }
 
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public String getWorkExperience() {
+        return workExperience;
+    }
+
+    public void setWorkExperience(String workExperience) {
+        this.workExperience = workExperience;
+    }
+
+    
+    
     public String getImg() {
         return img;
     }
@@ -55,7 +92,6 @@ public class ListMentor {
     public void setImg(String img) {
         this.img = img;
     }
-    
 
     public int getSTT() {
         return STT;
@@ -104,7 +140,7 @@ public class ListMentor {
     public void setAchievements(String Achievements) {
         this.Achievements = Achievements;
     }
-    
+
     public int getNumberOfAcceptedRequest() {
         return NumberOfAcceptedRequest;
     }

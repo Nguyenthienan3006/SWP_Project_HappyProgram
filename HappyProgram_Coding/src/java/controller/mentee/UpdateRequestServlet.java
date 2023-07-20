@@ -126,7 +126,7 @@ public class UpdateRequestServlet extends HttpServlet {
             d.createRequestskill(skillSelected[i], reqId);
         }
         ListRequestDAO m = new ListRequestDAO();
-        ArrayList<ListRequest> ListRequest = m.ListRequest(u.getUid());
+        ArrayList<ListRequest> ListRequest = m.listRequestMentee(u.getUid());
         session.setAttribute("ListRequest", ListRequest);
         request.getRequestDispatcher("ListRequest.jsp").forward(request, response);
     }

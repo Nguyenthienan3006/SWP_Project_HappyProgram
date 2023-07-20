@@ -112,7 +112,7 @@
                                     <c:set var="skillIds" value="${skillIds},${skill.skillId}" />
                                 </c:forEach>
 
-                                <div class="checkbox-row">
+                                <div style="display: flex; justify-content: space-between">
                                     <c:forEach items="${ls}" var="ls" varStatus="status">
                                         <c:if test="${status.index % 4 == 0 && status.index != 0}">
                                             <div style="clear: both;"></div> <!-- Xóa float của các dòng trước -->
@@ -133,16 +133,27 @@
                                         <c:set var="rowCounter" value="${rowCounter + 1}" />
                                     </c:forEach>
                                 </div>
+                                <br>
 
-                                <input type="submit" value="OK">
+                                <input style="padding: 12px 10px;
+                                       background-color: #4e6ce6;
+                                       color: white;
+                                       border: none;
+                                       border-radius: 10px;
+                                       cursor: pointer;
+                                       font-size: 12px;
+                                       font-weight: bold;
+                                       margin-bottom: 3%;
+                                       margin-left: 2%;" type="submit" value="Find mentor">
                             </div>
                         </div>  
                     </div>
                 </form>
+
                 <%--  load danh sách mentor  --%>          
                 <form action="updatereq" method="post" class="formm">
                     <input name="reqId" value="${reqId}" type="hidden" >
-            
+
 
                     <input name="skillid" value="${ssl}" type="hidden">
                     <select name="mentor">
@@ -152,19 +163,20 @@
                         </c:forEach>
 
                     </select>
+                    <br>
                     <%-- ket thúc code anh Danh  --%>  
                     <div class="input-boxx">
-                        <label>Title</label>
+                        <label style="font-weight: bold; color: black">Title</label>
                         <input type="text" placeholder="Enter the title" name="Title_of_request"required />
                     </div>
 
                     <div class="columnn">
                         <div class="input-boxx">
-                            <label>Create Date</label>
+                            <label style="font-weight: bold; color: black">Create Date</label>
                             <input type="datetime-local"id="start-time" placeholder="Enter start time" name="createdDate" required />
                         </div>
                         <div class="input-boxx">
-                            <label>Deadline Date</label>
+                            <label style="font-weight: bold; color: black">Deadline Date</label>
                             <input type="datetime-local" id="end-time" placeholder="Enter end time"name="finishDate" required />
                         </div>
                     </div>
@@ -215,8 +227,8 @@
                     </script>
 
                     <div class="input-boxx">
-                        <label>Term of the request</label>
-                        <div class="select-boxx" >
+                        <label style="font-weight: bold; color: black">Request hour</label>
+                        <div>
                             <select name="Request_hour">
                                 <option hidden >Choose time</option>
                                 <option>1</option>
@@ -226,11 +238,11 @@
 
                             </select>
                         </div>
-                    </div>
+                    </div><br><br>
 
 
                     <div class="input-boxx">
-                        <label>Content</label><br>
+                        <label style="font-weight: bold; color: black">Content</label><br>
                         <textarea placeholder="Content required" name="Desciption_of_request"></textarea>
                     </div>
                     <c:if test="${requestScope.errE!=null}">

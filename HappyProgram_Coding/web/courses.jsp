@@ -193,7 +193,7 @@
                                             <div class="course-teacher">
                                                 <c:if test="${sessionScope.user == null}">
                                                     <div >
-                                                        <a href="signin.jsp"><h6>Join with us!</h6></a>
+                                                        <a href="signin.jsp"><h4 style="font-size: 16px; font-weight: bold">Join with us!</h4></a>
                                                     </div>
                                                 </c:if>
 

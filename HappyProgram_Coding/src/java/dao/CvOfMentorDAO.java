@@ -18,10 +18,11 @@ public class CvOfMentorDAO extends MyDAO {
             + "U.username AS Accountname,\n"
             + "CD.achievements AS  Achievements,\n"
             + "CD.professional_summary AS Profession,\n"
+            + "CD.contact,\n"
+            + "CD.education,\n"
+            + "CD.work_experience,\n"
             + "COUNT(CM.mentor_Id) AS NumberOfAcceptedRequest,\n"
-            + "\n"
             + "ROUND(AVG(R.Rated_point),2) AS RateStar\n"
-            + "\n"
             + "FROM\n"
             + "`User` U\n"
             + "INNER JOIN\n"
@@ -33,7 +34,7 @@ public class CvOfMentorDAO extends MyDAO {
             + "WHERE\n"
             + "U.`role` = (SELECT role_Id FROM `Role` WHERE role_name = 'Mentor') and U.u_Id = ?\n"
             + "GROUP BY\n"
-            + "U.u_Id , U.full_name , U.username , CD.professional_summary,CD.achievements\n"
+            + "U.u_Id , U.full_name , U.username , CD.professional_summary, CD.achievements, CD.contact, CD.education, CD.work_experience\n"
             + "ORDER BY\n"
             + "U.u_Id;";
 
@@ -82,7 +83,13 @@ public class CvOfMentorDAO extends MyDAO {
                 String Profession = rs.getString("Profession");
                 int NumberOfAcceptedRequest = rs.getInt("NumberOfAcceptedRequest");
                 float RateStar = rs.getFloat("RateStar");
-                ls = new ListMentor(ID, Fullname, Accountname, Achievements, Profession, NumberOfAcceptedRequest, RateStar, Image);
+                
+                String contact = rs.getString("contact");
+                String education = rs.getString("education");
+                String workExperience = rs.getString("work_experience");
+                
+                ls = new ListMentor(ID, Fullname, Accountname, Achievements, Profession, 
+                        NumberOfAcceptedRequest, RateStar, Image, contact, education, workExperience);
             }
         }
         return ls;
@@ -116,7 +123,6 @@ class t1 {
     public static void main(String[] args) throws SQLException {
 
         CvOfMentorDAO d = new CvOfMentorDAO();
-
 
     }
 }

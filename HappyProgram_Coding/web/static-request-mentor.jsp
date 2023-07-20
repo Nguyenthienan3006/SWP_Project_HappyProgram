@@ -1,11 +1,8 @@
-<%-- 
-    Document   : ListRequest
-    Created on : Jun 4, 2023, 9:34:10 PM
-    Author     : An Nguyen
---%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -102,24 +99,24 @@
                         <tr>
                             <td>Open Request</td>
                             <td>${open}</td>
-                        <td>${open / total * 100}%</td>
+                        <td><fmt:formatNumber value="${open / total * 100}" type="number" minFractionDigits="2" maxFractionDigits="2" />%</td>
                     </tr>                   
                     <tr>
                         <td>Processing Request</td>
                         <td>${processing}</td>
-                        <td>${processing / total * 100}%</td>
+                        <td><fmt:formatNumber value="${processing / total * 100}" type="number" minFractionDigits="2" maxFractionDigits="2" />%</td>
                     </tr>
 
                     <tr>
                         <td>Finish Request</td>
                         <td>${finish}</td>
-                        <td>${finish / total * 100}%</td>
+                        <td><fmt:formatNumber value="${finish / total * 100}" type="number" minFractionDigits="2" maxFractionDigits="2" />%</td>
                     </tr>
 
                     <tr>
                         <td>Rejected Request</td>
                         <td>${rejected}</td>
-                        <td>${rejected / total * 100}%</td>
+                        <td><fmt:formatNumber value="${rejected / total * 100}" type="number" minFractionDigits="2" maxFractionDigits="2" />%</td>
                     </tr>
 
                     <tr>
