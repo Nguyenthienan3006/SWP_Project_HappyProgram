@@ -85,7 +85,7 @@
                                 <th>Request detail</th> 
                                 <th>Action1</th>
                                 <th>Action2</th>
-                                
+
 
                             </tr>
                         </thead>
@@ -129,7 +129,7 @@
 
 
                                         <td>
-                                            <a href="deletereq?reqId=${list.getRequestID()}">
+                                            <a href="deletereq?reqId=${list.getRequestID()}" onclick="return confirmDelete()">
                                                 <input style="padding: 13px 13px ;
                                                        background-color: #d34836;
                                                        color: white;
@@ -137,7 +137,7 @@
                                                        border-radius: 10px;
                                                        cursor: pointer;
                                                        font-size: 12px; margin-bottom: 5%;
-                                                       font-weight: bold" type="Submit" value="Delete Request">
+                                                       font-weight: bold" type="Submit" value="Delete Request" >
                                             </a>
                                         </td>
 
@@ -266,5 +266,10 @@
     <!--====== Map js ======-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
     <script src="js/map-script.js"></script>
+    <script>
+        function confirmDelete() {
+            return confirm("Bạn có chắc chắn muốn xóa yêu cầu này?");
+        }
+    </script>
 </body>
 </html>

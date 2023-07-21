@@ -32,10 +32,6 @@
         <servlet-class>controller.mentor.AcceptRequest</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CreateRequest</servlet-name>
-        <servlet-class>controller.mentee.CreateRequest</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ListAllReqAdmin</servlet-name>
         <servlet-class>controller.admin.ListAllReqAdmin</servlet-class>
     </servlet>
@@ -118,10 +114,6 @@
     <servlet-mapping>
         <servlet-name>AcceptRequest</servlet-name>
         <url-pattern>/acceptreq</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CreateRequest</servlet-name>
-        <url-pattern>/createreq</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ListAllReqAdmin</servlet-name>

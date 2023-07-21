@@ -108,7 +108,7 @@ public class LoadMentorServlet extends HttpServlet {
         String Title_of_request = request.getParameter("Title_of_request");
         String createdDate = request.getParameter("createdDate");
         String finishDate = request.getParameter("finishDate");
-        String Date_hour = request.getParameter("Date_hour");
+        String Date_hour = "2023-08-25 06:00:00";
         int Request_hour = Integer.parseInt(request.getParameter("Request_hour"));
         String Desciption_of_request = request.getParameter("Desciption_of_request");
 
@@ -118,7 +118,10 @@ public class LoadMentorServlet extends HttpServlet {
         for (int i = 0; i < skillSelected.length; i++) {
             d.createRequestskill(skillSelected[i]);
         }
-        request.getRequestDispatcher("home.jsp").forward(request, response);
+        ListRequestDAO m = new ListRequestDAO();
+        ArrayList<ListRequest> ListRequest = m.listRequestMentee(u.getUid());
+        session.setAttribute("ListRequest", ListRequest);
+        request.getRequestDispatcher("ListRequest.jsp").forward(request, response);
     }
 
 }

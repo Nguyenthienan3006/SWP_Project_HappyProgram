@@ -121,10 +121,12 @@
                     }
                 </style>
                 <div class="form-container" >
-                    <h2 class="grid-title">Create Skill</h2><br>
+                    <h2 class="grid-title">Create Skill</h2>
 
                     <!-- BEGIN FILTER BY CATEGORY -->
+                   <p style="color: red">${mess}</p>
                     <form action="createskill" method="post">
+                        
                         <div class="input-boxx">
                             <h5 style="font-size: 20px">Enter skill name:</h5>
                             <div>

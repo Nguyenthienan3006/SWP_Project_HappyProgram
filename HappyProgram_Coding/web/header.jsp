@@ -224,6 +224,8 @@
                                         <a>Cv</a>
                                         <ul class="sub-menu">
                                             <li><a href="createcv">Create CV</a></li>
+                                            <li><a href="mycv">View My CV</a></li>
+                                            <li><a href="updatecv">Update CV</a></li>
                                         </ul>
                                     </li>
                                 </c:if>

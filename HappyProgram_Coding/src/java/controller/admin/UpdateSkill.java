@@ -94,20 +94,33 @@ public class UpdateSkill extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         HttpSession session = request.getSession();
-        SkillDAO d = new SkillDAO();
         int SkillId = Integer.parseInt(request.getParameter("SkillId"));
         int skillStatus = Integer.parseInt(request.getParameter("skillStatus"));
         String skillName = request.getParameter("skillName");
-        String skillImg = "images/skillImg/" +  request.getParameter("img");
+        String skillImg = "images/skillImg/" + request.getParameter("img");
 
-        int check = d.UpdateSkillAdmin(SkillId, skillStatus,skillImg ,skillName);
+        try {
+            SkillDAO d = new SkillDAO();
+            List<Skill> listS = d.getAllskillAdmin();
+            for (Skill s : listS) {
+                if (skillName.equalsIgnoreCase(s.getSkillName())) {
+                    request.setAttribute("mess", "Skillname already exist!");
+                    session.setAttribute("skillsList", listS);
+                    request.getRequestDispatcher("updateSkillAdmin.jsp").forward(request, response);
+                }
+            }
+            int check = d.UpdateSkillAdmin(SkillId, skillStatus, skillImg, skillName);
 
-        if (check == 0) {
-            session.setAttribute("message", "Update success full!");
-            request.getRequestDispatcher("suggest").forward(request, response);
-        } else {
-            session.setAttribute("message", "Update fail!");
-            request.getRequestDispatcher("suggest").forward(request, response);
+            if (check == 0) {
+                session.setAttribute("message", "Update success full!");
+                request.getRequestDispatcher("suggest").forward(request, response);
+            } else {
+                session.setAttribute("message", "Update fail!");
+                request.getRequestDispatcher("suggest").forward(request, response);
+            }
+
+        } catch (Exception e) {
+            log("Error at SkillServlet: " + e.toString());
         }
 
     }

@@ -112,13 +112,13 @@
                         <div class="teachers-right mt-50">
                             <ul class="nav nav-justified" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="active" id="dashboard-tab" data-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="true">Dashboard</a>
+                                    <a class="active" id="dashboard-tab" data-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="true">Over View</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a id="courses-tab" data-toggle="tab" href="#courses" role="tab" aria-controls="courses" aria-selected="false">Courses</a>
+                                    <a id="courses-tab" data-toggle="tab" href="#courses" role="tab" aria-controls="courses" aria-selected="false">More Details</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
+                                    <a id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Feed Back</a>
                                 </li>
                             </ul> <!-- nav -->
                             <div class="tab-content" id="myTabContent">

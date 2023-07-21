@@ -1,10 +1,5 @@
-<%-- 
-    Document   : updateSkillAdmin
-    Created on : Jun 23, 2023, 4:34:29 PM
-    Author     : An Nguyen
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -49,7 +44,7 @@
 
         <!--====== Responsive css ======-->
         <link rel="stylesheet" href="css/responsive.css">  
-        <title>Update Skill</title>
+        <title>Create Skill</title>
         <style>
             label {
                 display: block;
@@ -70,7 +65,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Update Skill</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Create Cv</li>
                                     </ol>
                                 </nav>
                             </div>  <!-- page banner cont -->
@@ -121,84 +116,87 @@
                     }
                 </style>
                 <div class="form-container" >
-                    <h2 class="grid-title">Update Skill</h2>
-                    <p style="color: red">${mess}</p>
-                <!-- BEGIN FILTER BY CATEGORY -->
-                <form action="updateskill" method="post">
+                    <h2 class="grid-title">Update Cv</h2><br>
 
-                    <!-- BEGIN SEARCH INPUT -->
-                    <form action="listreqadmin" method="post">
-                        <div class="input-group">
-                            <div class="col-sm-6">
-                                <h4 style="font-size: 20px">Select skill name:</h4>
-                                <select id="" name="SkillId" required>
-                                    <option value="" selected disabled hidden>Skill Name</option>
-                                    <c:forEach items="${sessionScope.skillsList}" var="list">
-                                        <option value="${list.getSkillId()}">${list.getSkillName()}</option>
+                    <!-- BEGIN FILTER BY CATEGORY -->
+                    <form action="updatecv" method="post" onsubmit="return validateForm()">
+                        <div class="gender-boxx">
+                            <div class="gender-boxx">
+                                <label style="font-size: 15px; font-weight: bold;">Skill</label>
+                                <div class="gender-option ">
+
+                                <c:set var="skillIds" value="" />
+                                <c:set var="rowCounter" value="0" />
+                                <%--  check các skill dã chon --%>
+                                <c:forEach items="${lss}" var="skill">
+                                    <c:set var="skillIds" value="${skillIds},${skill.skillId}" />
+                                </c:forEach>
+
+                                <div class="checkbox-row">
+                                    <c:forEach items="${ls}" var="ls" varStatus="status">
+                                        <c:if test="${status.index % 4 == 0 && status.index != 0}">
+                                            <div style="clear: both;"></div> <!-- Xóa float của các dòng trước -->
+                                        </c:if>
+
+                                        <c:if test="${rowCounter == 3}">
+                                            <div style="clear: both;"></div> <!-- Tạo dòng mới -->
+                                            <c:set var="rowCounter" value="0" /> <!-- Đặt lại giá trị rowCounter -->
+                                        </c:if>
+                                        <%--  check các skill dã chon --%>
+                                        <p>
+                                            <input type="checkbox" name="skills" value="${ls.skillId}" ${fn:contains(skillIds, ls.skillId) ? 'checked' : ''}>
+                                            ${ls.skillName}
+                                        </p>
+
+                                        <c:set var="rowCounter" value="${rowCounter + 1}" />
                                     </c:forEach>
-                                </select>  <br><br><br>
-
-                                <h4 style="font-size: 20px">Enter new name:</h4>
-                                <div>
-                                    <input type="text"  name="skillName" placeholder="typing..." required>
                                 </div>
-
-                                <h4 style="font-size: 20px">Select status:</h4>
-                                <select id="skillStatus" name="skillStatus" required>
-                                    <option value="" selected disabled hidden>Status</option>
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
-                                </select>                                <br><br><br>
-
-
-                                <h4 style="font-size: 20px">Input image:</h4>
-                                <div>
-                                    <input type="file"  name="img"  required>
-                                </div>
-
-
-                                <br><br>    
-
-
-                                <div>
-
-                                    <span>
-
-                                        <input style="padding: 10px 20px;
-                                               background-color: #0056b3;
-                                               color: white;
-                                               border: none;
-                                               border-radius: 10px;
-                                               cursor: pointer;
-                                               font-size: 16px;
-                                               font-weight: bold" type="submit" value="Update">
-
-
-
-                                    </span>
-                                </div>
-
                             </div>
+                        </div>  
+                    </div>
+                    <div class="input-boxx">
+                        <h5 style="font-size: 20px">Professional</h5>
+                        <div>
+                            <input type="text"  name="pro" placeholder="typing..." required>
+                        </div>
+                        <h5 style="font-size: 20px">Education</h5>
+                        <div>
+                            <input type="text"  name="edu" placeholder="typing..." required>
+                        </div>
+                        <h5 style="font-size: 20px">Work experience</h5>
+                        <div>
+                            <input type="text"  name="exp" placeholder="typing..." required>
+                        </div>
+                        <h5 style="font-size: 20px">Achievement</h5>
+                        <div>
+                            <input type="text"  name="achi" placeholder="typing..." required>
                         </div>
 
-                        <!-- END SEARCH INPUT -->
+                    </div>
+                    <input style="padding: 10px 20px;
+                           background-color: #0056b3;
+                           color: white;
+                           border: none;
+                           border-radius: 10px;
+                           cursor: pointer;
+                           font-size: 16px;
+                           font-weight: bold;
+                           margin-top: 4%" type="Submit" value="Ok"  >
+                </form  >
+                <!-- END FILTER BY PRICE -->
 
+                <a href="suggest">
+                    <input style="padding: 10px 20px;
+                           background-color: #b21f2d;
+                           color: white;
+                           border: none;
+                           border-radius: 10px;
+                           cursor: pointer;
+                           font-size: 16px;
+                           font-weight: bold;
 
-                    </form>
-                    <!-- END FILTER BY PRICE -->
-
-                    <a href="suggest">
-                        <input style="padding: 10px 20px;
-                               background-color: #b21f2d;
-                               color: white;
-                               border: none;
-                               border-radius: 10px;
-                               cursor: pointer;
-                               font-size: 16px;
-                               font-weight: bold;
-                               margin-left: 18%;
-                               margin-top: 2%" type="Submit" value="Cancel">
-                    </a>
+                           margin-top: 2%" type="Submit" value="Cancel">
+                </a>
             </div>
             <!-- END FILTERS -->
 
@@ -266,5 +264,26 @@
         <!--====== Map js ======-->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
         <script src="js/map-script.js"></script>
+        <script>
+    function validateForm() {
+        // Lấy tất cả các checkbox kỹ năng
+        const checkboxes = document.getElementsByName('skills');
+
+        // Kiểm tra xem có ít nhất một checkbox được chọn hay không
+        let atLeastOneSkillSelected = false;
+        for (let i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                atLeastOneSkillSelected = true;
+                break;
+            }
+        }
+
+        // Hiển thị thông báo nếu không có kỹ năng nào được chọn
+        if (!atLeastOneSkillSelected) {
+            alert('Vui lòng chọn ít nhất 1 kỹ năng');
+            return false; // Ngăn form được gửi lên server
+        }
+    }
+</script>
     </body>
 </html>

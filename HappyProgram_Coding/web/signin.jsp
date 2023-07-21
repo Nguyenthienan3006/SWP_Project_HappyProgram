@@ -31,7 +31,7 @@
 
                         <div class="signin-form">
                             <h2 class="form-title">Sign in</h2>
-                            <p class = "text-danger">${mess}</p>
+                            <p style="color: red">${mess}</p>
 
                             <form action="signin" method="get" class="register-form"
                                   id="login-form">
