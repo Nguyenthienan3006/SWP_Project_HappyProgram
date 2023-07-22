@@ -97,7 +97,7 @@ public class SignupServlet extends HttpServlet {
 
             ud.add(user, pass, fullname, gender, dob, email, phone, address, role);
             session.setAttribute("message", "Sign up Success!");
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+            request.getRequestDispatcher("suggest").forward(request, response);
         }
 
     }
