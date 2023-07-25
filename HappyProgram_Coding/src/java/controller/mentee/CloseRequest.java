@@ -84,9 +84,9 @@ public class CloseRequest extends HttpServlet {
                 request.setAttribute("mentorName", mentorName);
                 request.setAttribute("mentorID", mentorID);
                 request.setAttribute("menteeID", menteeID);
-                request.getRequestDispatcher("cmtandrate").forward(request, response);
+                request.getRequestDispatcher("CommentAndRating.jsp").forward(request, response);
             } else {
-                request.setAttribute("mess", "close fail!");
+                request.setAttribute("message", "close uccess full!");
                 request.getRequestDispatcher("Suggest").forward(request, response);
             }
         }
@@ -130,11 +130,11 @@ public class CloseRequest extends HttpServlet {
         RequestDAO d = new RequestDAO();
         int check = d.CommentMentee(menteeIDInt, mentorIDInt, comment);
         int check2 = d.RateMentee(menteeIDInt, mentorIDInt, ratingInt);
-        if (check == 0 && check2 == 0) {
+        if (check == 0 && check2 == 1) {
             session.setAttribute("message", "Review mentor successfully!");
             request.getRequestDispatcher("suggest").forward(request, response);
         } else {
-            session.setAttribute("message", "close request fail!");
+            session.setAttribute("message", "fail");
             request.getRequestDispatcher("suggest").forward(request, response);
 
         }

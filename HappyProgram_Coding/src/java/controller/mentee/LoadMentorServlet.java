@@ -121,7 +121,8 @@ public class LoadMentorServlet extends HttpServlet {
         ListRequestDAO m = new ListRequestDAO();
         ArrayList<ListRequest> ListRequest = m.listRequestMentee(u.getUid());
         session.setAttribute("ListRequest", ListRequest);
-        request.getRequestDispatcher("ListRequest.jsp").forward(request, response);
+        session.setAttribute("message", "Create Successfull!");
+        request.getRequestDispatcher("suggest").forward(request, response);
     }
 
 }
