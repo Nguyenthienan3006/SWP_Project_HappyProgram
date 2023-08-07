@@ -118,12 +118,12 @@
 
                                                             </select> <br><br><br>
 
-                                                            <h4 style="font-size: 20px">By date:</h4>
-                                                            From <br>
-
-                                                            <input type="date" name="startDate"  style="width: 200px;"><br>
-                                                            To <br>
-                                                            <input type="date" name="endDate"  style="width: 200px;"><br><br>
+                                                            <!--                                                            <h4 style="font-size: 20px">By date:</h4>
+                                                                                                                        From <br>
+                                                            
+                                                                                                                        <input type="date" name="startDate"  style="width: 200px;"><br>
+                                                                                                                        To <br>
+                                                                                                                        <input type="date" name="endDate"  style="width: 200px;"><br><br>-->
 
 
                                                             <div>
@@ -242,9 +242,10 @@
                                                 <form action="listreqadmin" method="post">
                                                     <div class="input-group">
                                                         <div class="col-sm-6">
+                                                            <br>
                                                             <h4 style="font-size: 20px">By name:</h4>
                                                             <input type="text" name="searchText" id="searchInput" placeholder="Search...">
-
+                                                            <br><br>
 
                                                             <h4 style="font-size: 20px">By status:</h4>
                                                             <select name="status">
@@ -256,26 +257,27 @@
                                                                 <option value="Close">Close</option>
 
 
-                                                            </select> <br><br>
+                                                            </select>
 
-                                                            <h4 style="font-size: 20px">By date:</h4>
-                                                            From <br>
+                                                            <!--                                                            <h4 style="font-size: 20px">By date:</h4>
+                                                                                                                        From <br>
+                                                            
+                                                                                                                        <input type="date" name="startDate" ><br>
+                                                                                                                        To <br>
+                                                                                                                        <input type="date" name="endDate" ><br><br>-->
 
-                                                            <input type="date" name="startDate" ><br>
-                                                            To <br>
-                                                            <input type="date" name="endDate" ><br><br>
-
-
+                                                            <br><br><br>
                                                             <div>
 
                                                                 <span>
                                                                     <input style="padding: 10px 20px;
-                                                                           background-color: #4CAF50;
+                                                                           background-color: #0056b3;
                                                                            color: white;
                                                                            border: none;
-                                                                           border-radius: 4px;
+                                                                           border-radius: 10px;
                                                                            cursor: pointer;
-                                                                           font-size: 16px;" type="submit" value="Search">
+                                                                           font-size: 16px;
+                                                                           font-weight: bold"" type="submit" value="Search">
                                                                 </span>
                                                             </div>
 

@@ -129,7 +129,7 @@
                                             <p>Welcome to our programming language learning website! Our exceptional team of Mentors is eager to guide you through the world of coding. Whether you're a beginner or an experienced programmer, they are dedicated to supporting your learning goals. With engaging lessons and practical projects, you'll master programming skills and tackle real-world challenges. Join us and explore the joy of coding with our trustworthy Mentors!</p>
                                         </div> <!-- singel dashboard -->
                                         <div class="singel-dashboard pt-40">
-                                            <h5>Acchivments</h5>
+                                            <h5>Achievments</h5>
                                             <p>-${cv.getAchievements()}</p>
                                         </div> <!-- singel dashboard -->
 

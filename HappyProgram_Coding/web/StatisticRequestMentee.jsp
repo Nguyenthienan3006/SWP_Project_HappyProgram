@@ -82,6 +82,7 @@
                                 <th>Request ID</th>
                                 <th>Title of request</th>
                                 <th>Mentor ID</th>
+                                <th>Mentor Name</th>
                                 <th>Number Of All Request</th>
                                 <th>Total Hours Of All Request</th>
                                 <th>Total number of mentors</th>
@@ -93,6 +94,7 @@
                                     <td>${list.getRequestID() }</td>
                                     <td>${list.getTitle()}</td>
                                     <td>${list.getMentorID()}</td>
+                                    <td>${list.getMentorName()}</td>
                                     <td>${list.getNumOfAllRequest()}</td>
                                     <td>${list.getTotalHour()}</td>
                                     <td>${list.getTotalMentor()}</td>

@@ -1,0 +1,381 @@
+Drop database SWP391
+GO
+Create database SWP391
+GO
+Use SWP391
+GO
+
+
+CREATE TABLE `Role` (
+    role_Id int AUTO_INCREMENT PRIMARY KEY,
+    role_name VARCHAR(100) NOT NULL
+)
+
+INSERT INTO `Role` (role_name) VALUES
+( 'Mentee'),
+( 'Mentor'),
+( 'Admin');
+
+
+CREATE TABLE `User` (
+    u_Id int AUTO_INCREMENT primary key,
+    username nvarchar(100) not null,
+    `password` nvarchar(100) not null,
+    full_name nvarchar(150),
+    date_of_birth date,
+    email nvarchar(150),
+    phonenumber nvarchar(20),
+    `address` nvarchar(240),
+    `role` int,
+    foreign key (`role`) references `Role`(`role_Id`),
+    user_status bit default 1, -- de active user hoac deactive (block user)
+    avg_rate int default 0,
+    create_time datetime,
+    gender bit,
+    image nvarchar(1000) -- dùng để lưu link của ảnh trong máy
+);
+
+INSERT INTO `User` (`username`, `password`, `full_name`, `date_of_birth`, `email`, `phonenumber`, `address`, `role`, `create_time`,`gender`, `image`)
+VALUES
+  ('mollis.', '1112', 'Tanner Howell', '2023-03-05', 'scelerisque.lorem@google.com', '0500 893817', 'Hangu', 1, '2023-03-05 21:02:00', 1, 'images/userImg/1.jpg'),
+  ('lobortis', '1113', 'Clinton Hawkins', '2023-01-04', 'est.vitae@google.com', '0800 661 7337', 'St. Johann in Tirol', 1, '2020-07-05 01:00:11', 0 , 'images/userImg/2.jpg'),
+  ('a', '1114', 'Kameko Sanders', '2022-06-02', 'lectus.ante.dictum@google.com', '07887 148479', 'Feira de Santana', 2, '2023-03-30 05:52:58', 0, 'images/userImg/3.jpg'),
+  ('nec', '1115', 'Omar O\'donnell', '2023-05-31', 'tempor.lorem@google.com', '0800 304906', 'Bergama', 1, '2004-06-05 21:26:37', 1, 'images/userImg/4.jpg'),
+  ('eget', '1116', 'Ora Gilmore', '2022-12-25', 'magna@google.com', '055 9288 6374', 'Wałbrzych', 1, '2021-03-08 20:14:15', 0, 'images/userImg/5.jpg'),
+  ('diam', '1117', 'Kato Burke', '2024-02-20', 'inceptos@google.com', '055 7788 1311', 'San José de Alajuela', 1, '2000-01-30 20:37:30', 1, 'images/userImg/6.jpg'),
+  ('Proin', '1118', 'Kevin Swanson', '2024-02-09', 'ac.libero@google.com', '0942 413 8615', 'Omsk', 2, '2019-07-09 12:06:17', 0, 'images/userImg/7.jpg'),
+  ('neque', '1119', 'Alika Nolan', '2022-10-29', 'elit.pharetra@google.com', '076 5672 7388', 'Alajuela', 2, '2023-03-04 11:05:54', 1, 'images/userImg/8.jpg'),
+  ('Cras', '1120', 'Brendan Berger', '2023-06-26', 'diam.lorem@google.com', '070 7873 2934', 'Raufoss', 2, '2023-03-05 15:32:08', 1, 'images/userImg/9.jpg'),
+  ('pharetra', '1121', 'Lila White', '2023-07-01', 'consectetuer@google.com', '070 5829 1826', 'Schwalbach', 2, '2022-03-15 20:22:31', 1, 'images/userImg/10.jpg'),
+  ('augue', '1122', 'Moses Hopper', '2023-06-13', 'morbi.vehicula@google.com', '0863 897 0659', 'Whangarei', 2, '2000-03-30 05:12:29', 1, 'images/userImg/11.jpg'),
+  ('accumsan', '1123', 'Adele Pena', '2022-09-10', 'molestie@google.com', '07624 581788', 'Motala', 1, '1999-03-05 06:25:40', 1, 'images/userImg/12.jpg'),
+  ('dolor', '1124', 'Liam Fisher', '1995-07-12', 'liam.fisher@google.com', '07991 234567', 'London', 2, '2023-01-15 09:30:20', 1, 'images/userImg/13.jpg'),
+  ('ipsum', '1125', 'Olivia Turner', '1998-02-18', 'olivia.turner@google.com', '07812 345678', 'Manchester', 1, '2022-11-20 14:45:10', 0, 'images/userImg/14.jpg'),
+  ('sit', '1126', 'Noah Hill', '1996-09-23', 'noah.hill@google.com', '07723 456789', 'Birmingham', 1, '2023-04-05 11:20:30', 0, 'images/userImg/15.jpg'),
+  ('amet', '1127', 'Emma Morgan', '1997-05-07', 'emma.morgan@google.com', '07634 567890', 'Glasgow', 2, '2022-12-10 16:15:25', 0, 'images/userImg/16.jpg'),
+  ('consectetur', '1128', 'Liam Turner', '1994-12-31', 'liam.turner@google.com', '07945 678901', 'Liverpool', 2, '2023-02-28 19:55:15', 0, 'images/userImg/17.jpg'),
+  ('adipiscing', '1129', 'Olivia Hill', '1999-03-19', 'olivia.hill@google.com', '07856 789012', 'Leeds', 1, '2022-10-05 22:10:50', 0, 'images/userImg/18.jpg'),
+  ('elit', '1130', 'Noah Morgan', '1997-08-14', 'noah.morgan@google.com', '07767 890123', 'Sheffield', 1, '2023-03-15 08:40:35', 0, 'images/userImg/19.jpg'),
+  ('sed', '1131', 'Emma Turner', '1995-11-27', 'emma.turner@google.com', '07678 901234', 'Newcastle', 2, '2022-09-12 13:25:05', 0, 'images/userImg/20.jpg'),
+  ('halo', '1233', 'HaVaLo', '2003-06-30', 'annthe177287@fpt.edu.vn', '01648653794', 'Poland', 3, '2022-12-10 16:15:25', 0, 'images/userImg/1.jpg');
+	
+Create table CvDetail(
+cv_Id int AUTO_INCREMENT primary key,
+contact nvarchar(3000), -- link facebook hoặc số điện thoại ....
+professional_summary nvarchar(3000), -- Tóm tắt về chuyên môn
+education nvarchar(1000), -- Trình độ học vấn
+work_experience  nvarchar(3000), -- Kinh nghiệm làm việc
+achievements nvarchar(3000), -- Những thành tựu
+cv_status bit  default 1  -- de an hoac hien cv
+);
+
+INSERT INTO CvDetail (contact, professional_summary, education, work_experience, achievements, cv_status)
+VALUES
+  ('link_facebook_1', 'professional_summary_1', 'education_1', 'work_experience_1', 'achievements_1', 1),
+  ('link_facebook_2', 'professional_summary_2', 'education_2', 'work_experience_2', 'achievements_2', 1),
+  ('link_facebook_3', 'professional_summary_3', 'education_3', 'work_experience_3', 'achievements_3', 0),
+  ('link_facebook_4', 'professional_summary_4', 'education_4', 'work_experience_4', 'achievements_4', 1),
+  ('link_facebook_5', 'professional_summary_5', 'education_5', 'work_experience_5', 'achievements_5', 0),
+  ('link_facebook_6', 'professional_summary_6', 'education_6', 'work_experience_6', 'achievements_6', 1),
+  ('link_facebook_7', 'professional_summary_7', 'education_7', 'work_experience_7', 'achievements_7', 0),
+  ('link_facebook_8', 'professional_summary_8', 'education_8', 'work_experience_8', 'achievements_8', 1),
+  ('link_facebook_9', 'professional_summary_9', 'education_9', 'work_experience_9', 'achievements_9', 1),
+  ('link_facebook_10', 'professional_summary_10', 'education_10', 'work_experience_10', 'achievements_10', 0),
+  ('link_facebook_11', 'professional_summary_11', 'education_11', 'work_experience_11', 'achievements_11', 1),
+  ('link_facebook_12', 'professional_summary_12', 'education_12', 'work_experience_12', 'achievements_12', 0),
+  ('link_facebook_13', 'professional_summary_13', 'education_13', 'work_experience_13', 'achievements_13', 1),
+  ('link_facebook_14', 'professional_summary_14', 'education_14', 'work_experience_14', 'achievements_14', 0),
+  ('link_facebook_15', 'professional_summary_15', 'education_15', 'work_experience_15', 'achievements_15', 1),
+  ('link_facebook_16', 'professional_summary_16', 'education_16', 'work_experience_16', 'achievements_16', 0),
+  ('link_facebook_17', 'professional_summary_17', 'education_17', 'work_experience_17', 'achievements_17', 1),
+  ('link_facebook_18', 'professional_summary_18', 'education_18', 'work_experience_18', 'achievements_18', 1),
+  ('link_facebook_19', 'professional_summary_19', 'education_19', 'work_experience_19', 'achievements_19', 0),
+  ('link_facebook_20', 'professional_summary_20', 'education_20', 'work_experience_20', 'achievements_20', 1);
+
+
+CREATE TABLE CvOfMentor ( -- bang trung gian giua cv va user
+    cv_Id int,
+    mentor_Id int,
+    foreign key (cv_Id) references cvdetail(cv_Id),
+    foreign key (mentor_Id) references `User`(u_Id),
+    Primary key (cv_Id, mentor_Id)
+);
+
+
+INSERT INTO CvOfMentor (cv_Id, mentor_Id)
+VALUES
+  (1, 1),
+  (2, 2),
+  (3, 3),
+  (4, 4),
+  (5, 5),
+  (6, 6),
+  (7, 7),
+  (8, 8),
+  (9, 9),
+  (10, 10),
+  (11, 11),
+  (12, 12),
+  (13, 13),
+  (14, 14),
+  (15, 15),
+  (16, 16),
+  (17, 17),
+  (18, 18),
+  (19, 19),
+  (20, 20);
+
+
+Create table Skills
+(
+skill_Id int AUTO_INCREMENT PRIMARY KEY,
+Skill_Name Nvarchar(100) not null,
+skill_Status bit,
+SKill_Image Nvarchar(1000)
+);
+insert into Skills (Skill_Name, skill_Status, SKill_Image) values
+('C#', 1,'images/skillImg/c.jpg'),
+('Html', 1,'images/skillImg/html.jpg'),
+('Java', 1,'images/skillImg/java.jpg'),
+('C/C++', 1,'images/skillImg/c++.jpg'),
+('SQL', 1,'images/skillImg/sql.jpg'),
+('.Net', 1,'images/skillImg/dotnet.jpg');
+
+
+Create table SkillOfCv( -- bang trung gian giua skill va user 
+cv_Id int,
+skill_Id int,
+foreign key (cv_Id) references CvDetail(cv_Id), 
+foreign key (skill_Id) references Skills(skill_Id),
+Primary key (cv_Id,skill_Id)
+);
+
+INSERT INTO SkillOfCv (cv_Id, skill_Id) VALUES
+(3, 3),
+(7, 5),
+(8, 2),
+(9, 4),
+(10, 1),
+(11, 6),
+(13, 2),
+(16, 4),
+(17, 1),
+(20, 3),
+(17, 2),
+(7, 6),
+(8, 5),
+(9, 5),
+(10, 3),
+(11, 4),
+(3, 2),
+(7, 1),
+(8, 3),
+(13, 1),
+(16, 2),
+(17, 5),
+(20, 2),
+(8, 4),
+(3, 1);
+
+Create table RequestStatus(
+status_Id int AUTO_INCREMENT primary key,
+`Name`  nvarchar(100) not null
+);
+
+insert into RequestStatus (Name) values 
+('Open'), -- Trang thai khi mentee tao request
+('Processing'), -- Trang thai sau khi tao request xong
+('Reject'), -- Trang thai sau khi mentor reject request
+('Finish'), -- Trang thai khi mentor yeu cau ket thuc khoa hoc
+('Close');-- trang thai khi mentee chap nhan ket thuc khoa hoc
+
+Create table Request(
+RequestID int AUTO_INCREMENT primary key, -- để khi update request thì sẽ biết được request nào cần được update
+menteeID int, 
+mentorID int, 
+RequestStatus int,
+foreign key (menteeID) references `User` (u_Id),
+foreign key (mentorID) references `User` (u_Id), 
+foreign key (RequestStatus) references RequestStatus(status_Id),
+created_date date,
+finish_date date,
+Date_hour datetime,
+Request_hour float,
+Title_of_request nvarchar(100),
+Desciption_of_request nvarchar(100)
+);
+
+INSERT INTO Request (menteeID, mentorID, RequestStatus, created_date, finish_date, Date_hour, Request_hour, Title_of_request, Desciption_of_request) 
+VALUES
+(1, 7, 1, '2023-01-01', '2023-01-10', '2023-01-10 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(1, 3, 2, '2023-02-05', '2023-02-15', '2023-02-15 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(1, 8, 1, '2023-03-10', '2023-03-20', '2023-03-20 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(1, 9, 3, '2023-04-15', '2023-04-30', '2023-04-30 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(1, 10, 2, '2023-05-20', '2023-05-30', '2023-05-30 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(2, 11, 4, '2023-06-25', '2023-07-05', '2023-07-05 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(2, 13, 1, '2023-07-30', '2023-08-10', '2023-08-10 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(2, 20, 3, '2023-08-15', '2023-08-25', '2023-08-25 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(2, 17, 2, '2023-09-20', '2023-09-30', '2023-09-30 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(2, 16, 1, '2023-10-25', '2023-11-05', '2023-11-05 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(4, 7, 1, '2023-01-01', '2023-01-10', '2023-01-10 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(4, 3, 2, '2023-02-05', '2023-02-15', '2023-02-15 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(4, 8, 1, '2023-03-10', '2023-03-20', '2023-03-20 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(4, 9, 3, '2023-04-15', '2023-04-30', '2023-04-30 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(4, 10, 2, '2023-05-20', '2023-05-30', '2023-05-30 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(5, 11, 1, '2023-06-25', '2023-07-05', '2023-07-05 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(5, 13, 1, '2023-07-30', '2023-08-10', '2023-08-10 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(5, 16, 3, '2023-08-15', '2023-08-25', '2023-08-25 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(5, 17, 2, '2023-09-20', '2023-09-30', '2023-09-30 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(5, 20, 1, '2023-10-25', '2023-11-05', '2023-11-05 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(6, 7, 1, '2023-01-01', '2023-01-10', '2023-01-10 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(6, 3, 2, '2023-02-05', '2023-02-15', '2023-02-15 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(6, 8, 1, '2023-03-10', '2023-03-20', '2023-03-20 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(6, 9, 3, '2023-04-15', '2023-04-30', '2023-04-30 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(6, 10, 2, '2023-05-20', '2023-05-30', '2023-05-30 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(12, 13, 1, '2023-07-30', '2023-08-10', '2023-08-10 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(12, 16, 3, '2023-08-15', '2023-08-25', '2023-08-25 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(12, 17, 2, '2023-09-20', '2023-09-30', '2023-09-30 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(12, 20, 1, '2023-10-25', '2023-11-05', '2023-11-05 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(12, 3, 1, '2023-01-01', '2023-01-10', '2023-01-10 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(14, 7, 2, '2023-02-05', '2023-02-15', '2023-02-15 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(14, 8, 1, '2023-03-10', '2023-03-20', '2023-03-20 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(14, 9, 3, '2023-04-15', '2023-04-30', '2023-04-30 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(14, 10, 2, '2023-05-20', '2023-05-30', '2023-05-30 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(14, 11, 1, '2023-06-25', '2023-07-05', '2023-07-05 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(15, 13, 1, '2023-07-30', '2023-08-10', '2023-08-10 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(15, 16, 3, '2023-08-15', '2023-08-25', '2023-08-25 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(15, 17, 2, '2023-09-20', '2023-09-30', '2023-09-30 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(15, 20, 1, '2023-10-25', '2023-11-05', '2023-11-05 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(15, 3, 1, '2023-10-25', '2023-11-05', '2023-11-05 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(18, 3, 1, '2023-01-01', '2023-01-10', '2023-01-10 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(18, 7, 2, '2023-02-05', '2023-02-15', '2023-02-15 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(18, 8, 1, '2023-03-10', '2023-03-20', '2023-03-20 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(18, 9, 3, '2023-04-15', '2023-04-30', '2023-04-30 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(18, 10, 2, '2023-05-20', '2023-05-30', '2023-05-30 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(19, 11, 1, '2023-06-25', '2023-07-05', '2023-07-05 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(19, 13, 1, '2023-07-30', '2023-08-10', '2023-08-10 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(19, 20, 3, '2023-08-15', '2023-08-25', '2023-08-25 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trình nang cao cho nguoi di lam'),
+(19, 16, 2, '2023-09-20', '2023-09-30', '2023-09-30 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi'),
+(19, 17, 1, '2023-10-25', '2023-11-05', '2023-11-05 06:00:00', 1.5, 'Hoc lap trinh', 'Lap trinh co ban cho ngươi moi');
+
+
+Create table SkillOfRequest( -- bang trung gian giua skill va request 
+skill_Id int,
+request_Id int,
+foreign key (skill_Id) references Skills(skill_Id),
+foreign key (request_Id) references Request(RequestID), 
+Primary key (skill_Id,request_Id)
+);
+
+INSERT INTO SkillOfRequest(skill_Id, request_Id) VALUES
+(3, 1),
+(2, 1),
+(5, 1),
+(4, 2),
+(1, 2),
+(6, 2),
+(2, 3),
+(3, 3),
+(4, 3),
+(5, 4),
+(3, 4),
+(2, 4),
+(5, 5),
+(4, 5),
+(1, 5),
+(6, 6),
+(2, 6),
+(3, 7),
+(4, 7),
+(5, 8),
+(3, 8),
+(2, 9),
+(5, 9),
+(4, 10),
+(1, 10),
+(6, 11),
+(2, 12),
+(3, 13),
+(4, 14),
+(5, 15),
+(3, 16),
+(2, 17),
+(5, 18),
+(4, 19),
+(1, 20),
+(6, 21),
+(2, 22),
+(3, 23),
+(4, 24),
+(5, 25),
+(3, 26),
+(2, 27),
+(5, 28),
+(4, 29),
+(1, 30),
+(6, 31),
+(2, 32),
+(3, 33),
+(4, 34),
+(5, 35),
+(3, 36),
+(2, 37),
+(5, 38),
+(4, 39),
+(1, 40),
+(6, 41),
+(2, 42),
+(3, 43),
+(4, 44),
+(5, 45),
+(6, 46),
+(2, 47),
+(3, 48),
+(4, 49),
+(5, 50);
+
+
+
+Create table Comment(
+comment_Id int AUTO_INCREMENT primary key,
+menteeID int, 
+mentorID int,
+foreign key (menteeID) references `User` (u_Id),
+foreign key (mentorID) references `User` (u_Id), 
+comment_Content nvarchar(3000) not null
+);
+
+
+INSERT INTO Comment (menteeID, mentorID, comment_Content) VALUES
+(1, 3, 'This mentor is extremely knowledgeable and helpful.'),
+(2, 7, 'I highly recommend this mentor. They provided great guidance.'),
+(4, 8, 'The mentors advice was invaluable. They helped me achieve my goals.'),
+(5, 9, 'Im grateful for the mentors support. They have been amazing.'),
+(6, 10, 'This mentor went above and beyond to assist me. Thank you!'),
+(12, 11, 'I had a wonderful experience working with this mentor.'),
+(14, 13, 'The mentors expertise was exceptional. I learned a lot.'),
+(15, 16, 'I appreciate the mentors patience and dedication.'),
+(18, 17, 'Im glad I chose this mentor. They gave me valuable insights.'),
+(19, 20, 'The mentor provided constructive feedback and helped me improve my skills.');
+
+
+Create Table Rate(
+menteeID int, 
+mentorID int, 
+foreign key (menteeID) references `User` (u_Id),
+foreign key (mentorID) references `User`(u_Id), 
+Rated_point int not null,
+Primary key (menteeID,mentorID)
+);
+
+INSERT INTO Rate (menteeID, mentorID, Rated_point) VALUES
+(1, 3, 4),
+(2, 7, 5),
+(4, 8, 3),
+(5, 9, 4),
+(6, 10, 5),
+(12, 11, 4),
+(14, 13, 5),
+(15, 16, 3),
+(18, 17, 4),
+(19, 20, 5);
